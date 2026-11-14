@@ -1,13 +1,15 @@
 <?php
-$conn = @mysqli_connect('127.0.0.1', 'root', '', 'maslaha');
-if (!$conn) {
-    echo "Local maslaha connection failed: " . mysqli_connect_error() . "\n";
-    $conn2 = @mysqli_connect('localhost', 'aacasorg_main', 'Zb@+3C7]0Z;7RPcQ', 'aacasorg_main');
-    if (!$conn2) {
-        echo "aacasorg_main connection failed: " . mysqli_connect_error() . "\n";
-    } else {
-        echo "Connected to aacasorg_main!\n";
-    }
-} else {
-    echo "Connected to local maslaha!\n";
+define('BASEPATH', 'dummy');
+define('ENVIRONMENT', 'development');
+require_once __DIR__ . '/../application/config/database.php';
+
+$m = new mysqli($db['default']['hostname'], $db['default']['username'], $db['default']['password'], $db['default']['database']);
+
+$res = $m->query("SELECT COUNT(*) as cnt FROM students");
+$row = $res->fetch_assoc();
+echo "Total students: " . $row['cnt'] . "\n";
+
+$res = $m->query("SELECT s.id, ad.matric_number, u.full_name FROM students s JOIN users u ON u.id = s.user_id LEFT JOIN admissions ad ON ad.id = s.admission_id LIMIT 10");
+while ($r = $res->fetch_assoc()) {
+    echo "{$r['matric_number']} - {$r['full_name']}\n";
 }

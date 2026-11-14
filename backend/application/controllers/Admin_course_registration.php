@@ -24,7 +24,7 @@ class Admin_course_registration extends CI_Controller
         return $key ? $key : 'aacas-local-admin-token-secret';
     }
 
-    private function require_login()
+    protected function require_login()
     {
         $authorization = $this->input->get_request_header('Authorization', true);
         if (!$authorization && isset($_SERVER['HTTP_AUTHORIZATION'])) {
@@ -102,7 +102,7 @@ class Admin_course_registration extends CI_Controller
         return $user;
     }
 
-    private function json_response($code, $data)
+    protected function json_response($code, $data)
     {
         $json = json_encode($data);
         if ($json !== false) {
@@ -445,6 +445,71 @@ class Admin_course_registration extends CI_Controller
             }
         }
         return null;
+    }
+
+    /**
+     * Check if a course_registrations row matches the target teaching academic session.
+     *
+     * Rules:
+     * - If academic_session_id is populated, it is authoritative.
+     * - If academic_session_id is NULL or empty, session_id is used as a fallback.
+     * - session_id NEVER overrides a different populated academic_session_id.
+     * - UUIDs and session names are resolved via resolve_session_row().
+     *
+     * @param array $registration_row The course_registrations row.
+     * @param string|null $target_teaching_sess_id Target teaching academic session UUID or identifier.
+     * @return bool
+     */
+    protected function registration_matches_teaching_session($registration_row, $target_teaching_sess_id)
+    {
+        if (empty($target_teaching_sess_id) || !is_array($registration_row)) {
+            return false;
+        }
+
+        $target_row = $this->resolve_session_row($target_teaching_sess_id);
+        $target_id   = $target_row ? trim((string)$target_row['id']) : trim((string)$target_teaching_sess_id);
+        $target_name = $target_row ? trim((string)$target_row['name']) : '';
+
+        $target_identifiers = array_values(array_unique(array_filter(array(
+            $target_id,
+            $target_name,
+            trim((string)$target_teaching_sess_id)
+        ))));
+
+        $acad_sess = isset($registration_row['academic_session_id']) && $registration_row['academic_session_id'] !== null
+            ? trim((string)$registration_row['academic_session_id'])
+            : '';
+        $legacy_sess = isset($registration_row['session_id']) && $registration_row['session_id'] !== null
+            ? trim((string)$registration_row['session_id'])
+            : '';
+
+        if ($acad_sess !== '') {
+            // Authoritative: must match target session
+            if (in_array($acad_sess, $target_identifiers, true)) {
+                return true;
+            }
+            $acad_row = $this->resolve_session_row($acad_sess);
+            if ($acad_row && !empty($acad_row['id']) && $acad_row['id'] === $target_id) {
+                return true;
+            }
+            // Populated academic_session_id does not match target.
+            // Never allow legacy session_id to override a different populated academic_session_id.
+            return false;
+        }
+
+        if ($legacy_sess !== '') {
+            // Fallback to legacy session_id when academic_session_id is null/empty
+            if (in_array($legacy_sess, $target_identifiers, true)) {
+                return true;
+            }
+            $legacy_row = $this->resolve_session_row($legacy_sess);
+            if ($legacy_row && !empty($legacy_row['id']) && $legacy_row['id'] === $target_id) {
+                return true;
+            }
+            return false;
+        }
+
+        return false;
     }
 
     private function extract_session_start_year($session_ref)
@@ -2757,19 +2822,82 @@ class Admin_course_registration extends CI_Controller
         $existing_env_map = array();
         $non_co_reg_map   = array();
         if (!empty($candidate_students)) {
+            $cand_by_id = array();
+            foreach ($candidate_students as $cs) {
+                $cand_by_id[$cs['id']] = $cs;
+            }
+
+            $target_teaching_sess_ids = array();
+            if (!empty($reg_session_id)) {
+                $target_teaching_sess_ids[] = $reg_session_id;
+            }
+            if (!empty($raw_reg_session) && strtolower((string)$raw_reg_session) !== 'all') {
+                $target_teaching_sess_ids[] = $raw_reg_session;
+            }
+            $target_sess_row = $this->resolve_session_row($reg_session_id);
+            if ($target_sess_row) {
+                if (!empty($target_sess_row['id']))   { $target_teaching_sess_ids[] = $target_sess_row['id']; }
+                if (!empty($target_sess_row['name'])) { $target_teaching_sess_ids[] = $target_sess_row['name']; }
+            }
+            foreach ($candidate_students as $cs) {
+                if (!empty($cs['academic_session_id']))   { $target_teaching_sess_ids[] = $cs['academic_session_id']; }
+                if (!empty($cs['academic_session_name'])) { $target_teaching_sess_ids[] = $cs['academic_session_name']; }
+            }
+            $target_teaching_sess_ids = array_values(array_unique(array_filter($target_teaching_sess_ids)));
+
+            $has_cr_acad_col  = $this->db->field_exists('academic_session_id', 'course_registrations');
+            $has_cr_level_col = $this->db->field_exists('level', 'course_registrations');
+
             $s_ids = array_column($candidate_students, 'id');
             foreach (array_chunk($s_ids, 500) as $s_chunk) {
-                $this->db->select('student_id, id, session_id, total_credits, status');
+                $select = 'student_id, id, session_id, semester_id, total_credits, status';
+                if ($has_cr_acad_col)  { $select .= ', academic_session_id'; }
+                if ($has_cr_level_col) { $select .= ', level'; }
+                $this->db->select($select);
                 $this->db->from('course_registrations');
                 $this->db->where_in('student_id', $s_chunk);
                 $this->db->group_start();
                 $this->db->where('semester_id', $reg_semester_id);
-                $this->db->or_where('level', $level);
+                if ($has_cr_level_col) {
+                    $this->db->or_where('level', $level);
+                }
                 $this->db->group_end();
-                $this->db->where('level', $level);
+                if ($has_cr_level_col) {
+                    $this->db->where('level', $level);
+                }
+                if (!empty($target_teaching_sess_ids)) {
+                    $this->db->group_start();
+                    if ($has_cr_acad_col) {
+                        $this->db->group_start();
+                        $this->db->where('academic_session_id IS NOT NULL', null, false);
+                        $this->db->where("academic_session_id != ''", null, false);
+                        $this->db->where_in('academic_session_id', $target_teaching_sess_ids);
+                        $this->db->group_end();
+                        $this->db->or_group_start();
+                        $this->db->group_start();
+                        $this->db->where('academic_session_id IS NULL', null, false);
+                        $this->db->or_where("academic_session_id = ''", null, false);
+                        $this->db->group_end();
+                        $this->db->where_in('session_id', $target_teaching_sess_ids);
+                        $this->db->group_end();
+                    } else {
+                        $this->db->where_in('session_id', $target_teaching_sess_ids);
+                    }
+                    $this->db->group_end();
+                }
                 $env_rows = $this->db->get()->result_array();
                 foreach ($env_rows as $er) {
-                    $existing_env_map[$er['student_id']] = $er;
+                    $sid = $er['student_id'];
+                    $stu = isset($cand_by_id[$sid]) ? $cand_by_id[$sid] : null;
+                    $stu_sess = !empty($stu['academic_session_id']) ? $stu['academic_session_id'] : $reg_session_id;
+
+                    if (!$this->registration_matches_teaching_session($er, $stu_sess)) {
+                        continue;
+                    }
+
+                    if (!isset($existing_env_map[$sid])) {
+                        $existing_env_map[$sid] = $er;
+                    }
                 }
             }
 
@@ -3054,8 +3182,37 @@ class Admin_course_registration extends CI_Controller
         $has_item_status   = $this->db->field_exists('status', 'course_registration_items');
 
         $cand_ids = array_column($candidate_students, 'id');
+        $cand_by_id = array();
+        foreach ($candidate_students as $cs) {
+            $cand_by_id[$cs['id']] = $cs;
+        }
+
+        $target_teaching_sess_ids = array();
+        if (!empty($reg_session_id)) {
+            $target_teaching_sess_ids[] = $reg_session_id;
+        }
+        if (!empty($raw_reg_session) && strtolower((string)$raw_reg_session) !== 'all') {
+            $target_teaching_sess_ids[] = $raw_reg_session;
+        }
+        $target_sess_row = $this->resolve_session_row($reg_session_id);
+        if ($target_sess_row) {
+            if (!empty($target_sess_row['id']))   { $target_teaching_sess_ids[] = $target_sess_row['id']; }
+            if (!empty($target_sess_row['name'])) { $target_teaching_sess_ids[] = $target_sess_row['name']; }
+        }
+        foreach ($candidate_students as $cs) {
+            if (!empty($cs['academic_session_id']))   { $target_teaching_sess_ids[] = $cs['academic_session_id']; }
+            if (!empty($cs['academic_session_name'])) { $target_teaching_sess_ids[] = $cs['academic_session_name']; }
+        }
+        $target_teaching_sess_ids = array_values(array_unique(array_filter($target_teaching_sess_ids)));
+
         $env_map = array();
+        $duplicate_conflict_students = array();
         foreach (array_chunk($cand_ids, 500) as $stu_chunk) {
+            $select = 'id, student_id, session_id, semester_id, status';
+            if ($has_acad_sess_col)  { $select .= ', academic_session_id'; }
+            if ($has_level)          { $select .= ', level'; }
+            $this->db->select($select);
+            $this->db->from('course_registrations');
             $this->db->where_in('student_id', $stu_chunk);
             $this->db->group_start();
             $this->db->where('semester_id', $reg_semester_id);
@@ -3066,10 +3223,65 @@ class Admin_course_registration extends CI_Controller
             if ($has_level) {
                 $this->db->where('level', $level);
             }
-            $existing_envs = $this->db->get('course_registrations')->result_array();
-            foreach ($existing_envs as $env) {
-                $env_map[$env['student_id']] = $env['id'];
+            if (!empty($target_teaching_sess_ids)) {
+                $this->db->group_start();
+                if ($has_acad_sess_col) {
+                    $this->db->group_start();
+                    $this->db->where('academic_session_id IS NOT NULL', null, false);
+                    $this->db->where("academic_session_id != ''", null, false);
+                    $this->db->where_in('academic_session_id', $target_teaching_sess_ids);
+                    $this->db->group_end();
+                    $this->db->or_group_start();
+                    $this->db->group_start();
+                    $this->db->where('academic_session_id IS NULL', null, false);
+                    $this->db->or_where("academic_session_id = ''", null, false);
+                    $this->db->group_end();
+                    $this->db->where_in('session_id', $target_teaching_sess_ids);
+                    $this->db->group_end();
+                } else {
+                    $this->db->where_in('session_id', $target_teaching_sess_ids);
+                }
+                $this->db->group_end();
             }
+            $existing_envs = $this->db->get()->result_array();
+            foreach ($existing_envs as $env) {
+                $sid = $env['student_id'];
+                $stu = isset($cand_by_id[$sid]) ? $cand_by_id[$sid] : null;
+                $stu_teaching_sess = !empty($stu['academic_session_id']) ? $stu['academic_session_id'] : $reg_session_id;
+
+                if (!$this->registration_matches_teaching_session($env, $stu_teaching_sess)) {
+                    continue;
+                }
+
+                if (isset($env_map[$sid]) && $env_map[$sid] !== $env['id']) {
+                    $duplicate_conflict_students[$sid] = true;
+                } else {
+                    $env_map[$sid] = $env['id'];
+                }
+            }
+        }
+
+        if (!empty($duplicate_conflict_students)) {
+            $conflict_ids = array_keys($duplicate_conflict_students);
+            $conflict_labels = array();
+            foreach ($conflict_ids as $c_sid) {
+                if (isset($cand_by_id[$c_sid])) {
+                    $cs = $cand_by_id[$c_sid];
+                    $label = !empty($cs['matric_number']) ? $cs['matric_number'] : (!empty($cs['full_name']) ? $cs['full_name'] : $c_sid);
+                    $conflict_labels[] = $label;
+                } else {
+                    $conflict_labels[] = $c_sid;
+                }
+            }
+            $sample = implode(', ', array_slice($conflict_labels, 0, 5));
+            if (count($conflict_labels) > 5) {
+                $sample .= ' and ' . (count($conflict_labels) - 5) . ' more';
+            }
+            return $this->json_response(409, array(
+                'status'  => 'error',
+                'code'    => 'INTEGRITY_CONFLICT',
+                'message' => "Integrity conflict: Multiple course registrations found for the same academic session and contact/semester for student(s): {$sample}. Please resolve duplicate registrations before proceeding."
+            ));
         }
 
         $non_co_reg_map = array();
@@ -3191,13 +3403,12 @@ class Admin_course_registration extends CI_Controller
 
                 $new_envelopes[] = $reg_row;
             } else {
+                // Reusing existing registration for the same teaching session and contact.
+                // Do NOT modify academic_session_id or session_id; preserve existing identity.
                 $upd_env = array(
                     'id'         => $reg_id,
-                    'session_id' => $teaching_sess_id,
                     'updated_at' => $now,
                 );
-                if ($has_acad_sess_col)  { $upd_env['academic_session_id'] = $teaching_sess_id; }
-                if ($has_entry_sess_col && $entry_sess_id) { $upd_env['entry_session_id'] = $entry_sess_id; }
                 $updated_envelopes[] = $upd_env;
             }
 
@@ -3490,14 +3701,26 @@ class Admin_course_registration extends CI_Controller
             $has_cr_acad_sess = $this->db->field_exists('academic_session_id', 'course_registrations');
             $all_prog_sids = array_column($raw_students_rows, 'student_id');
             foreach (array_chunk($all_prog_sids, 500) as $p_chunk) {
-                $this->db->select('DISTINCT(cr.student_id) as student_id', false);
+                $sel_cr = 'DISTINCT(cr.student_id) as student_id, cr.session_id';
+                if ($has_cr_acad_sess) {
+                    $sel_cr .= ', cr.academic_session_id';
+                }
+                $this->db->select($sel_cr, false);
                 $this->db->from('course_registrations cr');
                 $this->db->where_in('cr.student_id', $p_chunk);
                 if (strtolower((string)$session_id) !== 'all' && !empty($target_session_ids)) {
                     $this->db->group_start();
-                    $this->db->where_in('cr.session_id', $target_session_ids);
                     if ($has_cr_acad_sess) {
-                        $this->db->or_where_in('cr.academic_session_id', $target_session_ids);
+                        $this->db->where_in('cr.academic_session_id', $target_session_ids);
+                        $this->db->or_group_start();
+                            $this->db->group_start();
+                                $this->db->where('cr.academic_session_id IS NULL', null, false);
+                                $this->db->or_where('cr.academic_session_id', '');
+                            $this->db->group_end();
+                            $this->db->where_in('cr.session_id', $target_session_ids);
+                        $this->db->group_end();
+                    } else {
+                        $this->db->where_in('cr.session_id', $target_session_ids);
                     }
                     $this->db->group_end();
                 }
@@ -3508,6 +3731,9 @@ class Admin_course_registration extends CI_Controller
                 $this->db->where_in('cr.status', array('approved', 'submitted', 'draft'));
                 $existing_cr_rows = $this->db->get()->result_array();
                 foreach ($existing_cr_rows as $ecr) {
+                    if (!$this->registration_matches_teaching_session($ecr, $session_id)) {
+                        continue;
+                    }
                     $already_in_period_student_ids[$ecr['student_id']] = true;
                 }
             }

@@ -316,7 +316,11 @@ class Results_model extends CI_Model
         $target_level = $batch['level'] ?? $period['label'];
 
         $this->db->distinct();
-        $this->db->select('r.student_id, i.registration_type, r.id as registration_id');
+        $select = 'r.student_id, i.registration_type, r.id as registration_id';
+        if ($this->db->field_exists('origin_result_attempt_id', 'course_registration_items')) {
+            $select .= ', i.origin_result_attempt_id';
+        }
+        $this->db->select($select);
         $this->db->from('course_registration_items i');
         $this->db->join('course_registrations r', 'r.id = i.registration_id');
         $this->db->join('students s', 's.id = r.student_id');
@@ -404,52 +408,7 @@ class Results_model extends CI_Model
         }
 
         $approved_students = $this->db->get()->result_array();
-        if (!empty($approved_students)) {
-            return $approved_students;
-        }
-
-        // --- CARRYOVER BATCH FALLBACK ---
-        // If no registration items exist for this course in this session (e.g. students took it in an earlier contact
-        // like Contact 5 in 2024/2025, and need to correct it in 2025/2026), resolve the eligible carryover candidates:
-        $prog_id = $batch['programme_id'] ?? null;
-        $cid = $batch['course_id'];
-
-        // 1. Students in this programme who have an outstanding failed / uncorrected attempt in this course
-        $sql = "
-            SELECT DISTINCT ra.student_id, 'carryover' as registration_type, NULL as registration_id, ra.id as origin_result_attempt_id
-            FROM result_attempts ra
-            JOIN result_batches rb ON rb.id = ra.batch_id
-            JOIN students s ON s.id = ra.student_id
-            WHERE rb.course_id = ?
-              AND (UPPER(COALESCE(ra.grade, '')) IN ('F', 'ABS', '', 'PENDING') OR ra.total_score IS NULL OR ra.total_score < 40)
-        ";
-        $sql_params = array($cid);
-        if (!empty($prog_id) && $prog_id !== 'all') {
-            $sql .= " AND s.programme_id = ?";
-            $sql_params[] = $prog_id;
-        }
-        $historical_failures = $this->db->query($sql, $sql_params)->result_array();
-        if (!empty($historical_failures)) {
-            return $historical_failures;
-        }
-
-        // 2. Cohort enrolled students in this programme in this session
-        $this->db->distinct();
-        $this->db->select('r.student_id, "carryover" as registration_type, r.id as registration_id, NULL as origin_result_attempt_id');
-        $this->db->from('course_registrations r');
-        $this->db->join('students s', 's.id = r.student_id');
-        if ($this->db->field_exists('academic_session_id', 'course_registrations')) {
-            $this->db->where_in('r.academic_session_id', $target_session_ids);
-            $this->db->or_where_in('r.session_id', $target_session_ids);
-        } else {
-            $this->db->where_in('r.session_id', $target_session_ids);
-        }
-        if (!empty($prog_id) && $prog_id !== 'all') {
-            $this->db->where('s.programme_id', $prog_id);
-        }
-        $this->db->where_in('r.status', array('approved', 'submitted', 'draft'));
-        $cohort_students = $this->db->get()->result_array();
-        return is_array($cohort_students) ? $cohort_students : array();
+        return is_array($approved_students) ? $approved_students : array();
     }
 
     public function count_registered_students_for_batch($batch)
@@ -490,10 +449,10 @@ class Results_model extends CI_Model
         foreach ($existing_attempts as $att) {
             $existing_ids[$att['student_id']] = true;
             // Prune unscored placeholders of students who are NOT registered in this session
-            $is_unscored = ($att['ca_score'] === null || $att['ca_score'] === '') &&
-                           ($att['exam_score'] === null || $att['exam_score'] === '') &&
-                           ($att['total_score'] === null || $att['total_score'] === '') &&
-                           ($att['grade'] === null || $att['grade'] === '');
+            $is_unscored = (!isset($att['ca_score']) || $att['ca_score'] === null || $att['ca_score'] === '') &&
+                           (!isset($att['exam_score']) || $att['exam_score'] === null || $att['exam_score'] === '') &&
+                           (!isset($att['total_score']) || $att['total_score'] === null || $att['total_score'] === '') &&
+                           (!isset($att['grade']) || $att['grade'] === null || $att['grade'] === '');
             if ($is_unscored && !isset($valid_student_ids[$att['student_id']])) {
                 $ghost_ids[] = $att['id'];
             }
@@ -522,99 +481,22 @@ class Results_model extends CI_Model
             $carryover_sources = array();
         }
 
-        // Direct query for prior uncorrected/failed attempts for approved students in this course
-        $approved_student_ids = array_filter(array_column($approved_students, 'student_id'));
-        if (!empty($approved_student_ids)) {
-            $this->db->select('ra.id, ra.student_id, ra.total_score, ra.grade, ra.batch_id');
-            $this->db->from('result_attempts ra');
-            $this->db->join('result_batches rb', 'rb.id = ra.batch_id');
-            $this->db->where('rb.course_id', $batch['course_id']);
-            $this->db->where('ra.batch_id !=', $batch_id);
-            $this->db->where_in('ra.student_id', $approved_student_ids);
-            $this->db->group_start();
-            $this->db->where_in('UPPER(COALESCE(ra.grade, ""))', array('F', 'ABS', 'PENDING', ''));
-            $this->db->or_where('ra.total_score IS NULL', null, false);
-            $this->db->or_where('ra.total_score <', 40);
-            $this->db->group_end();
-            $prior_fails = $this->db->get()->result_array();
-            foreach ($prior_fails as $pf) {
-                if (!isset($carryover_sources[$pf['student_id']])) {
-                    $carryover_sources[$pf['student_id']] = $pf;
-                }
-            }
-        }
-
         // Insert placeholder attempts for registered students who don't have one yet
         $attempts_data = array();
         foreach ($approved_students as $st) {
             $sid = $st['student_id'];
+            if (isset($existing_ids[$sid])) {
+                continue;
+            }
+
             $reg_id = $st['registration_id'] ?? null;
             $is_student_carryover = isset($carryover_sources[$sid])
-                || in_array(strtolower((string)($st['registration_type'] ?? '')), array('carryover', 'repeat'))
+                || in_array(strtolower((string)($st['registration_type'] ?? '')), array('carryover', 'repeat'), true)
                 || !empty($st['origin_result_attempt_id']);
             $resolved_reg_type = $is_student_carryover ? 'carryover' : (strtolower((string)($st['registration_type'] ?? '')) ?: 'core');
             $origin_attempt_id = $st['origin_result_attempt_id'] ?? ($carryover_sources[$sid]['id'] ?? null);
 
-            // Ensure active carryover item exists in course_registration_items for this session
-            if ($this->db->table_exists('course_registration_items') && $this->db->table_exists('course_registrations')) {
-                $this->db->where('student_id', $sid);
-                if (!empty($target_session_ids)) {
-                    $this->db->group_start();
-                    if ($this->db->field_exists('academic_session_id', 'course_registrations')) {
-                        $this->db->where_in('academic_session_id', $target_session_ids);
-                        $this->db->or_where_in('session_id', $target_session_ids);
-                    } else {
-                        $this->db->where_in('session_id', $target_session_ids);
-                    }
-                    $this->db->group_end();
-                }
-                $env = $this->db->get('course_registrations')->row_array();
-
-                if ($env) {
-                    $reg_id = $env['id'];
-                    $item_exists = $this->db->get_where('course_registration_items', array(
-                        'registration_id' => $env['id'],
-                        'course_id' => $batch['course_id']
-                    ))->row_array();
-
-                    if (!$item_exists) {
-                        $new_item = array(
-                            'id' => $this->generate_uuid(),
-                            'registration_id' => $env['id'],
-                            'course_id' => $batch['course_id'],
-                            'registration_type' => $resolved_reg_type,
-                            'created_at' => date('Y-m-d H:i:s')
-                        );
-                        if ($this->db->field_exists('status', 'course_registration_items')) {
-                            $new_item['status'] = 'active';
-                        }
-                        if (!empty($origin_attempt_id) && $this->db->field_exists('origin_result_attempt_id', 'course_registration_items')) {
-                            $new_item['origin_result_attempt_id'] = $origin_attempt_id;
-                        }
-                        if ($is_student_carryover && $this->db->field_exists('source', 'course_registration_items')) {
-                            $new_item['source'] = 'AUTO';
-                        }
-                        $this->db->insert('course_registration_items', $new_item);
-                    } elseif ($is_student_carryover && strtolower((string)$item_exists['registration_type']) !== 'carryover') {
-                        $upd_co = array('registration_type' => 'carryover');
-                        if (!empty($origin_attempt_id) && $this->db->field_exists('origin_result_attempt_id', 'course_registration_items') && empty($item_exists['origin_result_attempt_id'])) {
-                            $upd_co['origin_result_attempt_id'] = $origin_attempt_id;
-                        }
-                        $this->db->where('id', $item_exists['id'])->update('course_registration_items', $upd_co);
-                    }
-                }
-            }
-
-            if (isset($existing_ids[$sid])) {
-                // If attempt already exists, keep registration_type_snapshot synchronized if student is carryover
-                if ($is_student_carryover) {
-                    $this->db->where('batch_id', $batch_id)->where('student_id', $sid)->update('result_attempts', array(
-                        'registration_type_snapshot' => 'carryover'
-                    ));
-                }
-                continue;
-            }
-            $attempts_data[] = array(
+            $new_attempt = array(
                 'id' => $this->generate_uuid(),
                 'batch_id' => $batch_id,
                 'student_id' => $sid,
@@ -633,6 +515,10 @@ class Results_model extends CI_Model
                 'grading_scheme_id' => $active_scheme_id,
                 'created_at' => date('Y-m-d H:i:s')
             );
+            if (!empty($origin_attempt_id) && $this->db->field_exists('origin_result_attempt_id', 'result_attempts')) {
+                $new_attempt['origin_result_attempt_id'] = $origin_attempt_id;
+            }
+            $attempts_data[] = $new_attempt;
         }
         if (!empty($attempts_data)) {
             $this->db->insert_batch('result_attempts', $attempts_data);
@@ -868,10 +754,14 @@ class Results_model extends CI_Model
         $this->db->order_by('u.full_name', 'ASC');
         $attempts = $this->db->get()->result_array();
 
-        // 3. Strict Rule: No student shall be listed if he is not registered under the course
+        // 3. Strict Rule: No student shall be listed if he is not registered under the course, unless an attempt was already scored
         $filtered = array();
         foreach ($attempts as $att) {
-            if (isset($valid_student_ids[$att['student_id']])) {
+            $has_score = ($att['ca_score'] !== null && $att['ca_score'] !== '') ||
+                         ($att['exam_score'] !== null && $att['exam_score'] !== '') ||
+                         ($att['total_score'] !== null && $att['total_score'] !== '') ||
+                         ($att['grade'] !== null && $att['grade'] !== '');
+            if (isset($valid_student_ids[$att['student_id']]) || $has_score) {
                 if (isset($att['full_name'])) {
                     $att['full_name'] = str_replace(array("\xEF\xBF\xBD", "\u{FFFD}", "\xE2\x80\x99", "\xE2\x80\x98", '’', '‘', '`', '´'), "'", $att['full_name']);
                 }
@@ -894,27 +784,6 @@ class Results_model extends CI_Model
         }
 
         $student_ids = array_filter(array_column($filtered, 'student_id'));
-
-        // Direct query for any prior failed/uncorrected attempt for these students in this course
-        if (!empty($student_ids)) {
-            $this->db->select('ra.id, ra.student_id, ra.total_score, ra.grade, ra.batch_id');
-            $this->db->from('result_attempts ra');
-            $this->db->join('result_batches rb', 'rb.id = ra.batch_id');
-            $this->db->where('rb.course_id', $batch['course_id']);
-            $this->db->where('ra.batch_id !=', $batch_id);
-            $this->db->where_in('ra.student_id', $student_ids);
-            $this->db->group_start();
-            $this->db->where_in('UPPER(COALESCE(ra.grade, ""))', array('F', 'ABS', 'PENDING', ''));
-            $this->db->or_where('ra.total_score IS NULL', null, false);
-            $this->db->or_where('ra.total_score <', 40);
-            $this->db->group_end();
-            $prior_fails = $this->db->get()->result_array();
-            foreach ($prior_fails as $pf) {
-                if (!isset($carryover_sources[$pf['student_id']])) {
-                    $carryover_sources[$pf['student_id']] = $pf;
-                }
-            }
-        }
 
         $reg_items = array();
         if (!empty($student_ids) && $this->db->table_exists('course_registration_items')) {
@@ -1506,44 +1375,10 @@ class Results_model extends CI_Model
             $carryover_sources = array();
         }
 
-        $save_student_ids = array_filter(array_column($attempts, 'student_id'));
-        if (!empty($save_student_ids)) {
-            $this->db->select('ra.id, ra.student_id, ra.total_score, ra.grade, ra.batch_id');
-            $this->db->from('result_attempts ra');
-            $this->db->join('result_batches rb', 'rb.id = ra.batch_id');
-            $this->db->where('rb.course_id', $batch['course_id']);
-            $this->db->where('ra.batch_id !=', $batch_id);
-            $this->db->where_in('ra.student_id', $save_student_ids);
-            $this->db->group_start();
-            $this->db->where_in('UPPER(COALESCE(ra.grade, ""))', array('F', 'ABS', 'PENDING', ''));
-            $this->db->or_where('ra.total_score IS NULL', null, false);
-            $this->db->or_where('ra.total_score <', 40);
-            $this->db->group_end();
-            $prior_fails = $this->db->get()->result_array();
-            foreach ($prior_fails as $pf) {
-                if (!isset($carryover_sources[$pf['student_id']])) {
-                    $carryover_sources[$pf['student_id']] = $pf;
-                }
-            }
-        }
+        $registered_students = $this->get_registered_students_for_batch($batch);
         $registered_carryovers = [];
-        if ($this->db->table_exists('course_registrations') && $this->db->table_exists('course_registration_items')) {
-            $this->db->select('r.student_id');
-            if ($this->db->field_exists('origin_result_attempt_id', 'course_registration_items')) {
-                $this->db->select('i.origin_result_attempt_id');
-            }
-            $this->db->from('course_registration_items i');
-            $this->db->join('course_registrations r', 'r.id = i.registration_id');
-            $this->db->where('r.session_id', $batch['session_id']);
-            $this->db->where('r.semester_id', $batch['semester_id']);
-            $this->db->where('r.status', 'approved');
-            $this->db->where('i.course_id', $batch['course_id']);
-            $this->db->group_start();
-            $this->db->where('i.status', 'active');
-            $this->db->or_where('i.status IS NULL', null, false);
-            $this->db->group_end();
-            $this->db->where_in('LOWER(i.registration_type)', ['carryover', 'repeat']);
-            foreach ($this->db->get()->result_array() as $registration) {
+        foreach ($registered_students as $registration) {
+            if (in_array(strtolower((string)($registration['registration_type'] ?? '')), ['carryover', 'repeat'], true)) {
                 $registered_carryovers[$registration['student_id']] = [
                     'id' => $registration['origin_result_attempt_id'] ?? null
                 ];
@@ -1565,7 +1400,6 @@ class Results_model extends CI_Model
         $students_to_resync = [];
         $sync_actions = [];
 
-        $registered_students = $this->get_registered_students_for_batch($batch);
         $valid_student_ids = array_fill_keys(array_column($registered_students, 'student_id'), true);
 
         // Also allow saving for any student who already has an existing attempt in this batch
