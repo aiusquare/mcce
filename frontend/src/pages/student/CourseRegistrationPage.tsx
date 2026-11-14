@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { StudentLayout } from "@/components/layouts/StudentLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -8,62 +8,226 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
 import api from "@/lib/api";
-import { AlertCircle, AlertTriangle, CheckCircle2, Loader2 } from "lucide-react";
+import { AlertCircle, AlertTriangle, CheckCircle2, Loader2, RotateCcw } from "lucide-react";
+
+// =============================================================================
+// TypeScript Interfaces for Registration Context & API Contract
+// =============================================================================
+
+export interface CourseItem {
+  id: string;
+  code: string;
+  title: string;
+  credit_units?: number | string;
+  credit_unit?: number | string;
+  type?: string;
+  level?: string;
+  programme_id?: string;
+  contact_number?: number;
+  origin_result_attempt_id?: string;
+}
+
+export interface RegistrationItem {
+  id: string;
+  registration_id: string;
+  course_id: string;
+  code?: string;
+  title?: string;
+  credit_units?: number | string;
+  registration_type?: string;
+  status?: string;
+  origin_result_attempt_id?: string;
+}
+
+export interface RegistrationRecord {
+  id: string;
+  student_id: string;
+  session_id: string;
+  academic_session_id?: string;
+  semester_id: string;
+  level?: string;
+  total_credits?: number | string;
+  status: "draft" | "submitted" | "approved" | "locked" | "rejected" | string;
+  return_reason?: string;
+  submitted_at?: string;
+}
+
+export interface RegistrationSettings {
+  id?: string;
+  session_id?: string;
+  semester_id?: string;
+  status: "open" | "late" | "closed" | string;
+  opens_at?: string;
+  closes_at?: string;
+  late_closes_at?: string;
+}
+
+export interface CreditRules {
+  id?: string;
+  min_credits?: number | string;
+  max_credits?: number | string;
+}
+
+export interface StudentProfile {
+  id: string;
+  user_id?: string;
+  full_name?: string;
+  matric_number?: string;
+  admission_number?: string;
+  current_level?: string;
+  programme_id?: string;
+  department_id?: string;
+  entry_mode?: string;
+}
+
+export interface RegistrationContextData {
+  student: StudentProfile;
+  session_id: string;
+  session_name?: string | null;
+  semester_id: string;
+  settings?: RegistrationSettings | null;
+  rules?: CreditRules | null;
+  core_courses: CourseItem[];
+  elective_courses: CourseItem[];
+  carryovers: CourseItem[];
+  registration?: RegistrationRecord | null;
+  registration_items: RegistrationItem[];
+}
+
+export interface ApiResponse<T> {
+  status: "success" | "error";
+  data?: T;
+  message?: string;
+  is_late?: boolean;
+}
+
+// =============================================================================
+// Component Implementation
+// =============================================================================
 
 export default function CourseRegistrationPage() {
   const queryClient = useQueryClient();
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+  const [hasInitialized, setHasInitialized] = useState(false);
 
-  const { data, isLoading } = useQuery({
+  // 1. Context Query: generic API client returns the parsed response body directly
+  const { data, isLoading, isError, error, refetch, isFetching } = useQuery<RegistrationContextData>({
     queryKey: ["student-course-registration-context"],
     queryFn: async () => {
-      const res = await api.get("/api/student/course-registration/context");
-      const payload = res.data.data;
-
-      // Auto-select based on existing registration or core courses
-      if (payload.registration_items && payload.registration_items.length > 0) {
-        setSelectedCourses(payload.registration_items.map((i: any) => i.course_id));
-      } else if (payload.core_courses) {
-        const cores = payload.core_courses.map((c: any) => c.id);
-        const carrys = payload.carryovers ? payload.carryovers.map((c: any) => c.id) : [];
-        setSelectedCourses([...cores, ...carrys]);
+      let url = "/api/student/course-registration/context";
+      try {
+        const stored = localStorage.getItem("mccas_profile") || localStorage.getItem("MCCAS_profile");
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed?.email) {
+            const sep = url.includes("?") ? "&" : "?";
+            url += `${sep}email=${encodeURIComponent(parsed.email)}`;
+          }
+        }
+      } catch (e) {
+        // ignore localStorage errors
       }
-      return payload;
+
+      const raw = (await api.get(url)) as ApiResponse<RegistrationContextData>;
+      if (!raw || typeof raw !== "object") {
+        throw new Error("Invalid response received from server.");
+      }
+      if (raw.status !== "success" || !raw.data) {
+        throw new Error(raw.message || "Failed to load course registration context.");
+      }
+      return raw.data;
     },
     refetchOnWindowFocus: false,
+    retry: 1,
   });
 
-  const student = data?.student;
-  const sessionName = data?.session_name || data?.session_id || "Active Session";
-  const semesterName = data?.semester_id || student?.current_level || "Current Period";
+  // 2. Selection Initialization: preselect active registered courses or core + carryovers once
+  useEffect(() => {
+    if (data && !hasInitialized) {
+      if (data.registration_items && data.registration_items.length > 0) {
+        const registered = data.registration_items
+          .filter((i) => !i.status || i.status === "active")
+          .map((i) => i.course_id);
+        const carrys = (data.carryovers || []).map((c) => c.id);
+        setSelectedCourses(Array.from(new Set([...registered, ...carrys])));
+      } else {
+        const cores = (data.core_courses || []).map((c) => c.id);
+        const carrys = (data.carryovers || []).map((c) => c.id);
+        setSelectedCourses(Array.from(new Set([...cores, ...carrys])));
+      }
+      setHasInitialized(true);
+    }
+  }, [data, hasInitialized]);
 
+  // 3. Save Mutation: sends payload and extracts returned response message
   const saveMutation = useMutation({
     mutationFn: async (action: "draft" | "submit") => {
+      if (!data?.student?.id) {
+        throw new Error("Student profile is missing from registration context.");
+      }
+
+      let email: string | undefined;
+      try {
+        const stored = localStorage.getItem("mccas_profile") || localStorage.getItem("MCCAS_profile");
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed?.email) email = parsed.email;
+        }
+      } catch (e) {
+        // ignore
+      }
+
       const payload = {
-        student_id: student?.id,
-        session_id: data?.session_id,
-        semester_id: data?.semester_id,
+        student_id: data.student.id,
+        session_id: data.session_id,
+        semester_id: data.semester_id,
+        email: email || undefined,
         action,
         courses: selectedCourses.map((id) => ({ course_id: id })),
       };
-      const res = await api.post("/api/student/course-registration/save", payload);
-      return res.data;
+      const res = (await api.post("/api/student/course-registration/save", payload)) as ApiResponse<null>;
+      if (!res || res.status !== "success") {
+        throw new Error(res?.message || "Failed to save course registration.");
+      }
+      return res;
     },
     onSuccess: (res) => {
-      toast.success(res.message);
+      toast.success(res?.message || "Registration updated successfully.");
+      setHasInitialized(false); // Allow re-syncing selections with updated server state
       queryClient.invalidateQueries({ queryKey: ["student-course-registration-context"] });
     },
     onError: (err: any) => {
-      toast.error(err.response?.data?.message || "Failed to save registration");
+      const msg = err?.body?.message || err?.message || "Failed to save registration.";
+      toast.error(msg);
     },
   });
 
+  // 4. Map of all available courses for fast lookup and deduplication
+  const courseMap = useMemo(() => {
+    const map = new Map<string, CourseItem>();
+    if (data) {
+      [...(data.core_courses || []), ...(data.elective_courses || []), ...(data.carryovers || [])].forEach((c) => {
+        if (c && c.id) {
+          map.set(c.id, c);
+        }
+      });
+    }
+    return map;
+  }, [data]);
+
+  // Handle course toggling, ensuring mandatory carryovers cannot be removed
   const handleToggleCourse = (courseId: string) => {
+    const isCarryover = (data?.carryovers || []).some((c) => c.id === courseId);
+    if (isCarryover) {
+      toast.info("Carryover courses are compulsory under academic regulations and cannot be removed.");
+      return;
+    }
     setSelectedCourses((prev) =>
       prev.includes(courseId) ? prev.filter((id) => id !== courseId) : [...prev, courseId]
     );
   };
 
+  // Loading State
   if (isLoading) {
     return (
       <StudentLayout>
@@ -74,24 +238,67 @@ export default function CourseRegistrationPage() {
     );
   }
 
-  const { settings, rules, core_courses, elective_courses, registration } = data;
-  const isReadOnly = registration && ["submitted", "approved", "locked"].includes(registration.status);
+  // Error State: show clear error message with retry option; do not destructure undefined data
+  if (isError || !data) {
+    const errorMsg =
+      (error as any)?.body?.message ||
+      (error as any)?.message ||
+      "An unexpected error occurred while loading course registration context.";
 
-  const minCredits = rules?.min_credits ? parseInt(rules.min_credits, 10) : 15;
-  const maxCredits = rules?.max_credits ? parseInt(rules.max_credits, 10) : 24;
+    return (
+      <StudentLayout>
+        <div className="max-w-2xl mx-auto py-12">
+          <Card className="border-destructive/30 shadow-sm">
+            <CardHeader className="text-center pb-2">
+              <div className="mx-auto w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center text-destructive mb-3">
+                <AlertCircle className="w-6 h-6" />
+              </div>
+              <CardTitle className="text-xl text-destructive font-serif">
+                Course Registration Unavailable
+              </CardTitle>
+              <CardDescription className="text-sm mt-2 text-slate-600">
+                {errorMsg}
+              </CardDescription>
+            </CardHeader>
+            <CardFooter className="flex justify-center pt-4">
+              <Button
+                variant="outline"
+                onClick={() => refetch()}
+                disabled={isFetching}
+                className="gap-2"
+              >
+                {isFetching ? <Loader2 className="w-4 h-4 animate-spin" /> : <RotateCcw className="w-4 h-4" />}
+                Try Again
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </StudentLayout>
+    );
+  }
 
-  const totalCredits = [...core_courses, ...elective_courses, ...(data.carryovers || [])]
-    .filter((c) => selectedCourses.includes(c.id))
-    .reduce((sum, c) => sum + parseInt(c.credit_units || c.credit_unit || 0, 10), 0);
+  // Loaded State
+  const { student, settings, rules, core_courses, elective_courses, carryovers, registration } = data;
+  const isReadOnly = Boolean(registration && ["submitted", "approved", "locked"].includes(registration.status));
+
+  const minCredits = rules?.min_credits ? parseInt(String(rules.min_credits), 10) : 15;
+  const maxCredits = rules?.max_credits ? parseInt(String(rules.max_credits), 10) : 24;
+
+  const sessionName = data.session_name || data.session_id || "Active Session";
+  const semesterName = data.semester_id || student?.current_level || "Current Period";
+
+  // Compute total credits across distinct selected courses
+  const totalCredits = selectedCourses.reduce((sum, cid) => {
+    const c = courseMap.get(cid);
+    const units = c ? parseInt(String(c.credit_units || c.credit_unit || 0), 10) : 0;
+    return sum + (isNaN(units) ? 0 : units);
+  }, 0);
 
   const isOverMax = totalCredits > maxCredits;
   const isUnderMin = totalCredits < minCredits;
-  const hasCarryovers = Boolean(data?.carryovers && data.carryovers.length > 0);
-  // Under NUC BMAS: If a student has mandatory carryovers or the total load exceeds the max limit,
-  // regular core courses can be unchecked/deferred to stay within the 24-credit ceiling.
+  const hasCarryovers = Boolean(carryovers && carryovers.length > 0);
   const canDeferCore = !isReadOnly && (hasCarryovers || isOverMax);
-
-  const isRegistrationOpen = settings && ["open", "late"].includes(settings.status);
+  const isRegistrationOpen = Boolean(settings && ["open", "late"].includes(settings.status));
 
   return (
     <StudentLayout>
@@ -153,7 +360,7 @@ export default function CourseRegistrationPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {core_courses?.map((course: any) => (
+                    {core_courses?.map((course: CourseItem) => (
                       <TableRow key={course.id}>
                         <TableCell>
                           <div className="flex items-center gap-2">
@@ -187,7 +394,7 @@ export default function CourseRegistrationPage() {
               </CardContent>
             </Card>
 
-            {data?.carryovers && data.carryovers.length > 0 && (
+            {carryovers && carryovers.length > 0 && (
               <Card className="border-destructive/50">
                 <CardHeader>
                   <CardTitle className="text-destructive">Carryover Courses</CardTitle>
@@ -204,13 +411,13 @@ export default function CourseRegistrationPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {data.carryovers.map((course: any) => (
+                      {carryovers.map((course: CourseItem) => (
                         <TableRow key={`carryover-${course.id}`}>
                           <TableCell>
                             <Checkbox
                               checked={selectedCourses.includes(course.id)}
-                              onCheckedChange={() => !isReadOnly && handleToggleCourse(course.id)}
-                              disabled={isReadOnly || true} // Carryovers are compulsory
+                              disabled={true} // Carryovers are compulsory and cannot be deselected
+                              aria-label={`Mandatory carryover course ${course.code}`}
                             />
                           </TableCell>
                           <TableCell className="font-medium text-destructive">{course.code}</TableCell>
@@ -240,13 +447,14 @@ export default function CourseRegistrationPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {elective_courses?.map((course: any) => (
+                    {elective_courses?.map((course: CourseItem) => (
                       <TableRow key={course.id}>
                         <TableCell>
                           <Checkbox
                             checked={selectedCourses.includes(course.id)}
                             onCheckedChange={() => !isReadOnly && handleToggleCourse(course.id)}
                             disabled={isReadOnly}
+                            aria-label={`Toggle elective course ${course.code}`}
                           />
                         </TableCell>
                         <TableCell className="font-medium">{course.code}</TableCell>
@@ -340,6 +548,7 @@ export default function CourseRegistrationPage() {
                       onClick={() => saveMutation.mutate("draft")}
                       disabled={saveMutation.isPending}
                     >
+                      {saveMutation.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                       Save Draft
                     </Button>
                     <Button 
@@ -347,6 +556,7 @@ export default function CourseRegistrationPage() {
                       onClick={() => saveMutation.mutate("submit")}
                       disabled={saveMutation.isPending || isOverMax || isUnderMin}
                     >
+                      {saveMutation.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                       Submit Registration
                     </Button>
                   </>

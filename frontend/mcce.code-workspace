@@ -4,7 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "../backend"
+			"path": "../../../laragon/www/mcce_backend"
 		}
 	],
 	"settings": {}
