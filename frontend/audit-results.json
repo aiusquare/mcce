@@ -1,0 +1,5951 @@
+{
+  "workbooks": [
+    {
+      "file": "MCCE_Broadsheet_B__Ed_Educational_Administration_and_Planning_2021_2022_Contact_2.xlsx",
+      "session": "2021/2022",
+      "contact": "Contact 2",
+      "candidates": 146,
+      "currentCourses": [
+        "EAP112",
+        "EAP122",
+        "EAP132",
+        "EAP141",
+        "EDF241",
+        "EDU211",
+        "EDU212",
+        "EDU221",
+        "GST111",
+        "GST112",
+        "GST122",
+        "GST132",
+        "GST212",
+        "POL132"
+      ],
+      "carryCourses": [
+        "—"
+      ],
+      "actual": {
+        "total": 146,
+        "pass": 10,
+        "co": 136,
+        "pending": 0
+      },
+      "reported": {
+        "total": 146,
+        "pass": 10,
+        "co": 136,
+        "pending": 0,
+        "completeness": "100%"
+      },
+      "issueCounts": {
+        "duplicateIds": 0,
+        "sn": 0,
+        "gradeLabels": 0,
+        "missingCurrentScores": 0,
+        "metricMath": 0,
+        "remarks": 0,
+        "summary": 0,
+        "suspiciousScores": 0
+      },
+      "issues": {
+        "duplicateIds": [],
+        "sn": [],
+        "gradeLabels": [],
+        "missingCurrentScores": [],
+        "metricMath": [],
+        "remarks": [],
+        "summary": [],
+        "suspiciousScores": []
+      }
+    },
+    {
+      "file": "MCCE_Broadsheet_B__Ed_Educational_Administration_and_Planning_2022_2023_Contact_3 (1).xlsx",
+      "session": "2022/2023",
+      "contact": "Contact 3",
+      "candidates": 146,
+      "currentCourses": [
+        "EAP211",
+        "EAP212",
+        "EAP221",
+        "EAP222",
+        "ECO211",
+        "EDF242",
+        "EDU222",
+        "EDU351",
+        "EDU361",
+        "GST221",
+        "GST222",
+        "GST232"
+      ],
+      "carryCourses": [
+        "EAP112",
+        "EAP122",
+        "EAP132",
+        "EAP141",
+        "EDF241",
+        "EDU211",
+        "EDU212",
+        "EDU221",
+        "GST111",
+        "GST112",
+        "GST122",
+        "GST132",
+        "GST212",
+        "POL132"
+      ],
+      "actual": {
+        "total": 146,
+        "pass": 13,
+        "co": 133,
+        "pending": 0
+      },
+      "reported": {
+        "total": 146,
+        "pass": 13,
+        "co": 133,
+        "pending": 0,
+        "completeness": "100%"
+      },
+      "issueCounts": {
+        "duplicateIds": 0,
+        "sn": 0,
+        "gradeLabels": 0,
+        "missingCurrentScores": 0,
+        "metricMath": 0,
+        "remarks": 0,
+        "summary": 0,
+        "suspiciousScores": 0
+      },
+      "issues": {
+        "duplicateIds": [],
+        "sn": [],
+        "gradeLabels": [],
+        "missingCurrentScores": [],
+        "metricMath": [],
+        "remarks": [],
+        "summary": [],
+        "suspiciousScores": []
+      }
+    },
+    {
+      "file": "MCCE_Broadsheet_B__Ed_Educational_Administration_and_Planning_2023_2024_Contact_4 (1).xlsx",
+      "session": "2023/2024",
+      "contact": "Contact 4",
+      "candidates": 146,
+      "currentCourses": [
+        "EAP231",
+        "EAP331",
+        "EAP341",
+        "ECO212",
+        "ECO321",
+        "EDF421",
+        "EDF431",
+        "EDU311",
+        "EDU321",
+        "EDU331",
+        "GST311",
+        "POL212"
+      ],
+      "carryCourses": [
+        "EAP211",
+        "EAP212",
+        "EAP221",
+        "EAP222",
+        "ECO211",
+        "EDF242",
+        "EDU222",
+        "EDU351",
+        "EDU361",
+        "GST221",
+        "GST222",
+        "GST232"
+      ],
+      "actual": {
+        "total": 146,
+        "pass": 48,
+        "co": 98,
+        "pending": 0
+      },
+      "reported": {
+        "total": 146,
+        "pass": 48,
+        "co": 98,
+        "pending": 0,
+        "completeness": "100%"
+      },
+      "issueCounts": {
+        "duplicateIds": 0,
+        "sn": 0,
+        "gradeLabels": 0,
+        "missingCurrentScores": 0,
+        "metricMath": 0,
+        "remarks": 0,
+        "summary": 0,
+        "suspiciousScores": 0
+      },
+      "issues": {
+        "duplicateIds": [],
+        "sn": [],
+        "gradeLabels": [],
+        "missingCurrentScores": [],
+        "metricMath": [],
+        "remarks": [],
+        "summary": [],
+        "suspiciousScores": []
+      }
+    },
+    {
+      "file": "MCCE_Broadsheet_B__Ed_Educational_Administration_and_Planning_2024_2025_Contact_5 (1).xlsx",
+      "session": "2024/2025",
+      "contact": "Contact 5",
+      "candidates": 146,
+      "currentCourses": [
+        "EAP312",
+        "EAP321",
+        "EAP411",
+        "EAP412",
+        "EAP431",
+        "EDU362",
+        "EDU411",
+        "EDU461"
+      ],
+      "carryCourses": [
+        "ECO212",
+        "EDU321",
+        "EDU331",
+        "POL212"
+      ],
+      "actual": {
+        "total": 146,
+        "pass": 25,
+        "co": 98,
+        "pending": 46
+      },
+      "reported": {
+        "total": 146,
+        "pass": 25,
+        "co": 98,
+        "pending": 46,
+        "completeness": "100%"
+      },
+      "issueCounts": {
+        "duplicateIds": 0,
+        "sn": 0,
+        "gradeLabels": 0,
+        "missingCurrentScores": 0,
+        "metricMath": 0,
+        "remarks": 0,
+        "summary": 0,
+        "suspiciousScores": 0
+      },
+      "issues": {
+        "duplicateIds": [],
+        "sn": [],
+        "gradeLabels": [],
+        "missingCurrentScores": [],
+        "metricMath": [],
+        "remarks": [],
+        "summary": [],
+        "suspiciousScores": []
+      }
+    },
+    {
+      "file": "MCCE_Broadsheet_B__Ed_Educational_Administration_and_Planning_2025_2026_Contact_6 (1).xlsx",
+      "session": "2025/2026",
+      "contact": "Contact 6",
+      "candidates": 146,
+      "currentCourses": [
+        "EAP422",
+        "EAP432",
+        "EAP442",
+        "EAP452",
+        "EAP462",
+        "EAP472",
+        "EAP482",
+        "EAP492",
+        "EDU412",
+        "EDU421",
+        "EDU422"
+      ],
+      "carryCourses": [
+        "EAP411",
+        "EAP412",
+        "EAP431",
+        "ECO212",
+        "EDU321",
+        "EDU331",
+        "EDU362",
+        "EDU411",
+        "EDU461",
+        "POL212"
+      ],
+      "actual": {
+        "total": 146,
+        "pass": 62,
+        "co": 84,
+        "pending": 0
+      },
+      "reported": {
+        "total": 146,
+        "pass": 62,
+        "co": 84,
+        "pending": 0,
+        "completeness": "100%"
+      },
+      "issueCounts": {
+        "duplicateIds": 0,
+        "sn": 0,
+        "gradeLabels": 0,
+        "missingCurrentScores": 0,
+        "metricMath": 0,
+        "remarks": 0,
+        "summary": 0,
+        "suspiciousScores": 0
+      },
+      "issues": {
+        "duplicateIds": [],
+        "sn": [],
+        "gradeLabels": [],
+        "missingCurrentScores": [],
+        "metricMath": [],
+        "remarks": [],
+        "summary": [],
+        "suspiciousScores": []
+      }
+    }
+  ],
+  "continuity": [
+    {
+      "from": "2021/2022",
+      "to": "2022/2023",
+      "missingFromNext": [],
+      "newInNext": [],
+      "nameChanges": [],
+      "carryForwardMismatches": []
+    },
+    {
+      "from": "2022/2023",
+      "to": "2023/2024",
+      "missingFromNext": [],
+      "newInNext": [],
+      "nameChanges": [],
+      "carryForwardMismatches": []
+    },
+    {
+      "from": "2023/2024",
+      "to": "2024/2025",
+      "missingFromNext": [],
+      "newInNext": [],
+      "nameChanges": [],
+      "carryForwardMismatches": [
+        {
+          "id": "CCE/EDU/MEAP2/22/125",
+          "name": "ABDULHAMID Iliyasu",
+          "priorCumulative": [
+            87,
+            75,
+            245,
+            "2.82"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            255,
+            "2.93"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 245,
+              "nextPrevious": 255,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "2.82",
+              "nextPrevious": "2.93",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/151",
+          "name": "ABDULKADIR Ahmad",
+          "priorCumulative": [
+            77,
+            77,
+            255,
+            "3.31"
+          ],
+          "nextPrevious": [
+            77,
+            77,
+            261,
+            "3.39"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 255,
+              "nextPrevious": 261,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.31",
+              "nextPrevious": "3.39",
+              "delta": 0.08
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/156",
+          "name": "ABDULLAHI Bala",
+          "priorCumulative": [
+            87,
+            75,
+            243,
+            "2.79"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            249,
+            "2.86"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 243,
+              "nextPrevious": 249,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.79",
+              "nextPrevious": "2.86",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/023",
+          "name": "ABDULLAHI Garba",
+          "priorCumulative": [
+            93,
+            71,
+            238,
+            "2.56"
+          ],
+          "nextPrevious": [
+            93,
+            77,
+            262,
+            "2.82"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 71,
+              "nextPrevious": 77,
+              "delta": 6
+            },
+            {
+              "label": "points",
+              "prior": 238,
+              "nextPrevious": 262,
+              "delta": 24
+            },
+            {
+              "label": "gpa",
+              "prior": "2.56",
+              "nextPrevious": "2.82",
+              "delta": 0.26
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/044",
+          "name": "ABDULLAHI Muhammad",
+          "priorCumulative": [
+            89,
+            77,
+            299,
+            "3.36"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            301,
+            "3.38"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 299,
+              "nextPrevious": 301,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.36",
+              "nextPrevious": "3.38",
+              "delta": 0.02
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/050",
+          "name": "ABUBAKAR Abdulmalik",
+          "priorCumulative": [
+            91,
+            73,
+            270,
+            "2.97"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            284,
+            "3.12"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 270,
+              "nextPrevious": 284,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "2.97",
+              "nextPrevious": "3.12",
+              "delta": 0.15
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/013",
+          "name": "ABUBAKAR Mika'ilu",
+          "priorCumulative": [
+            87,
+            75,
+            294,
+            "3.38"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            300,
+            "3.45"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 294,
+              "nextPrevious": 300,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.38",
+              "nextPrevious": "3.45",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/099",
+          "name": "ABUBAKAR Umar",
+          "priorCumulative": [
+            91,
+            75,
+            271,
+            "2.98"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            281,
+            "3.09"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 271,
+              "nextPrevious": 281,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "2.98",
+              "nextPrevious": "3.09",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/147",
+          "name": "AHMAD Lawal",
+          "priorCumulative": [
+            87,
+            73,
+            292,
+            "3.36"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            304,
+            "3.49"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 292,
+              "nextPrevious": 304,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.36",
+              "nextPrevious": "3.49",
+              "delta": 0.13
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/012",
+          "name": "ALFA K. Ibrahim",
+          "priorCumulative": [
+            85,
+            71,
+            254,
+            "2.99"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            270,
+            "3.18"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 71,
+              "nextPrevious": 77,
+              "delta": 6
+            },
+            {
+              "label": "points",
+              "prior": 254,
+              "nextPrevious": 270,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "2.99",
+              "nextPrevious": "3.18",
+              "delta": 0.19
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/106",
+          "name": "ALIYU Abdullahi Yusuf",
+          "priorCumulative": [
+            89,
+            77,
+            274,
+            "3.08"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            278,
+            "3.12"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 274,
+              "nextPrevious": 278,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.08",
+              "nextPrevious": "3.12",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/052",
+          "name": "ALIYU Mahuta Abubakar",
+          "priorCumulative": [
+            91,
+            73,
+            287,
+            "3.15"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            299,
+            "3.29"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 287,
+              "nextPrevious": 299,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.15",
+              "nextPrevious": "3.29",
+              "delta": 0.14
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/045",
+          "name": "ALIYU Sabi'u",
+          "priorCumulative": [
+            83,
+            75,
+            267,
+            "3.22"
+          ],
+          "nextPrevious": [
+            83,
+            75,
+            269,
+            "3.24"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 267,
+              "nextPrevious": 269,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.22",
+              "nextPrevious": "3.24",
+              "delta": 0.02
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/059",
+          "name": "ALIYU Sulaiman",
+          "priorCumulative": [
+            87,
+            71,
+            261,
+            "3.00"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            275,
+            "3.16"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 71,
+              "nextPrevious": 77,
+              "delta": 6
+            },
+            {
+              "label": "points",
+              "prior": 261,
+              "nextPrevious": 275,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "3.00",
+              "nextPrevious": "3.16",
+              "delta": 0.16
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/111",
+          "name": "AMINU Abdullahi",
+          "priorCumulative": [
+            87,
+            73,
+            289,
+            "3.32"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            303,
+            "3.48"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 289,
+              "nextPrevious": 303,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "3.32",
+              "nextPrevious": "3.48",
+              "delta": 0.16
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/066",
+          "name": "AMINU Lawal",
+          "priorCumulative": [
+            83,
+            75,
+            268,
+            "3.23"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            276,
+            "3.33"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 268,
+              "nextPrevious": 276,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.23",
+              "nextPrevious": "3.33",
+              "delta": 0.1
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/118",
+          "name": "AMINU Magaji",
+          "priorCumulative": [
+            79,
+            75,
+            282,
+            "3.57"
+          ],
+          "nextPrevious": [
+            79,
+            77,
+            288,
+            "3.65"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 282,
+              "nextPrevious": 288,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.57",
+              "nextPrevious": "3.65",
+              "delta": 0.08
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/042",
+          "name": "AMINU Tukur",
+          "priorCumulative": [
+            87,
+            73,
+            260,
+            "2.99"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            276,
+            "3.17"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 260,
+              "nextPrevious": 276,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "2.99",
+              "nextPrevious": "3.17",
+              "delta": 0.18
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/072",
+          "name": "AUWAL Surajo",
+          "priorCumulative": [
+            91,
+            77,
+            283,
+            "3.11"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            285,
+            "3.13"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 283,
+              "nextPrevious": 285,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.11",
+              "nextPrevious": "3.13",
+              "delta": 0.02
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/129",
+          "name": "BASHIR Bara'u Lawal",
+          "priorCumulative": [
+            87,
+            75,
+            303,
+            "3.48"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            307,
+            "3.53"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 303,
+              "nextPrevious": 307,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.48",
+              "nextPrevious": "3.53",
+              "delta": 0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/038",
+          "name": "BASHIR Mannir",
+          "priorCumulative": [
+            93,
+            75,
+            285,
+            "3.06"
+          ],
+          "nextPrevious": [
+            93,
+            77,
+            287,
+            "3.09"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 285,
+              "nextPrevious": 287,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.06",
+              "nextPrevious": "3.09",
+              "delta": 0.03
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/162",
+          "name": "BASIRU Musa",
+          "priorCumulative": [
+            85,
+            73,
+            228,
+            "2.68"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            244,
+            "2.87"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 228,
+              "nextPrevious": 244,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "2.68",
+              "nextPrevious": "2.87",
+              "delta": 0.19
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/140",
+          "name": "BAWA Ibrahim",
+          "priorCumulative": [
+            87,
+            75,
+            249,
+            "2.86"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            255,
+            "2.93"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 249,
+              "nextPrevious": 255,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.86",
+              "nextPrevious": "2.93",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/090",
+          "name": "BILKISU Lawal",
+          "priorCumulative": [
+            87,
+            73,
+            247,
+            "2.84"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            263,
+            "3.02"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 247,
+              "nextPrevious": 263,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "2.84",
+              "nextPrevious": "3.02",
+              "delta": 0.18
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/141",
+          "name": "BISHIR Yusuf",
+          "priorCumulative": [
+            89,
+            71,
+            265,
+            "2.98"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            289,
+            "3.25"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 71,
+              "nextPrevious": 77,
+              "delta": 6
+            },
+            {
+              "label": "points",
+              "prior": 265,
+              "nextPrevious": 289,
+              "delta": 24
+            },
+            {
+              "label": "gpa",
+              "prior": "2.98",
+              "nextPrevious": "3.25",
+              "delta": 0.27
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/036",
+          "name": "GARBA Ibrahim",
+          "priorCumulative": [
+            91,
+            73,
+            276,
+            "3.03"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            292,
+            "3.21"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 276,
+              "nextPrevious": 292,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "3.03",
+              "nextPrevious": "3.21",
+              "delta": 0.18
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/152",
+          "name": "GHALI Adamu",
+          "priorCumulative": [
+            91,
+            75,
+            285,
+            "3.13"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            295,
+            "3.24"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 285,
+              "nextPrevious": 295,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.13",
+              "nextPrevious": "3.24",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/133",
+          "name": "GHALI Alhassan",
+          "priorCumulative": [
+            83,
+            77,
+            268,
+            "3.23"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            266,
+            "3.20"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 268,
+              "nextPrevious": 266,
+              "delta": -2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.23",
+              "nextPrevious": "3.20",
+              "delta": -0.03
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/041",
+          "name": "HABIBU Tukur",
+          "priorCumulative": [
+            85,
+            77,
+            273,
+            "3.21"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            275,
+            "3.24"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 273,
+              "nextPrevious": 275,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.21",
+              "nextPrevious": "3.24",
+              "delta": 0.03
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/081",
+          "name": "HAFSAT Abdulrahman",
+          "priorCumulative": [
+            87,
+            73,
+            236,
+            "2.71"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            248,
+            "2.85"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 236,
+              "nextPrevious": 248,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "2.71",
+              "nextPrevious": "2.85",
+              "delta": 0.14
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/005",
+          "name": "HALIMA Anda",
+          "priorCumulative": [
+            85,
+            75,
+            268,
+            "3.15"
+          ],
+          "nextPrevious": [
+            85,
+            75,
+            264,
+            "3.11"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 268,
+              "nextPrevious": 264,
+              "delta": -4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.15",
+              "nextPrevious": "3.11",
+              "delta": -0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/054",
+          "name": "HAMZAH Ibrahim",
+          "priorCumulative": [
+            85,
+            75,
+            271,
+            "3.19"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            277,
+            "3.26"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 271,
+              "nextPrevious": 277,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.19",
+              "nextPrevious": "3.26",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/101",
+          "name": "HASHIMU Idris",
+          "priorCumulative": [
+            89,
+            77,
+            261,
+            "2.93"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            263,
+            "2.96"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 261,
+              "nextPrevious": 263,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "2.93",
+              "nextPrevious": "2.96",
+              "delta": 0.03
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/104",
+          "name": "HASSANA Abdullahi Yusuf",
+          "priorCumulative": [
+            85,
+            77,
+            318,
+            "3.74"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            320,
+            "3.76"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 318,
+              "nextPrevious": 320,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.74",
+              "nextPrevious": "3.76",
+              "delta": 0.02
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/039",
+          "name": "HAUWA'U Abdullahi",
+          "priorCumulative": [
+            85,
+            77,
+            288,
+            "3.39"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            284,
+            "3.34"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 288,
+              "nextPrevious": 284,
+              "delta": -4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.39",
+              "nextPrevious": "3.34",
+              "delta": -0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/092",
+          "name": "HUSAINA Yusuf Hassan",
+          "priorCumulative": [
+            89,
+            73,
+            273,
+            "3.07"
+          ],
+          "nextPrevious": [
+            89,
+            75,
+            279,
+            "3.13"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 75,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 273,
+              "nextPrevious": 279,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.07",
+              "nextPrevious": "3.13",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/093",
+          "name": "HUSSAINA Hassan Yusuf",
+          "priorCumulative": [
+            87,
+            75,
+            257,
+            "2.95"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            263,
+            "3.02"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 257,
+              "nextPrevious": 263,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.95",
+              "nextPrevious": "3.02",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/047",
+          "name": "IBRAHIM Ashafa",
+          "priorCumulative": [
+            95,
+            75,
+            278,
+            "2.93"
+          ],
+          "nextPrevious": [
+            95,
+            77,
+            284,
+            "2.99"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 278,
+              "nextPrevious": 284,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.93",
+              "nextPrevious": "2.99",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/062",
+          "name": "IBRAHIM Shehu",
+          "priorCumulative": [
+            85,
+            75,
+            253,
+            "2.98"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            261,
+            "3.07"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 253,
+              "nextPrevious": 261,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "2.98",
+              "nextPrevious": "3.07",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/020",
+          "name": "ILIYASU Hussaini",
+          "priorCumulative": [
+            87,
+            75,
+            266,
+            "3.06"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            278,
+            "3.20"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 266,
+              "nextPrevious": 278,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.06",
+              "nextPrevious": "3.20",
+              "delta": 0.14
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/071",
+          "name": "ISHAQ Sale",
+          "priorCumulative": [
+            95,
+            73,
+            251,
+            "2.64"
+          ],
+          "nextPrevious": [
+            95,
+            77,
+            269,
+            "2.83"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 251,
+              "nextPrevious": 269,
+              "delta": 18
+            },
+            {
+              "label": "gpa",
+              "prior": "2.64",
+              "nextPrevious": "2.83",
+              "delta": 0.19
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/046",
+          "name": "JIBRIN Salisu",
+          "priorCumulative": [
+            89,
+            75,
+            297,
+            "3.34"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            305,
+            "3.43"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 297,
+              "nextPrevious": 305,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.34",
+              "nextPrevious": "3.43",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/031",
+          "name": "KABIR Shehu",
+          "priorCumulative": [
+            83,
+            75,
+            264,
+            "3.18"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            274,
+            "3.30"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 264,
+              "nextPrevious": 274,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.18",
+              "nextPrevious": "3.30",
+              "delta": 0.12
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/115",
+          "name": "KABIR Yahaya",
+          "priorCumulative": [
+            89,
+            73,
+            285,
+            "3.20"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            301,
+            "3.38"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 285,
+              "nextPrevious": 301,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "3.20",
+              "nextPrevious": "3.38",
+              "delta": 0.18
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/016",
+          "name": "KAMALA Badamasi",
+          "priorCumulative": [
+            87,
+            71,
+            257,
+            "2.95"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            283,
+            "3.25"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 71,
+              "nextPrevious": 77,
+              "delta": 6
+            },
+            {
+              "label": "points",
+              "prior": 257,
+              "nextPrevious": 283,
+              "delta": 26
+            },
+            {
+              "label": "gpa",
+              "prior": "2.95",
+              "nextPrevious": "3.25",
+              "delta": 0.3
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/158",
+          "name": "KHADIJA Muhammad Bashir",
+          "priorCumulative": [
+            85,
+            71,
+            253,
+            "2.98"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            275,
+            "3.24"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 71,
+              "nextPrevious": 77,
+              "delta": 6
+            },
+            {
+              "label": "points",
+              "prior": 253,
+              "nextPrevious": 275,
+              "delta": 22
+            },
+            {
+              "label": "gpa",
+              "prior": "2.98",
+              "nextPrevious": "3.24",
+              "delta": 0.26
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/146",
+          "name": "LAWAL Mohammed Aminu",
+          "priorCumulative": [
+            91,
+            75,
+            286,
+            "3.14"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            294,
+            "3.23"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 286,
+              "nextPrevious": 294,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.14",
+              "nextPrevious": "3.23",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/087",
+          "name": "LAWISA Tahir",
+          "priorCumulative": [
+            93,
+            73,
+            266,
+            "2.86"
+          ],
+          "nextPrevious": [
+            93,
+            77,
+            282,
+            "3.03"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 266,
+              "nextPrevious": 282,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "2.86",
+              "nextPrevious": "3.03",
+              "delta": 0.17
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/100",
+          "name": "LURWANU Garba",
+          "priorCumulative": [
+            85,
+            75,
+            272,
+            "3.20"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            278,
+            "3.27"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 272,
+              "nextPrevious": 278,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.20",
+              "nextPrevious": "3.27",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/057",
+          "name": "MAHI Khalil",
+          "priorCumulative": [
+            93,
+            73,
+            244,
+            "2.62"
+          ],
+          "nextPrevious": [
+            93,
+            77,
+            262,
+            "2.82"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 244,
+              "nextPrevious": 262,
+              "delta": 18
+            },
+            {
+              "label": "gpa",
+              "prior": "2.62",
+              "nextPrevious": "2.82",
+              "delta": 0.2
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/002",
+          "name": "MANSUR Yarima",
+          "priorCumulative": [
+            83,
+            77,
+            305,
+            "3.67"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            307,
+            "3.70"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 305,
+              "nextPrevious": 307,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.67",
+              "nextPrevious": "3.70",
+              "delta": 0.03
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/007",
+          "name": "MARYAM Lawal",
+          "priorCumulative": [
+            85,
+            75,
+            298,
+            "3.51"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            306,
+            "3.60"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 298,
+              "nextPrevious": 306,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.51",
+              "nextPrevious": "3.60",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/014",
+          "name": "MISIRAT Abdurrashid",
+          "priorCumulative": [
+            83,
+            75,
+            290,
+            "3.49"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            298,
+            "3.59"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 290,
+              "nextPrevious": 298,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.49",
+              "nextPrevious": "3.59",
+              "delta": 0.1
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/165",
+          "name": "MOHAMMED Adamu",
+          "priorCumulative": [
+            95,
+            73,
+            253,
+            "2.66"
+          ],
+          "nextPrevious": [
+            95,
+            77,
+            267,
+            "2.81"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 253,
+              "nextPrevious": 267,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "2.66",
+              "nextPrevious": "2.81",
+              "delta": 0.15
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/027",
+          "name": "MUHAMMAD Balarabe Idris",
+          "priorCumulative": [
+            83,
+            75,
+            278,
+            "3.35"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            288,
+            "3.47"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 278,
+              "nextPrevious": 288,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.35",
+              "nextPrevious": "3.47",
+              "delta": 0.12
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/153",
+          "name": "MUHAMMED Isah Aliyu",
+          "priorCumulative": [
+            83,
+            75,
+            305,
+            "3.67"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            311,
+            "3.75"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 305,
+              "nextPrevious": 311,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.67",
+              "nextPrevious": "3.75",
+              "delta": 0.08
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/073",
+          "name": "MUKTAFA Saadu",
+          "priorCumulative": [
+            85,
+            71,
+            250,
+            "2.94"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            270,
+            "3.18"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 71,
+              "nextPrevious": 77,
+              "delta": 6
+            },
+            {
+              "label": "points",
+              "prior": 250,
+              "nextPrevious": 270,
+              "delta": 20
+            },
+            {
+              "label": "gpa",
+              "prior": "2.94",
+              "nextPrevious": "3.18",
+              "delta": 0.24
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/116",
+          "name": "MURJANATU Adam",
+          "priorCumulative": [
+            87,
+            73,
+            245,
+            "2.82"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            251,
+            "2.89"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 245,
+              "nextPrevious": 251,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.82",
+              "nextPrevious": "2.89",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/069",
+          "name": "MURTALA Abubakar Mohammad",
+          "priorCumulative": [
+            91,
+            75,
+            259,
+            "2.85"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            265,
+            "2.91"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 259,
+              "nextPrevious": 265,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.85",
+              "nextPrevious": "2.91",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/122",
+          "name": "MURTALA Adamu",
+          "priorCumulative": [
+            87,
+            73,
+            281,
+            "3.23"
+          ],
+          "nextPrevious": [
+            87,
+            75,
+            289,
+            "3.32"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 75,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 281,
+              "nextPrevious": 289,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.23",
+              "nextPrevious": "3.32",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/043",
+          "name": "MURTALA Aliyu",
+          "priorCumulative": [
+            89,
+            75,
+            259,
+            "2.91"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            265,
+            "2.98"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 259,
+              "nextPrevious": 265,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.91",
+              "nextPrevious": "2.98",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/049",
+          "name": "MURTALA Ghali",
+          "priorCumulative": [
+            83,
+            73,
+            279,
+            "3.36"
+          ],
+          "nextPrevious": [
+            83,
+            75,
+            287,
+            "3.46"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 75,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 279,
+              "nextPrevious": 287,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.36",
+              "nextPrevious": "3.46",
+              "delta": 0.1
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/029",
+          "name": "MURTALA Umar",
+          "priorCumulative": [
+            91,
+            75,
+            294,
+            "3.23"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            304,
+            "3.34"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 294,
+              "nextPrevious": 304,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.23",
+              "nextPrevious": "3.34",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/157",
+          "name": "MUSA Abba Labaran",
+          "priorCumulative": [
+            95,
+            75,
+            270,
+            "2.84"
+          ],
+          "nextPrevious": [
+            95,
+            77,
+            280,
+            "2.95"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 270,
+              "nextPrevious": 280,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "2.84",
+              "nextPrevious": "2.95",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/088",
+          "name": "MUSA Isah",
+          "priorCumulative": [
+            87,
+            75,
+            263,
+            "3.02"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            273,
+            "3.14"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 263,
+              "nextPrevious": 273,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.02",
+              "nextPrevious": "3.14",
+              "delta": 0.12
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/127",
+          "name": "MUSA Isiyaku",
+          "priorCumulative": [
+            83,
+            73,
+            258,
+            "3.11"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            272,
+            "3.28"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 258,
+              "nextPrevious": 272,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "3.11",
+              "nextPrevious": "3.28",
+              "delta": 0.17
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/109",
+          "name": "NAFI'U Abdullahi",
+          "priorCumulative": [
+            85,
+            77,
+            309,
+            "3.64"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            305,
+            "3.59"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 309,
+              "nextPrevious": 305,
+              "delta": -4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.64",
+              "nextPrevious": "3.59",
+              "delta": -0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/065",
+          "name": "NASIRU Yau",
+          "priorCumulative": [
+            81,
+            73,
+            299,
+            "3.69"
+          ],
+          "nextPrevious": [
+            81,
+            77,
+            311,
+            "3.84"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 299,
+              "nextPrevious": 311,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.69",
+              "nextPrevious": "3.84",
+              "delta": 0.15
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/086",
+          "name": "NAZIRU Yusuf",
+          "priorCumulative": [
+            83,
+            75,
+            272,
+            "3.28"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            282,
+            "3.40"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 272,
+              "nextPrevious": 282,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.28",
+              "nextPrevious": "3.40",
+              "delta": 0.12
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/025",
+          "name": "NURA Abdurrahim",
+          "priorCumulative": [
+            83,
+            75,
+            233,
+            "2.81"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            241,
+            "2.90"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 233,
+              "nextPrevious": 241,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "2.81",
+              "nextPrevious": "2.90",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/077",
+          "name": "NURA Ibrahim",
+          "priorCumulative": [
+            85,
+            75,
+            273,
+            "3.21"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            285,
+            "3.35"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 273,
+              "nextPrevious": 285,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.21",
+              "nextPrevious": "3.35",
+              "delta": 0.14
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/070",
+          "name": "PHILIPS Khendimohs Istifanus",
+          "priorCumulative": [
+            83,
+            73,
+            261,
+            "3.14"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            279,
+            "3.36"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 261,
+              "nextPrevious": 279,
+              "delta": 18
+            },
+            {
+              "label": "gpa",
+              "prior": "3.14",
+              "nextPrevious": "3.36",
+              "delta": 0.22
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/121",
+          "name": "RABI'U Umar",
+          "priorCumulative": [
+            89,
+            71,
+            267,
+            "3.00"
+          ],
+          "nextPrevious": [
+            89,
+            75,
+            281,
+            "3.16"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 71,
+              "nextPrevious": 75,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 267,
+              "nextPrevious": 281,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "3.00",
+              "nextPrevious": "3.16",
+              "delta": 0.16
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/033",
+          "name": "RABIU Haruna",
+          "priorCumulative": [
+            93,
+            69,
+            256,
+            "2.75"
+          ],
+          "nextPrevious": [
+            93,
+            77,
+            284,
+            "3.05"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 69,
+              "nextPrevious": 77,
+              "delta": 8
+            },
+            {
+              "label": "points",
+              "prior": 256,
+              "nextPrevious": 284,
+              "delta": 28
+            },
+            {
+              "label": "gpa",
+              "prior": "2.75",
+              "nextPrevious": "3.05",
+              "delta": 0.3
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/098",
+          "name": "RAMATU Bello Kabir",
+          "priorCumulative": [
+            87,
+            75,
+            279,
+            "3.21"
+          ],
+          "nextPrevious": [
+            87,
+            75,
+            275,
+            "3.16"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 279,
+              "nextPrevious": 275,
+              "delta": -4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.21",
+              "nextPrevious": "3.16",
+              "delta": -0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/040",
+          "name": "RAWAB Junaidu",
+          "priorCumulative": [
+            83,
+            75,
+            296,
+            "3.57"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            304,
+            "3.66"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 296,
+              "nextPrevious": 304,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.57",
+              "nextPrevious": "3.66",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/063",
+          "name": "RUKAYYA Salihu",
+          "priorCumulative": [
+            87,
+            70,
+            258,
+            "2.97"
+          ],
+          "nextPrevious": [
+            87,
+            74,
+            272,
+            "3.13"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 70,
+              "nextPrevious": 74,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 258,
+              "nextPrevious": 272,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "2.97",
+              "nextPrevious": "3.13",
+              "delta": 0.16
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/094",
+          "name": "SA'ADIYA Hayatu",
+          "priorCumulative": [
+            89,
+            75,
+            254,
+            "2.85"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            260,
+            "2.92"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 254,
+              "nextPrevious": 260,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.85",
+              "nextPrevious": "2.92",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/164",
+          "name": "SAFIYANU Danazumi",
+          "priorCumulative": [
+            89,
+            73,
+            263,
+            "2.96"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            277,
+            "3.11"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 263,
+              "nextPrevious": 277,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "2.96",
+              "nextPrevious": "3.11",
+              "delta": 0.15
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/137",
+          "name": "SAHANU Ibrahim",
+          "priorCumulative": [
+            83,
+            73,
+            279,
+            "3.36"
+          ],
+          "nextPrevious": [
+            83,
+            75,
+            285,
+            "3.43"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 75,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 279,
+              "nextPrevious": 285,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.36",
+              "nextPrevious": "3.43",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/008",
+          "name": "SAMAILA Muntari",
+          "priorCumulative": [
+            81,
+            75,
+            288,
+            "3.56"
+          ],
+          "nextPrevious": [
+            81,
+            77,
+            294,
+            "3.63"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 288,
+              "nextPrevious": 294,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.56",
+              "nextPrevious": "3.63",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/037",
+          "name": "SANI Umar",
+          "priorCumulative": [
+            83,
+            75,
+            282,
+            "3.40"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            290,
+            "3.49"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 282,
+              "nextPrevious": 290,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.40",
+              "nextPrevious": "3.49",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/138",
+          "name": "SANNI Tafa",
+          "priorCumulative": [
+            89,
+            75,
+            284,
+            "3.19"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            294,
+            "3.30"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 284,
+              "nextPrevious": 294,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.19",
+              "nextPrevious": "3.30",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/060",
+          "name": "SANUSI Abdullahi",
+          "priorCumulative": [
+            93,
+            73,
+            262,
+            "2.82"
+          ],
+          "nextPrevious": [
+            93,
+            77,
+            280,
+            "3.01"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 262,
+              "nextPrevious": 280,
+              "delta": 18
+            },
+            {
+              "label": "gpa",
+              "prior": "2.82",
+              "nextPrevious": "3.01",
+              "delta": 0.19
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/061",
+          "name": "SHAFA'ATU Mustapha",
+          "priorCumulative": [
+            87,
+            75,
+            284,
+            "3.26"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            292,
+            "3.36"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 284,
+              "nextPrevious": 292,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.26",
+              "nextPrevious": "3.36",
+              "delta": 0.1
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/076",
+          "name": "SHAMSU Tijjani",
+          "priorCumulative": [
+            93,
+            75,
+            264,
+            "2.84"
+          ],
+          "nextPrevious": [
+            93,
+            77,
+            272,
+            "2.92"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 264,
+              "nextPrevious": 272,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "2.84",
+              "nextPrevious": "2.92",
+              "delta": 0.08
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/135",
+          "name": "SHAMSU Umar",
+          "priorCumulative": [
+            85,
+            73,
+            258,
+            "3.04"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            274,
+            "3.22"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 258,
+              "nextPrevious": 274,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "3.04",
+              "nextPrevious": "3.22",
+              "delta": 0.18
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/155",
+          "name": "SHUAIBU Muhammad",
+          "priorCumulative": [
+            85,
+            75,
+            278,
+            "3.27"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            286,
+            "3.36"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 278,
+              "nextPrevious": 286,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.27",
+              "nextPrevious": "3.36",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/161",
+          "name": "SULEIMAN Habibu Abdullahi",
+          "priorCumulative": [
+            81,
+            75,
+            267,
+            "3.30"
+          ],
+          "nextPrevious": [
+            81,
+            77,
+            277,
+            "3.42"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 267,
+              "nextPrevious": 277,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.30",
+              "nextPrevious": "3.42",
+              "delta": 0.12
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/149",
+          "name": "SURAJO Musa",
+          "priorCumulative": [
+            91,
+            73,
+            238,
+            "2.62"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            250,
+            "2.75"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 238,
+              "nextPrevious": 250,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "2.62",
+              "nextPrevious": "2.75",
+              "delta": 0.13
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/026",
+          "name": "SUWAIBA Adamu",
+          "priorCumulative": [
+            83,
+            73,
+            268,
+            "3.23"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            284,
+            "3.42"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 268,
+              "nextPrevious": 284,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "3.23",
+              "nextPrevious": "3.42",
+              "delta": 0.19
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/001",
+          "name": "TIJJANI Mansir",
+          "priorCumulative": [
+            83,
+            73,
+            253,
+            "3.05"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            265,
+            "3.19"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 253,
+              "nextPrevious": 265,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.05",
+              "nextPrevious": "3.19",
+              "delta": 0.14
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/119",
+          "name": "UMAR Abdullahi",
+          "priorCumulative": [
+            89,
+            75,
+            313,
+            "3.52"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            321,
+            "3.61"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 313,
+              "nextPrevious": 321,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.52",
+              "nextPrevious": "3.61",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/159",
+          "name": "UMAR Abubakar",
+          "priorCumulative": [
+            89,
+            75,
+            268,
+            "3.01"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            274,
+            "3.08"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 268,
+              "nextPrevious": 274,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.01",
+              "nextPrevious": "3.08",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/120",
+          "name": "UMAR Bala",
+          "priorCumulative": [
+            85,
+            75,
+            287,
+            "3.38"
+          ],
+          "nextPrevious": [
+            85,
+            75,
+            291,
+            "3.42"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 287,
+              "nextPrevious": 291,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.38",
+              "nextPrevious": "3.42",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/131",
+          "name": "UMAR Kabir",
+          "priorCumulative": [
+            87,
+            66,
+            236,
+            "2.71"
+          ],
+          "nextPrevious": [
+            87,
+            72,
+            252,
+            "2.90"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 66,
+              "nextPrevious": 72,
+              "delta": 6
+            },
+            {
+              "label": "points",
+              "prior": 236,
+              "nextPrevious": 252,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "2.71",
+              "nextPrevious": "2.90",
+              "delta": 0.19
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/035",
+          "name": "UMAR Nadabo Magaji",
+          "priorCumulative": [
+            93,
+            73,
+            286,
+            "3.08"
+          ],
+          "nextPrevious": [
+            93,
+            77,
+            302,
+            "3.25"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 286,
+              "nextPrevious": 302,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "3.08",
+              "nextPrevious": "3.25",
+              "delta": 0.17
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/139",
+          "name": "WASILA Jafaru",
+          "priorCumulative": [
+            87,
+            75,
+            262,
+            "3.01"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            268,
+            "3.08"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 262,
+              "nextPrevious": 268,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.01",
+              "nextPrevious": "3.08",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/102",
+          "name": "YAKUBU Usman",
+          "priorCumulative": [
+            85,
+            75,
+            259,
+            "3.05"
+          ],
+          "nextPrevious": [
+            85,
+            77,
+            271,
+            "3.19"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 259,
+              "nextPrevious": 271,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.05",
+              "nextPrevious": "3.19",
+              "delta": 0.14
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/015",
+          "name": "YUSHA'U Isah",
+          "priorCumulative": [
+            83,
+            73,
+            266,
+            "3.20"
+          ],
+          "nextPrevious": [
+            83,
+            77,
+            284,
+            "3.42"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 266,
+              "nextPrevious": 284,
+              "delta": 18
+            },
+            {
+              "label": "gpa",
+              "prior": "3.20",
+              "nextPrevious": "3.42",
+              "delta": 0.22
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/097",
+          "name": "YUSUF Fari Hassan",
+          "priorCumulative": [
+            91,
+            75,
+            266,
+            "2.92"
+          ],
+          "nextPrevious": [
+            91,
+            77,
+            274,
+            "3.01"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 266,
+              "nextPrevious": 274,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "2.92",
+              "nextPrevious": "3.01",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/022",
+          "name": "YUSUF Dahiru",
+          "priorCumulative": [
+            87,
+            73,
+            258,
+            "2.97"
+          ],
+          "nextPrevious": [
+            87,
+            77,
+            268,
+            "3.08"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 258,
+              "nextPrevious": 268,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "2.97",
+              "nextPrevious": "3.08",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/130",
+          "name": "YUSUF Musa",
+          "priorCumulative": [
+            89,
+            75,
+            239,
+            "2.69"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            249,
+            "2.80"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 75,
+              "nextPrevious": 77,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 239,
+              "nextPrevious": 249,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "2.69",
+              "nextPrevious": "2.80",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/145",
+          "name": "ZAHARADEEN Umar",
+          "priorCumulative": [
+            89,
+            73,
+            263,
+            "2.96"
+          ],
+          "nextPrevious": [
+            89,
+            77,
+            277,
+            "3.11"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 73,
+              "nextPrevious": 77,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 263,
+              "nextPrevious": 277,
+              "delta": 14
+            },
+            {
+              "label": "gpa",
+              "prior": "2.96",
+              "nextPrevious": "3.11",
+              "delta": 0.15
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/160",
+          "name": "ZUBAIRU Aliyu",
+          "priorCumulative": [
+            95,
+            75,
+            253,
+            "2.66"
+          ],
+          "nextPrevious": [
+            95,
+            75,
+            255,
+            "2.68"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 253,
+              "nextPrevious": 255,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "2.66",
+              "nextPrevious": "2.68",
+              "delta": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "from": "2024/2025",
+      "to": "2025/2026",
+      "missingFromNext": [],
+      "newInNext": [],
+      "nameChanges": [],
+      "carryForwardMismatches": [
+        {
+          "id": "CCE/EDU/MEAP2/22/125",
+          "name": "ABDULHAMID Iliyasu",
+          "priorCumulative": [
+            109,
+            99,
+            331,
+            "3.04"
+          ],
+          "nextPrevious": [
+            109,
+            99,
+            339,
+            "3.11"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 331,
+              "nextPrevious": 339,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.04",
+              "nextPrevious": "3.11",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/151",
+          "name": "ABDULKADIR Ahmad",
+          "priorCumulative": [
+            99,
+            99,
+            327,
+            "3.30"
+          ],
+          "nextPrevious": [
+            99,
+            99,
+            343,
+            "3.46"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 327,
+              "nextPrevious": 343,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "3.30",
+              "nextPrevious": "3.46",
+              "delta": 0.16
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/034",
+          "name": "ABDULLAHI Lawal",
+          "priorCumulative": [
+            109,
+            99,
+            374,
+            "3.43"
+          ],
+          "nextPrevious": [
+            109,
+            99,
+            366,
+            "3.36"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 374,
+              "nextPrevious": 366,
+              "delta": -8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.43",
+              "nextPrevious": "3.36",
+              "delta": -0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/044",
+          "name": "ABDULLAHI Muhammad",
+          "priorCumulative": [
+            111,
+            95,
+            369,
+            "3.32"
+          ],
+          "nextPrevious": [
+            111,
+            95,
+            377,
+            "3.40"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 369,
+              "nextPrevious": 377,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.32",
+              "nextPrevious": "3.40",
+              "delta": 0.08
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/099",
+          "name": "ABUBAKAR Umar",
+          "priorCumulative": [
+            113,
+            93,
+            341,
+            "3.02"
+          ],
+          "nextPrevious": [
+            113,
+            93,
+            343,
+            "3.04"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 341,
+              "nextPrevious": 343,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.02",
+              "nextPrevious": "3.04",
+              "delta": 0.02
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/075",
+          "name": "ADAMU Saidu",
+          "priorCumulative": [
+            109,
+            89,
+            329,
+            "3.02"
+          ],
+          "nextPrevious": [
+            109,
+            93,
+            345,
+            "3.17"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 89,
+              "nextPrevious": 93,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 329,
+              "nextPrevious": 345,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "3.02",
+              "nextPrevious": "3.17",
+              "delta": 0.15
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/150",
+          "name": "AISHA Mohammad",
+          "priorCumulative": [
+            109,
+            97,
+            387,
+            "3.55"
+          ],
+          "nextPrevious": [
+            109,
+            99,
+            391,
+            "3.59"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 97,
+              "nextPrevious": 99,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 387,
+              "nextPrevious": 391,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.55",
+              "nextPrevious": "3.59",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/106",
+          "name": "ALIYU Abdullahi Yusuf",
+          "priorCumulative": [
+            111,
+            97,
+            360,
+            "3.24"
+          ],
+          "nextPrevious": [
+            111,
+            99,
+            370,
+            "3.33"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 97,
+              "nextPrevious": 99,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 360,
+              "nextPrevious": 370,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.24",
+              "nextPrevious": "3.33",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/045",
+          "name": "ALIYU Sabi'u",
+          "priorCumulative": [
+            105,
+            93,
+            325,
+            "3.10"
+          ],
+          "nextPrevious": [
+            105,
+            97,
+            353,
+            "3.36"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 93,
+              "nextPrevious": 97,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 325,
+              "nextPrevious": 353,
+              "delta": 28
+            },
+            {
+              "label": "gpa",
+              "prior": "3.10",
+              "nextPrevious": "3.36",
+              "delta": 0.26
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/066",
+          "name": "AMINU Lawal",
+          "priorCumulative": [
+            105,
+            97,
+            352,
+            "3.35"
+          ],
+          "nextPrevious": [
+            105,
+            97,
+            358,
+            "3.41"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 352,
+              "nextPrevious": 358,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.35",
+              "nextPrevious": "3.41",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/118",
+          "name": "AMINU Magaji",
+          "priorCumulative": [
+            101,
+            99,
+            360,
+            "3.56"
+          ],
+          "nextPrevious": [
+            101,
+            99,
+            364,
+            "3.60"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 360,
+              "nextPrevious": 364,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.56",
+              "nextPrevious": "3.60",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/048",
+          "name": "AMINU Muhammad",
+          "priorCumulative": [
+            111,
+            89,
+            318,
+            "2.86"
+          ],
+          "nextPrevious": [
+            111,
+            91,
+            322,
+            "2.90"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 89,
+              "nextPrevious": 91,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 318,
+              "nextPrevious": 322,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "2.86",
+              "nextPrevious": "2.90",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/042",
+          "name": "AMINU Tukur",
+          "priorCumulative": [
+            109,
+            91,
+            314,
+            "2.88"
+          ],
+          "nextPrevious": [
+            109,
+            91,
+            320,
+            "2.94"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 314,
+              "nextPrevious": 320,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.88",
+              "nextPrevious": "2.94",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/072",
+          "name": "AUWAL Surajo",
+          "priorCumulative": [
+            113,
+            97,
+            367,
+            "3.25"
+          ],
+          "nextPrevious": [
+            113,
+            97,
+            363,
+            "3.21"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 367,
+              "nextPrevious": 363,
+              "delta": -4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.25",
+              "nextPrevious": "3.21",
+              "delta": -0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/009",
+          "name": "AUWALU Garba",
+          "priorCumulative": [
+            109,
+            97,
+            356,
+            "3.27"
+          ],
+          "nextPrevious": [
+            109,
+            97,
+            360,
+            "3.30"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 356,
+              "nextPrevious": 360,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.27",
+              "nextPrevious": "3.30",
+              "delta": 0.03
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/038",
+          "name": "BASHIR Mannir",
+          "priorCumulative": [
+            115,
+            95,
+            355,
+            "3.09"
+          ],
+          "nextPrevious": [
+            115,
+            99,
+            367,
+            "3.19"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 95,
+              "nextPrevious": 99,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 355,
+              "nextPrevious": 367,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.09",
+              "nextPrevious": "3.19",
+              "delta": 0.1
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/140",
+          "name": "BAWA Ibrahim",
+          "priorCumulative": [
+            109,
+            97,
+            329,
+            "3.02"
+          ],
+          "nextPrevious": [
+            109,
+            97,
+            339,
+            "3.11"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 329,
+              "nextPrevious": 339,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.02",
+              "nextPrevious": "3.11",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/090",
+          "name": "BILKISU Lawal",
+          "priorCumulative": [
+            109,
+            99,
+            349,
+            "3.20"
+          ],
+          "nextPrevious": [
+            109,
+            99,
+            353,
+            "3.24"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 349,
+              "nextPrevious": 353,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.20",
+              "nextPrevious": "3.24",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/128",
+          "name": "BISHIR Hassan",
+          "priorCumulative": [
+            105,
+            97,
+            373,
+            "3.55"
+          ],
+          "nextPrevious": [
+            105,
+            99,
+            381,
+            "3.63"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 97,
+              "nextPrevious": 99,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 373,
+              "nextPrevious": 381,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.55",
+              "nextPrevious": "3.63",
+              "delta": 0.08
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/141",
+          "name": "BISHIR Yusuf",
+          "priorCumulative": [
+            111,
+            93,
+            343,
+            "3.09"
+          ],
+          "nextPrevious": [
+            111,
+            93,
+            349,
+            "3.14"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 343,
+              "nextPrevious": 349,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.09",
+              "nextPrevious": "3.14",
+              "delta": 0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/036",
+          "name": "GARBA Ibrahim",
+          "priorCumulative": [
+            113,
+            97,
+            364,
+            "3.22"
+          ],
+          "nextPrevious": [
+            113,
+            97,
+            374,
+            "3.31"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 364,
+              "nextPrevious": 374,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.22",
+              "nextPrevious": "3.31",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/104",
+          "name": "HASSANA Abdullahi Yusuf",
+          "priorCumulative": [
+            107,
+            99,
+            412,
+            "3.85"
+          ],
+          "nextPrevious": [
+            107,
+            99,
+            416,
+            "3.89"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 412,
+              "nextPrevious": 416,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.85",
+              "nextPrevious": "3.89",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/039",
+          "name": "HAUWA'U Abdullahi",
+          "priorCumulative": [
+            107,
+            97,
+            352,
+            "3.29"
+          ],
+          "nextPrevious": [
+            107,
+            97,
+            356,
+            "3.33"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 352,
+              "nextPrevious": 356,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.29",
+              "nextPrevious": "3.33",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/092",
+          "name": "HUSAINA Yusuf Hassan",
+          "priorCumulative": [
+            111,
+            91,
+            337,
+            "3.04"
+          ],
+          "nextPrevious": [
+            111,
+            93,
+            343,
+            "3.09"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 91,
+              "nextPrevious": 93,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 337,
+              "nextPrevious": 343,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.04",
+              "nextPrevious": "3.09",
+              "delta": 0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/010",
+          "name": "IBRAHIM Mu'azu",
+          "priorCumulative": [
+            109,
+            91,
+            326,
+            "2.99"
+          ],
+          "nextPrevious": [
+            109,
+            91,
+            338,
+            "3.10"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 326,
+              "nextPrevious": 338,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "2.99",
+              "nextPrevious": "3.10",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/020",
+          "name": "ILIYASU Hussaini",
+          "priorCumulative": [
+            109,
+            93,
+            336,
+            "3.08"
+          ],
+          "nextPrevious": [
+            109,
+            95,
+            344,
+            "3.16"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 93,
+              "nextPrevious": 95,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 336,
+              "nextPrevious": 344,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.08",
+              "nextPrevious": "3.16",
+              "delta": 0.08
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/144",
+          "name": "JAMILA Fatika Umar",
+          "priorCumulative": [
+            111,
+            97,
+            344,
+            "3.10"
+          ],
+          "nextPrevious": [
+            111,
+            99,
+            350,
+            "3.15"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 97,
+              "nextPrevious": 99,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 344,
+              "nextPrevious": 350,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.10",
+              "nextPrevious": "3.15",
+              "delta": 0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/031",
+          "name": "KABIR Shehu",
+          "priorCumulative": [
+            105,
+            93,
+            340,
+            "3.24"
+          ],
+          "nextPrevious": [
+            105,
+            95,
+            348,
+            "3.31"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 93,
+              "nextPrevious": 95,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 340,
+              "nextPrevious": 348,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.24",
+              "nextPrevious": "3.31",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/115",
+          "name": "KABIR Yahaya",
+          "priorCumulative": [
+            111,
+            89,
+            347,
+            "3.13"
+          ],
+          "nextPrevious": [
+            111,
+            93,
+            357,
+            "3.22"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 89,
+              "nextPrevious": 93,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 347,
+              "nextPrevious": 357,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.13",
+              "nextPrevious": "3.22",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/113",
+          "name": "LAWAL Garba",
+          "priorCumulative": [
+            117,
+            93,
+            335,
+            "2.86"
+          ],
+          "nextPrevious": [
+            117,
+            97,
+            351,
+            "3.00"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 93,
+              "nextPrevious": 97,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 335,
+              "nextPrevious": 351,
+              "delta": 16
+            },
+            {
+              "label": "gpa",
+              "prior": "2.86",
+              "nextPrevious": "3.00",
+              "delta": 0.14
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/087",
+          "name": "LAWISA Tahir",
+          "priorCumulative": [
+            115,
+            95,
+            350,
+            "3.04"
+          ],
+          "nextPrevious": [
+            115,
+            97,
+            360,
+            "3.13"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 95,
+              "nextPrevious": 97,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 350,
+              "nextPrevious": 360,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.04",
+              "nextPrevious": "3.13",
+              "delta": 0.09
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/100",
+          "name": "LURWANU Garba",
+          "priorCumulative": [
+            107,
+            95,
+            362,
+            "3.38"
+          ],
+          "nextPrevious": [
+            107,
+            97,
+            366,
+            "3.42"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 95,
+              "nextPrevious": 97,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 362,
+              "nextPrevious": 366,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.38",
+              "nextPrevious": "3.42",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/163",
+          "name": "MAHARAZU Junaidu",
+          "priorCumulative": [
+            107,
+            93,
+            339,
+            "3.17"
+          ],
+          "nextPrevious": [
+            107,
+            93,
+            341,
+            "3.19"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 339,
+              "nextPrevious": 341,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.17",
+              "nextPrevious": "3.19",
+              "delta": 0.02
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/057",
+          "name": "MAHI Khalil",
+          "priorCumulative": [
+            115,
+            97,
+            346,
+            "3.01"
+          ],
+          "nextPrevious": [
+            115,
+            97,
+            350,
+            "3.04"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 346,
+              "nextPrevious": 350,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.01",
+              "nextPrevious": "3.04",
+              "delta": 0.03
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/082",
+          "name": "MAIKANO Abdullahi",
+          "priorCumulative": [
+            101,
+            97,
+            352,
+            "3.49"
+          ],
+          "nextPrevious": [
+            101,
+            99,
+            358,
+            "3.54"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 97,
+              "nextPrevious": 99,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 352,
+              "nextPrevious": 358,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.49",
+              "nextPrevious": "3.54",
+              "delta": 0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/002",
+          "name": "MANSUR Yarima",
+          "priorCumulative": [
+            105,
+            95,
+            371,
+            "3.53"
+          ],
+          "nextPrevious": [
+            105,
+            97,
+            377,
+            "3.59"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 95,
+              "nextPrevious": 97,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 371,
+              "nextPrevious": 377,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.53",
+              "nextPrevious": "3.59",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/017",
+          "name": "MUBASHIR Sanusi",
+          "priorCumulative": [
+            109,
+            93,
+            314,
+            "2.88"
+          ],
+          "nextPrevious": [
+            109,
+            93,
+            318,
+            "2.92"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 314,
+              "nextPrevious": 318,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "2.88",
+              "nextPrevious": "2.92",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/027",
+          "name": "MUHAMMAD Balarabe Idris",
+          "priorCumulative": [
+            105,
+            93,
+            340,
+            "3.24"
+          ],
+          "nextPrevious": [
+            105,
+            93,
+            344,
+            "3.28"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 340,
+              "nextPrevious": 344,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.24",
+              "nextPrevious": "3.28",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/153",
+          "name": "MUHAMMED Isah Aliyu",
+          "priorCumulative": [
+            105,
+            97,
+            381,
+            "3.63"
+          ],
+          "nextPrevious": [
+            105,
+            97,
+            387,
+            "3.69"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 381,
+              "nextPrevious": 387,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.63",
+              "nextPrevious": "3.69",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/085",
+          "name": "MURJA Halilu Hassan",
+          "priorCumulative": [
+            105,
+            95,
+            329,
+            "3.13"
+          ],
+          "nextPrevious": [
+            105,
+            97,
+            339,
+            "3.23"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 95,
+              "nextPrevious": 97,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 329,
+              "nextPrevious": 339,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "3.13",
+              "nextPrevious": "3.23",
+              "delta": 0.1
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/116",
+          "name": "MURJANATU Adam",
+          "priorCumulative": [
+            109,
+            97,
+            327,
+            "3.00"
+          ],
+          "nextPrevious": [
+            109,
+            99,
+            331,
+            "3.04"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 97,
+              "nextPrevious": 99,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 327,
+              "nextPrevious": 331,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.00",
+              "nextPrevious": "3.04",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/069",
+          "name": "MURTALA Abubakar Mohammad",
+          "priorCumulative": [
+            113,
+            93,
+            315,
+            "2.79"
+          ],
+          "nextPrevious": [
+            113,
+            95,
+            319,
+            "2.82"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 93,
+              "nextPrevious": 95,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 315,
+              "nextPrevious": 319,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "2.79",
+              "nextPrevious": "2.82",
+              "delta": 0.03
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/157",
+          "name": "MUSA Abba Labaran",
+          "priorCumulative": [
+            117,
+            89,
+            328,
+            "2.80"
+          ],
+          "nextPrevious": [
+            117,
+            91,
+            334,
+            "2.85"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 89,
+              "nextPrevious": 91,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 328,
+              "nextPrevious": 334,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "2.80",
+              "nextPrevious": "2.85",
+              "delta": 0.05
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/088",
+          "name": "MUSA Isah",
+          "priorCumulative": [
+            109,
+            91,
+            325,
+            "2.98"
+          ],
+          "nextPrevious": [
+            109,
+            91,
+            321,
+            "2.94"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 325,
+              "nextPrevious": 321,
+              "delta": -4
+            },
+            {
+              "label": "gpa",
+              "prior": "2.98",
+              "nextPrevious": "2.94",
+              "delta": -0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/127",
+          "name": "MUSA Isiyaku",
+          "priorCumulative": [
+            105,
+            97,
+            336,
+            "3.20"
+          ],
+          "nextPrevious": [
+            105,
+            97,
+            348,
+            "3.31"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 336,
+              "nextPrevious": 348,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.20",
+              "nextPrevious": "3.31",
+              "delta": 0.11
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/053",
+          "name": "NAZIRU Abubakar",
+          "priorCumulative": [
+            107,
+            95,
+            349,
+            "3.26"
+          ],
+          "nextPrevious": [
+            107,
+            97,
+            355,
+            "3.32"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 95,
+              "nextPrevious": 97,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 349,
+              "nextPrevious": 355,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.26",
+              "nextPrevious": "3.32",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/025",
+          "name": "NURA Abdurrahim",
+          "priorCumulative": [
+            105,
+            95,
+            311,
+            "2.96"
+          ],
+          "nextPrevious": [
+            105,
+            97,
+            321,
+            "3.06"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 95,
+              "nextPrevious": 97,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 311,
+              "nextPrevious": 321,
+              "delta": 10
+            },
+            {
+              "label": "gpa",
+              "prior": "2.96",
+              "nextPrevious": "3.06",
+              "delta": 0.1
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/077",
+          "name": "NURA Ibrahim",
+          "priorCumulative": [
+            107,
+            93,
+            355,
+            "3.32"
+          ],
+          "nextPrevious": [
+            107,
+            95,
+            359,
+            "3.36"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 93,
+              "nextPrevious": 95,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 355,
+              "nextPrevious": 359,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.32",
+              "nextPrevious": "3.36",
+              "delta": 0.04
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/121",
+          "name": "RABI'U Umar",
+          "priorCumulative": [
+            111,
+            91,
+            355,
+            "3.20"
+          ],
+          "nextPrevious": [
+            111,
+            93,
+            357,
+            "3.22"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 91,
+              "nextPrevious": 93,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 355,
+              "nextPrevious": 357,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.20",
+              "nextPrevious": "3.22",
+              "delta": 0.02
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/033",
+          "name": "RABIU Haruna",
+          "priorCumulative": [
+            115,
+            95,
+            344,
+            "2.99"
+          ],
+          "nextPrevious": [
+            115,
+            97,
+            366,
+            "3.18"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 95,
+              "nextPrevious": 97,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 344,
+              "nextPrevious": 366,
+              "delta": 22
+            },
+            {
+              "label": "gpa",
+              "prior": "2.99",
+              "nextPrevious": "3.18",
+              "delta": 0.19
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/137",
+          "name": "SAHANU Ibrahim",
+          "priorCumulative": [
+            105,
+            91,
+            349,
+            "3.32"
+          ],
+          "nextPrevious": [
+            105,
+            95,
+            361,
+            "3.44"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 91,
+              "nextPrevious": 95,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 349,
+              "nextPrevious": 361,
+              "delta": 12
+            },
+            {
+              "label": "gpa",
+              "prior": "3.32",
+              "nextPrevious": "3.44",
+              "delta": 0.12
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/091",
+          "name": "SALAMATU Isah Shu'aibu",
+          "priorCumulative": [
+            107,
+            99,
+            375,
+            "3.50"
+          ],
+          "nextPrevious": [
+            107,
+            99,
+            383,
+            "3.58"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 375,
+              "nextPrevious": 383,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.50",
+              "nextPrevious": "3.58",
+              "delta": 0.08
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/037",
+          "name": "SANI Umar",
+          "priorCumulative": [
+            105,
+            91,
+            340,
+            "3.24"
+          ],
+          "nextPrevious": [
+            105,
+            91,
+            342,
+            "3.26"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 340,
+              "nextPrevious": 342,
+              "delta": 2
+            },
+            {
+              "label": "gpa",
+              "prior": "3.24",
+              "nextPrevious": "3.26",
+              "delta": 0.02
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/135",
+          "name": "SHAMSU Umar",
+          "priorCumulative": [
+            107,
+            97,
+            358,
+            "3.35"
+          ],
+          "nextPrevious": [
+            107,
+            97,
+            366,
+            "3.42"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 358,
+              "nextPrevious": 366,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "3.35",
+              "nextPrevious": "3.42",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/131",
+          "name": "UMAR Kabir",
+          "priorCumulative": [
+            109,
+            90,
+            326,
+            "2.99"
+          ],
+          "nextPrevious": [
+            109,
+            94,
+            334,
+            "3.06"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 90,
+              "nextPrevious": 94,
+              "delta": 4
+            },
+            {
+              "label": "points",
+              "prior": 326,
+              "nextPrevious": 334,
+              "delta": 8
+            },
+            {
+              "label": "gpa",
+              "prior": "2.99",
+              "nextPrevious": "3.06",
+              "delta": 0.07
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/102",
+          "name": "YAKUBU Usman",
+          "priorCumulative": [
+            107,
+            97,
+            339,
+            "3.17"
+          ],
+          "nextPrevious": [
+            107,
+            97,
+            357,
+            "3.34"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 339,
+              "nextPrevious": 357,
+              "delta": 18
+            },
+            {
+              "label": "gpa",
+              "prior": "3.17",
+              "nextPrevious": "3.34",
+              "delta": 0.17
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/015",
+          "name": "YUSHA'U Isah",
+          "priorCumulative": [
+            105,
+            91,
+            332,
+            "3.16"
+          ],
+          "nextPrevious": [
+            105,
+            93,
+            338,
+            "3.22"
+          ],
+          "diffs": [
+            {
+              "label": "earned",
+              "prior": 91,
+              "nextPrevious": 93,
+              "delta": 2
+            },
+            {
+              "label": "points",
+              "prior": 332,
+              "nextPrevious": 338,
+              "delta": 6
+            },
+            {
+              "label": "gpa",
+              "prior": "3.16",
+              "nextPrevious": "3.22",
+              "delta": 0.06
+            }
+          ]
+        },
+        {
+          "id": "CCE/EDU/MEAP2/22/055",
+          "name": "YUSUF Hassan",
+          "priorCumulative": [
+            109,
+            97,
+            364,
+            "3.34"
+          ],
+          "nextPrevious": [
+            109,
+            97,
+            368,
+            "3.38"
+          ],
+          "diffs": [
+            {
+              "label": "points",
+              "prior": 364,
+              "nextPrevious": 368,
+              "delta": 4
+            },
+            {
+              "label": "gpa",
+              "prior": "3.34",
+              "nextPrevious": "3.38",
+              "delta": 0.04
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

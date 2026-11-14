@@ -1,0 +1,2340 @@
+<USER_REQUEST>
+Showing rows 0 - 458 (459 total, Query took 0.0713 seconds.) [total_score: 95.00... - 10.00...]
+[SELECT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/select.html) cr.id AS registration_id, s.id AS student_id, u.full_name, ra.total_score, ra.grade FROM course_registrations cr JOIN students s ON s.id = cr.student_id JOIN users u ON u.id = s.user_id JOIN result_attempts ra ON ra.student_id = s.id JOIN result_batches rb ON rb.id = ra.batch_id JOIN courses c ON c.id = rb.course_id WHERE s.programme_id = '8732138a-a35d-4551-947a-b01300810512' [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) c.code = 'ENG111' [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) ra.total_score [IS](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html%23operator_is) [NOT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_not) NULL [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) [NOT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_not) EXISTS ( [SELECT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/select.html) 1 FROM course_registration_items cri JOIN courses c2 ON c2.id = cri.course_id WHERE cri.registration_id = cr.id [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) c2.code = 'ENG111' ) GROUP BY cr.id, s.id, u.full_name, ra.total_score, ra.grade ORDER BY ra.total_score DESC;
+Profiling [ [Edit inline](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php?route=/database/sql&db=mcceorgn_main#) ] [ [Edit](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Explain SQL](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Create PHP code](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Refresh](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ]
+Show all
+|
+Number of rows: All 25 50 100 250 500
+Filter rows:
+[registration_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[student_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[full_name](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[total_score 1](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[grade](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+17969cd4-3120-42f3-b29e-ad6eb92616ad
+c200c2e5-e979-439c-9072-6fde5e8798a5
+IBRAHIM Mu�azu
+95.00
+A
+6c4102b5-958e-44df-8f9c-3baf8d0a9e10
+c200c2e5-e979-439c-9072-6fde5e8798a5
+IBRAHIM Mu�azu
+95.00
+A
+4ec84094-c2ca-47ea-a5ad-9ab478c30aeb
+c200c2e5-e979-439c-9072-6fde5e8798a5
+IBRAHIM Mu�azu
+95.00
+A
+8dd6c69c-2978-45c4-a6d0-218fe04a84ef
+c200c2e5-e979-439c-9072-6fde5e8798a5
+IBRAHIM Mu�azu
+95.00
+A
+4f312611-940b-41f3-8145-c68b77502e61
+c200c2e5-e979-439c-9072-6fde5e8798a5
+IBRAHIM Mu�azu
+95.00
+A
+fab583fa-3c0a-4de1-bdc6-0b8b037d6459
+c200c2e5-e979-439c-9072-6fde5e8798a5
+IBRAHIM Mu�azu
+95.00
+A
+22a33071-c347-4b5a-a937-efb34b05d99f
+42c679f5-ac96-498f-ad26-9b9aee37340a
+MURTALA abubakar Mohammed
+94.00
+A
+ba224210-35e7-4801-acc0-ec8a28440a95
+42c679f5-ac96-498f-ad26-9b9aee37340a
+MURTALA abubakar Mohammed
+94.00
+A
+5b783c31-c184-4da2-9d11-0fcf585a1283
+42c679f5-ac96-498f-ad26-9b9aee37340a
+MURTALA abubakar Mohammed
+94.00
+A
+eb7aa4a5-ac83-43fe-9958-7394a5ec8665
+42c679f5-ac96-498f-ad26-9b9aee37340a
+MURTALA abubakar Mohammed
+94.00
+A
+081e46a3-90a3-4f10-b2d4-d409b92a4838
+42c679f5-ac96-498f-ad26-9b9aee37340a
+MURTALA abubakar Mohammed
+94.00
+A
+6fcb67b0-24c1-4b94-8e3b-8334c791edd6
+42c679f5-ac96-498f-ad26-9b9aee37340a
+MURTALA abubakar Mohammed
+94.00
+A
+6b3fa5bb-4e29-4a3c-be7f-db10bdd3b57e
+1b805b8a-7451-4c18-a269-da1694f21014
+SULAIMAN Salisu
+92.00
+A
+ec24a5c8-80a3-4a72-8da9-521bdb852c0c
+1b805b8a-7451-4c18-a269-da1694f21014
+SULAIMAN Salisu
+92.00
+A
+2188095f-24fa-4203-b98f-c0fd5a42155b
+1b805b8a-7451-4c18-a269-da1694f21014
+SULAIMAN Salisu
+92.00
+A
+af57f503-6ad2-4507-8b5f-d3e4e3d396e1
+1b805b8a-7451-4c18-a269-da1694f21014
+SULAIMAN Salisu
+92.00
+A
+390a52ca-1499-43df-9547-46d75c974e50
+1b805b8a-7451-4c18-a269-da1694f21014
+SULAIMAN Salisu
+92.00
+A
+e81c699d-3efa-4f9e-b84b-0484385b0779
+1b805b8a-7451-4c18-a269-da1694f21014
+SULAIMAN Salisu
+92.00
+A
+cfc7aa54-4cd2-46ab-93ff-b4a3d75de760
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+84.00
+A
+cafea1f9-d84e-43ea-b56a-6ed4bbb7d5c3
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+84.00
+A
+dd0c3975-e685-48ce-a6a3-77b77700eb13
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+84.00
+A
+cba67c02-d5e9-4ebe-955e-790635c855e3
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+84.00
+A
+b32687c9-2b50-49c1-84f6-916e717f5c28
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+84.00
+A
+50d8b8b8-266a-4393-96cc-5beb8c879166
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+81.00
+A
+9b5ca263-e155-4b3e-82d4-cad92455f578
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+81.00
+A
+13d6f079-1cc1-4f73-b94f-9c9cae88a05e
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+81.00
+A
+53c99159-552a-4661-8d15-baf60c13cdd0
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+81.00
+A
+293a6d0c-3822-4aef-b1bd-4a3cc4d931db
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+81.00
+A
+6d12c255-b338-472d-a52c-82ee84a73821
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+81.00
+A
+6c647de9-0a19-43fb-90f7-d6a8af1788c7
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+78.00
+A
+a5b58bfa-a143-4ae3-aabb-256428f71a24
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+78.00
+A
+7beab8aa-0648-45d1-8901-238f8ae0c352
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+78.00
+A
+a93bfbc6-05a0-4eba-b57b-246b02f841e1
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+78.00
+A
+33db515f-0870-467c-9fa7-368de8791e32
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+78.00
+A
+881ae1d0-a682-4154-8b66-adf90fbb3542
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+78.00
+A
+ec6139f3-2e9e-4404-bde6-a14bff1d79fb
+9a6e95d5-ac2c-42ad-8911-dc49af6b44a9
+JAMILU Sa�idu Abdullahi
+77.00
+A
+40db0eae-b160-4733-ad4a-dff10fbcca6d
+9a6e95d5-ac2c-42ad-8911-dc49af6b44a9
+JAMILU Sa�idu Abdullahi
+77.00
+A
+a5b81c7b-9bf1-4bcf-a5fc-fd7dcf303188
+9a6e95d5-ac2c-42ad-8911-dc49af6b44a9
+JAMILU Sa�idu Abdullahi
+77.00
+A
+6c450a44-1328-49df-9e62-2672cb84214c
+9a6e95d5-ac2c-42ad-8911-dc49af6b44a9
+JAMILU Sa�idu Abdullahi
+77.00
+A
+cda3d957-5548-4301-99db-1ee80548dbfb
+9a6e95d5-ac2c-42ad-8911-dc49af6b44a9
+JAMILU Sa�idu Abdullahi
+77.00
+A
+95777505-d0c3-4354-980c-0fa74c77bd32
+9a6e95d5-ac2c-42ad-8911-dc49af6b44a9
+JAMILU Sa�idu Abdullahi
+77.00
+A
+300f6915-1064-4519-b51b-9c224764fabd
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+76.00
+A
+3a1578f1-e810-4ef1-8fd5-99e33f45ee60
+5f28cea0-6b60-4a8c-9720-0a7f81e15f28
+MARIYA Jamilu
+76.00
+A
+db988311-b027-43c9-bf1e-49381f8a5608
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+76.00
+A
+aa53cde6-6f30-4e02-8cd7-d3a55d4fe5d5
+5f28cea0-6b60-4a8c-9720-0a7f81e15f28
+MARIYA Jamilu
+76.00
+A
+82cb64ab-b256-4ade-b948-67ca9a85e2eb
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+76.00
+A
+7e8761ae-d8d5-406b-9a00-ef987b49b1b9
+5f28cea0-6b60-4a8c-9720-0a7f81e15f28
+MARIYA Jamilu
+76.00
+A
+ef9561a9-3f04-4c19-aef8-4ae30f32ecc2
+5f28cea0-6b60-4a8c-9720-0a7f81e15f28
+MARIYA Jamilu
+76.00
+A
+2115fba3-8337-4b98-b383-81d4a7b4560c
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+76.00
+A
+0bcc2050-3cbd-4021-8c6e-91148810e8df
+5f28cea0-6b60-4a8c-9720-0a7f81e15f28
+MARIYA Jamilu
+76.00
+A
+86cb88b8-3626-4766-9e78-5b7a50648120
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+76.00
+A
+8fa69e4e-03f9-42cd-9c0e-17a3e8ed7daf
+5f28cea0-6b60-4a8c-9720-0a7f81e15f28
+MARIYA Jamilu
+76.00
+A
+5caa6c80-89dd-420d-856c-c187f22a931d
+2f8e8d52-5b18-49ba-8dd3-3ff41dd7ec0b
+MUBARAK Yahaya
+75.00
+A
+e4b79699-e433-4ee4-bc82-3913dc29a3dd
+2f8e8d52-5b18-49ba-8dd3-3ff41dd7ec0b
+MUBARAK Yahaya
+75.00
+A
+2bdae2bc-01c3-4681-8112-a60ba6f01f4e
+2f8e8d52-5b18-49ba-8dd3-3ff41dd7ec0b
+MUBARAK Yahaya
+75.00
+A
+a0abe8fe-e3e4-43e8-9554-61ce55b60497
+2f8e8d52-5b18-49ba-8dd3-3ff41dd7ec0b
+MUBARAK Yahaya
+75.00
+A
+39d7b827-021e-487e-9a52-fb50a091dc7f
+2f8e8d52-5b18-49ba-8dd3-3ff41dd7ec0b
+MUBARAK Yahaya
+75.00
+A
+af511383-4d60-42a1-911a-21107a123b7b
+2f8e8d52-5b18-49ba-8dd3-3ff41dd7ec0b
+MUBARAK Yahaya
+75.00
+A
+bdb09402-7bec-40ad-8dc1-577961725b14
+62c22e4a-a0a9-4209-8296-0601033556a5
+KHADIJA Aliyu
+74.00
+A
+15e3958d-1960-4674-bb38-22a0f0cf5fee
+62c22e4a-a0a9-4209-8296-0601033556a5
+KHADIJA Aliyu
+74.00
+A
+8944de03-997c-4551-9462-b24858773206
+62c22e4a-a0a9-4209-8296-0601033556a5
+KHADIJA Aliyu
+74.00
+A
+3d347e5f-b8d2-4e7e-b33f-b5fdebca13d3
+62c22e4a-a0a9-4209-8296-0601033556a5
+KHADIJA Aliyu
+74.00
+A
+94da8971-7c97-4fbd-8327-252a74f258df
+62c22e4a-a0a9-4209-8296-0601033556a5
+KHADIJA Aliyu
+74.00
+A
+5d3c166e-d3e6-442e-9158-9e8247b037cb
+62c22e4a-a0a9-4209-8296-0601033556a5
+KHADIJA Aliyu
+74.00
+A
+070fce3f-7214-40ab-b5f7-d0a9257d0aa7
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+72.00
+A
+7f4daa68-76fe-49c9-9e8e-96d9bfcc8a77
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+72.00
+A
+097356fa-34ee-4a5c-ab8f-45fabc80eb6e
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+72.00
+A
+f5609f80-aaf4-4746-9125-aa32b3b90438
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+72.00
+A
+00e2ea63-e69a-4d77-82d9-d466ff2c1d28
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+72.00
+A
+3954346e-0284-4d95-8b92-855e133fafc3
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+72.00
+A
+56ea0284-611f-4ec6-bea1-7979d0851808
+0d311ee4-bb68-4821-a84c-f59d0ce6915b
+ADAMU Aminu
+71.00
+A
+f05e2252-b75e-4cdc-8f94-313bcbe80a12
+0d311ee4-bb68-4821-a84c-f59d0ce6915b
+ADAMU Aminu
+71.00
+A
+2b70a217-56dd-40a7-98e7-6bfb8250763e
+0d311ee4-bb68-4821-a84c-f59d0ce6915b
+ADAMU Aminu
+71.00
+A
+86c061e1-6e05-4552-9907-75e98042e145
+0d311ee4-bb68-4821-a84c-f59d0ce6915b
+ADAMU Aminu
+71.00
+A
+3cf5459e-79af-4ebd-a40b-b37bac5e04d0
+0d311ee4-bb68-4821-a84c-f59d0ce6915b
+ADAMU Aminu
+71.00
+A
+d8d81c24-3b5e-4fe2-b10d-0d24ddf68a40
+0d311ee4-bb68-4821-a84c-f59d0ce6915b
+ADAMU Aminu
+71.00
+A
+fee58a4a-6b6f-4e9d-a08b-70d8769aec40
+0909910a-0514-4595-bc64-4a9f8ae4b595
+KABIR Umar
+70.00
+A
+5c724a48-fbdb-4881-aef7-5af60e13be8c
+0909910a-0514-4595-bc64-4a9f8ae4b595
+KABIR Umar
+70.00
+A
+cf726606-c134-4421-bd0d-d86396bd6cb1
+0909910a-0514-4595-bc64-4a9f8ae4b595
+KABIR Umar
+70.00
+A
+872c46a5-0a91-4b16-8430-838dfedc0d2b
+0909910a-0514-4595-bc64-4a9f8ae4b595
+KABIR Umar
+70.00
+A
+d5849761-21f5-4c5e-a052-cba6f5b79c13
+0909910a-0514-4595-bc64-4a9f8ae4b595
+KABIR Umar
+70.00
+A
+c13e1036-0816-4fa6-bb7b-26cd1bd0c680
+0909910a-0514-4595-bc64-4a9f8ae4b595
+KABIR Umar
+70.00
+A
+05e34c44-2007-4092-b29c-f5fcc4963288
+0965a67e-6b38-4f5a-bff5-f240ece5ed21
+SALISU Sada Hassan
+69.00
+B
+7b4a430c-7cce-40f0-80bf-e273fd2d8836
+0965a67e-6b38-4f5a-bff5-f240ece5ed21
+SALISU Sada Hassan
+69.00
+B
+13bff918-c816-4c2b-a7da-df8fd9641c72
+0965a67e-6b38-4f5a-bff5-f240ece5ed21
+SALISU Sada Hassan
+69.00
+B
+b387c92e-083c-4e40-baa8-567204b068b3
+0965a67e-6b38-4f5a-bff5-f240ece5ed21
+SALISU Sada Hassan
+69.00
+B
+21d7516b-0d45-46e4-9734-5796c7bf31e9
+0965a67e-6b38-4f5a-bff5-f240ece5ed21
+SALISU Sada Hassan
+69.00
+B
+f5a48f12-ed36-4ec5-9f28-512792be433e
+0965a67e-6b38-4f5a-bff5-f240ece5ed21
+SALISU Sada Hassan
+69.00
+B
+bcad5df4-fe42-42a0-8658-36ba1173c910
+1b14efb7-f1c0-445f-b3ff-6c168821ab89
+YUSUF Ahmad
+67.00
+B
+a8cce4ca-65c3-45f5-afa4-ae48757b149e
+1b14efb7-f1c0-445f-b3ff-6c168821ab89
+YUSUF Ahmad
+67.00
+B
+f5ebb99a-9ccf-4699-8393-2a40d24ba586
+1b14efb7-f1c0-445f-b3ff-6c168821ab89
+YUSUF Ahmad
+67.00
+B
+51113c38-ddd3-4872-a13f-429446f984b9
+1b14efb7-f1c0-445f-b3ff-6c168821ab89
+YUSUF Ahmad
+67.00
+B
+b9b846cf-c764-4a0b-af0c-85733f39a820
+1b14efb7-f1c0-445f-b3ff-6c168821ab89
+YUSUF Ahmad
+67.00
+B
+a27f8a96-535a-472e-85bf-f2add01e20c3
+1b14efb7-f1c0-445f-b3ff-6c168821ab89
+YUSUF Ahmad
+67.00
+B
+3d416fb5-25ab-4899-8bd4-f46fe78dadff
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+66.00
+B
+8ccc3500-a00e-426f-91fe-3f077563fa16
+a6940012-afcf-4d67-a4bb-c4234f150a76
+ABDULLAHI Garba
+66.00
+B
+b20fe526-6adc-45e2-b9ae-19f072ebcf25
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+66.00
+B
+bf4d48e3-fd09-4010-8fa0-47186f9dd00d
+a6940012-afcf-4d67-a4bb-c4234f150a76
+ABDULLAHI Garba
+66.00
+B
+255c0769-c2b1-4989-90d9-5e4ea958acd9
+a6940012-afcf-4d67-a4bb-c4234f150a76
+ABDULLAHI Garba
+66.00
+B
+526ff7bd-01a9-4e9b-ae6f-477b1c3d18e3
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+66.00
+B
+[registration_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[student_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[full_name](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[total_score 1](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[grade](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+b4ac44e4-90b0-4a98-9cb6-3c37787543d1
+a6940012-afcf-4d67-a4bb-c4234f150a76
+ABDULLAHI Garba
+66.00
+B
+ef34d321-a18d-46a3-a5c2-a6b29aadac1a
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+66.00
+B
+17dc837b-62d3-43ac-bea2-1b0b495ffeb0
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+66.00
+B
+7e77905c-0394-415b-9c2c-1f53104f3e38
+a6940012-afcf-4d67-a4bb-c4234f150a76
+ABDULLAHI Garba
+66.00
+B
+909000ef-fbbd-40a3-b0ac-d61358211526
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+66.00
+B
+bafe8c01-336c-42ee-912b-6956a4c13f26
+a6940012-afcf-4d67-a4bb-c4234f150a76
+ABDULLAHI Garba
+66.00
+B
+8080642c-cccb-4c4b-9c15-55bc593f765c
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+65.00
+B
+ee89c4ff-f8ac-4e46-96e2-b5bd1d3598b1
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+65.00
+B
+01576943-547c-4a32-a960-634c633f5c94
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+65.00
+B
+d686cfc7-3ed8-4a25-a328-97d866d44095
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+65.00
+B
+387d730b-62a8-488a-8a88-8efa68778204
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+65.00
+B
+a5822505-5acd-4636-a25c-d1c4e4b58e3b
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+65.00
+B
+4ff12aad-27ce-4379-9097-6d06f011ee1a
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+65.00
+B
+ef66fec0-aec5-4b4f-91e8-57ccddeb9a84
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+65.00
+B
+43f7a716-4075-471f-8a23-3b4533948d7b
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+65.00
+B
+b57e84ef-681e-464c-834c-667b3f62a627
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+65.00
+B
+539da86b-6409-4239-bb74-c903ed65019b
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+65.00
+B
+61a4800f-1e3f-4ecc-812c-2b18ff60609f
+d7d9dea6-c07e-4148-81c2-49fef7588fb5
+ALIYU Lawal
+63.00
+B
+c9ca44e6-ff2e-46c2-b824-3da04fd1c1e8
+d7d9dea6-c07e-4148-81c2-49fef7588fb5
+ALIYU Lawal
+63.00
+B
+61f24aeb-6938-4c16-876b-4aff3d689daf
+d7d9dea6-c07e-4148-81c2-49fef7588fb5
+ALIYU Lawal
+63.00
+B
+d89f1582-11d5-46e8-b64f-597a75c04e0f
+d7d9dea6-c07e-4148-81c2-49fef7588fb5
+ALIYU Lawal
+63.00
+B
+069c4e4b-fcf4-4673-ad27-85ddc881cbf0
+d7d9dea6-c07e-4148-81c2-49fef7588fb5
+ALIYU Lawal
+63.00
+B
+bb3c4ed2-6792-41f6-b10e-f00e7800529a
+d7d9dea6-c07e-4148-81c2-49fef7588fb5
+ALIYU Lawal
+63.00
+B
+8daada11-d610-4ac7-8e97-9d0d6db0e8e1
+466d54d2-14e9-4383-9cd7-9c56a2783ab6
+ALIYU Sulaiman
+62.00
+B
+fe68c40d-95f5-4e78-a35f-a4a60745a345
+466d54d2-14e9-4383-9cd7-9c56a2783ab6
+ALIYU Sulaiman
+62.00
+B
+1751a648-bb61-4f3b-8120-9ac84bed8f41
+466d54d2-14e9-4383-9cd7-9c56a2783ab6
+ALIYU Sulaiman
+62.00
+B
+c9845221-325c-46c4-b5a9-0a6f1d6be823
+466d54d2-14e9-4383-9cd7-9c56a2783ab6
+ALIYU Sulaiman
+62.00
+B
+87029567-1800-45c7-bc09-90ffb282e585
+466d54d2-14e9-4383-9cd7-9c56a2783ab6
+ALIYU Sulaiman
+62.00
+B
+d9ff3539-5464-4e4e-a266-35fa2653efb4
+466d54d2-14e9-4383-9cd7-9c56a2783ab6
+ALIYU Sulaiman
+62.00
+B
+70021101-36e3-481b-82cd-76f791f2c308
+4db62fab-8b75-4250-8209-3598a4ae1eb2
+UMAR Usman
+61.00
+B
+0141da40-73b0-4df2-86b1-616f49bc030d
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+61.00
+B
+30edbe44-a437-443a-9c09-5b912d8bf9e3
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+61.00
+B
+970f2694-7334-40d3-8492-61edf58f343c
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+61.00
+B
+20929685-3d61-4fd8-b3b3-9bead1f40529
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+61.00
+B
+2ad046ec-c418-4787-bdf1-130cb7e4c27d
+4db62fab-8b75-4250-8209-3598a4ae1eb2
+UMAR Usman
+61.00
+B
+5df574a3-c8d5-4613-ad30-067cafc628a2
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+61.00
+B
+a0732c95-7407-4573-9621-7657cc2d6c7d
+4db62fab-8b75-4250-8209-3598a4ae1eb2
+UMAR Usman
+61.00
+B
+06d5acbe-3a2d-4529-a0c8-00703308adb1
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+61.00
+B
+e0c8f4f2-7b8b-41d7-ada2-65c5d7e90b53
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+61.00
+B
+70b88cf5-cbd5-469d-bc46-8c51b3c816d8
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+61.00
+B
+4d2228c5-90f2-4787-82de-2cf52f749cf6
+4db62fab-8b75-4250-8209-3598a4ae1eb2
+UMAR Usman
+61.00
+B
+1644bba3-b73d-48ae-84c4-94930d36001b
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+61.00
+B
+75d0d2c1-fc75-4274-b60a-891685628697
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+61.00
+B
+e4daf360-21c3-4fc3-92ae-c2c215436d92
+4db62fab-8b75-4250-8209-3598a4ae1eb2
+UMAR Usman
+61.00
+B
+1f864574-501f-4663-97cb-9c386c5a7697
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+61.00
+B
+2267b6d9-3564-4421-96dd-26e2c270da15
+4db62fab-8b75-4250-8209-3598a4ae1eb2
+UMAR Usman
+61.00
+B
+f1363cba-8919-4aae-a98e-b8fca18ca843
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+61.00
+B
+93e53f9a-ab8c-4336-9851-1744a0e8be4b
+598599ae-18ef-4000-ba7f-19231bbb9d2c
+MUSBAHU Abdullahi
+60.00
+B
+5b55c992-52ad-4c5e-ba11-cc935a654e1d
+598599ae-18ef-4000-ba7f-19231bbb9d2c
+MUSBAHU Abdullahi
+60.00
+B
+9d325dcf-7b4d-496b-bcd7-d0a2bf3fe500
+598599ae-18ef-4000-ba7f-19231bbb9d2c
+MUSBAHU Abdullahi
+60.00
+B
+6aab69d4-d584-498f-b5cb-585d7d4e4254
+598599ae-18ef-4000-ba7f-19231bbb9d2c
+MUSBAHU Abdullahi
+60.00
+B
+e4fa1c43-03a3-488c-9756-d0c4b98debe3
+598599ae-18ef-4000-ba7f-19231bbb9d2c
+MUSBAHU Abdullahi
+60.00
+B
+4f2298bb-4d44-433c-bf5c-8895ab2f5df3
+598599ae-18ef-4000-ba7f-19231bbb9d2c
+MUSBAHU Abdullahi
+60.00
+B
+c36d1be2-75d4-4d69-96c9-b6a7730bd87b
+9c2b010c-c9b3-48bd-8b9f-fb160846ddd5
+AHMAD Rab�iu
+59.00
+C
+a1818c3a-f9b4-4451-832f-091609cf5187
+9c2b010c-c9b3-48bd-8b9f-fb160846ddd5
+AHMAD Rab�iu
+59.00
+C
+ced06ef1-d4fa-4f3a-9118-f274efd2fc6f
+9c2b010c-c9b3-48bd-8b9f-fb160846ddd5
+AHMAD Rab�iu
+59.00
+C
+a2c0af0c-d31f-45ff-a6c9-90629b4b3d59
+9c2b010c-c9b3-48bd-8b9f-fb160846ddd5
+AHMAD Rab�iu
+59.00
+C
+f533d808-5b92-4b53-b982-81ffaa9a34f0
+9c2b010c-c9b3-48bd-8b9f-fb160846ddd5
+AHMAD Rab�iu
+59.00
+C
+6cd89d2a-8791-4700-a4f0-9475db56c9f3
+9c2b010c-c9b3-48bd-8b9f-fb160846ddd5
+AHMAD Rab�iu
+59.00
+C
+a5d22989-df17-41e4-a937-aae479105a5e
+e52898ce-c47c-4008-9bc5-952eb601c52a
+AISHA ABUBAKAR
+58.00
+C
+2436805c-fc38-4526-965f-ba5988e48534
+e52898ce-c47c-4008-9bc5-952eb601c52a
+AISHA ABUBAKAR
+58.00
+C
+e114ea3b-6dac-42bc-bd72-d91a40802fc8
+e52898ce-c47c-4008-9bc5-952eb601c52a
+AISHA ABUBAKAR
+58.00
+C
+2991240a-d7ef-49cd-b9f1-51f0428807de
+e52898ce-c47c-4008-9bc5-952eb601c52a
+AISHA ABUBAKAR
+58.00
+C
+f71c5f92-6e47-4f2b-81fc-414837ff48d9
+e52898ce-c47c-4008-9bc5-952eb601c52a
+AISHA ABUBAKAR
+58.00
+C
+2302f3c2-4bc3-47cf-85d4-c30222c00c44
+e52898ce-c47c-4008-9bc5-952eb601c52a
+AISHA ABUBAKAR
+58.00
+C
+e931ff20-0e96-4073-840a-747e9d9e0232
+2404f0b9-5554-4ca2-8529-674ad94489ad
+ABDULLAHI Mu�azu Bala
+56.00
+C
+22bdcaa8-46a9-4059-b40f-0e1a426ec479
+2404f0b9-5554-4ca2-8529-674ad94489ad
+ABDULLAHI Mu�azu Bala
+56.00
+C
+7d7d11b3-560a-4d20-9539-14ca5e61d715
+2404f0b9-5554-4ca2-8529-674ad94489ad
+ABDULLAHI Mu�azu Bala
+56.00
+C
+38f597cd-9f21-44b3-8115-70ca10588750
+2404f0b9-5554-4ca2-8529-674ad94489ad
+ABDULLAHI Mu�azu Bala
+56.00
+C
+cd7da4f1-fdc2-49cc-bbff-6ddae7ad8259
+2404f0b9-5554-4ca2-8529-674ad94489ad
+ABDULLAHI Mu�azu Bala
+56.00
+C
+40a416db-e21b-4e1b-9225-bbd8ec5c874a
+2404f0b9-5554-4ca2-8529-674ad94489ad
+ABDULLAHI Mu�azu Bala
+56.00
+C
+938bcf50-4102-43fa-88ca-0b2ac4987c0c
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+54.00
+C
+1fa2ead4-29b4-4d13-975c-a01d31622a7c
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+54.00
+C
+e4e6034e-9f76-4bee-a31f-dd53c711ad7a
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+54.00
+C
+dfb4eb66-b1d6-409c-8587-c99cfb883e20
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+54.00
+C
+bc6d366f-8522-4b7a-b5a2-38122882100a
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+54.00
+C
+31035bc1-c88b-45b5-9faf-57c105ab2bc8
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+54.00
+C
+f03f9b0e-6e78-4432-869e-790d9793bc4c
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+54.00
+C
+ef05ccc7-f9be-4dda-b1d3-2b806c056df6
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+54.00
+C
+140ed1f5-3463-46e9-9de0-922478e8bc19
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+54.00
+C
+05759cba-484c-44a0-90c0-c0332b815a4b
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+54.00
+C
+ccf44c19-4d8b-49bb-a797-e1eda5b30807
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+54.00
+C
+4418d94a-8c7f-47b1-8ade-f094661c9396
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+54.00
+C
+8084192b-c777-40bb-ab4f-fdcc6be9c4a0
+80c37caf-cfec-466b-a24f-4b558302adce
+IBRAHIM BILKISU
+53.00
+C
+6e0f05b7-31f9-422a-a4bc-56dd2e8e3004
+80c37caf-cfec-466b-a24f-4b558302adce
+IBRAHIM BILKISU
+53.00
+C
+814e9bb7-0a06-46e8-b9fe-53af96100792
+80c37caf-cfec-466b-a24f-4b558302adce
+IBRAHIM BILKISU
+53.00
+C
+781374da-4058-4a9a-ba70-3dcec1a87dd3
+80c37caf-cfec-466b-a24f-4b558302adce
+IBRAHIM BILKISU
+53.00
+C
+973c5662-5c7f-4c2f-b0d8-60439f179429
+80c37caf-cfec-466b-a24f-4b558302adce
+IBRAHIM BILKISU
+53.00
+C
+34ae3543-1c84-41e8-a8a5-528a31b7f6fa
+80c37caf-cfec-466b-a24f-4b558302adce
+IBRAHIM BILKISU
+53.00
+C
+0356c4bf-1b26-438c-bf7b-a45f1f568c11
+e8a6b046-42d9-40b2-a729-26428f810e9a
+ALIYU Babangida
+52.00
+C
+73e27652-40f8-450f-9a0e-df0558635cc6
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+52.00
+C
+38801ddf-e200-43b5-b10b-52fdfcac8efd
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+52.00
+C
+78ed0b57-1432-4844-b3e1-6a3d01948c16
+e8a6b046-42d9-40b2-a729-26428f810e9a
+ALIYU Babangida
+52.00
+C
+f59c779f-de92-45ad-b281-a1114a94aa3d
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+52.00
+C
+123b42d7-4bc2-464b-8fef-c505ddcc93ce
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+52.00
+C
+0bffb284-5841-4264-9423-0f204effe1a5
+e8a6b046-42d9-40b2-a729-26428f810e9a
+ALIYU Babangida
+52.00
+C
+ee0ce6a2-e47e-4cd6-ab1e-e29d374ec973
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+52.00
+C
+b437f1ad-cee5-44c3-93b4-82b0afb22c85
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+52.00
+C
+7b12336a-2c98-4e4f-9705-64d94214f66f
+e8a6b046-42d9-40b2-a729-26428f810e9a
+ALIYU Babangida
+52.00
+C
+0f797380-95b1-49fc-9c32-66d2792c2a6a
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+52.00
+C
+[registration_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[student_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[full_name](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[total_score 1](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[grade](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+faf8d764-2f56-4951-91fb-858210de750d
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+52.00
+C
+301bd0fd-fceb-490e-89bd-a5cd00d12974
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+52.00
+C
+404e5d42-879b-4808-a740-e0379be4378d
+e8a6b046-42d9-40b2-a729-26428f810e9a
+ALIYU Babangida
+52.00
+C
+e31165da-5c34-4208-beb8-99f08467e843
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+52.00
+C
+b676f8c7-6d66-43f8-b807-ba45b7711a6e
+e8a6b046-42d9-40b2-a729-26428f810e9a
+ALIYU Babangida
+52.00
+C
+112688ed-da6b-480a-88c3-903aaf150731
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+52.00
+C
+9627694c-363b-4ddb-98b9-a092c7a1637c
+caa78b23-7631-481b-b1f7-a7a186578e1c
+ISMA�IL Isah
+51.00
+C
+90cd7b30-d555-4552-9b31-fff97040f4db
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+51.00
+C
+53722cd5-0c73-4b39-8e3d-176cb55532f1
+caa78b23-7631-481b-b1f7-a7a186578e1c
+ISMA�IL Isah
+51.00
+C
+e83ee2d1-d736-495f-9a13-138e34872388
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+51.00
+C
+e834f581-d4c8-4da7-bfa0-d4bd08a942a1
+caa78b23-7631-481b-b1f7-a7a186578e1c
+ISMA�IL Isah
+51.00
+C
+0bae4e37-1f90-4419-a523-432463dcc97d
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+51.00
+C
+4484d31e-d3eb-4773-8002-9d1a98028e76
+caa78b23-7631-481b-b1f7-a7a186578e1c
+ISMA�IL Isah
+51.00
+C
+cab40f30-286a-4a47-a5d4-76f86e4daea2
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+51.00
+C
+9103b499-21a7-40e7-bb62-3e5cd8176003
+caa78b23-7631-481b-b1f7-a7a186578e1c
+ISMA�IL Isah
+51.00
+C
+19e94fc8-694b-4831-9d03-a908f1b28ea0
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+51.00
+C
+4ae966dd-891a-4158-baa0-fb0c7bfef482
+caa78b23-7631-481b-b1f7-a7a186578e1c
+ISMA�IL Isah
+51.00
+C
+d7077243-f222-40c4-ae6e-018d1576ed95
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+51.00
+C
+c7023069-21ec-4a48-bdb6-c5f4b7d3f311
+27c4a417-ef93-41e3-a654-87665613026c
+ABDUSSALAM Musa
+50.00
+C
+eba3ee87-f778-455f-bcd9-d18630d51905
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+50.00
+C
+a3c830c4-aa70-4da4-a978-66bdd9f58249
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+50.00
+C
+211ad1b0-e5cd-4d7a-a9ec-4634bc2e24d3
+27c4a417-ef93-41e3-a654-87665613026c
+ABDUSSALAM Musa
+50.00
+C
+0f043913-83f0-4e35-8fa9-d6fa1f027ba1
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+50.00
+C
+7d5dfbc4-af16-49a9-9291-994b514087e5
+27c4a417-ef93-41e3-a654-87665613026c
+ABDUSSALAM Musa
+50.00
+C
+9d30b922-f5d8-4dc2-a53a-af8650080d20
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+50.00
+C
+52497822-7019-436a-b6fa-a1f391adb7f2
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+50.00
+C
+f3adda74-41b5-49f1-b2d4-d50ee8f555dc
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+50.00
+C
+482cd9d4-df16-4321-8006-439169533681
+27c4a417-ef93-41e3-a654-87665613026c
+ABDUSSALAM Musa
+50.00
+C
+796037ca-7783-4783-bf8e-bc1b1892a212
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+50.00
+C
+9f62fc4c-ef8c-480d-8c8a-0afc56d1a8f5
+27c4a417-ef93-41e3-a654-87665613026c
+ABDUSSALAM Musa
+50.00
+C
+a8bb3068-8f69-4d2c-b30f-60ed336865de
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+50.00
+C
+66b1458e-8de8-4b20-9766-61eb711a2024
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+50.00
+C
+fffd97a0-bcd3-4830-bc50-08d0ff8b0247
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+50.00
+C
+51f9bfe6-3b31-4f00-a1ee-84c4e5c8e56b
+27c4a417-ef93-41e3-a654-87665613026c
+ABDUSSALAM Musa
+50.00
+C
+8da8dd5a-f620-45ab-b1b8-a61e0cfdad25
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+50.00
+C
+1619534c-3191-444a-9df7-9bd6ea8df2a1
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+50.00
+C
+79badbf0-473b-4184-bc3b-f4634b05610c
+0ea554b6-2791-4c12-b98b-17f451da8050
+ILYASU Musa
+49.00
+D
+ec6264df-c81f-4f30-849c-37ad53889e0a
+0ea554b6-2791-4c12-b98b-17f451da8050
+ILYASU Musa
+49.00
+D
+1957fd4e-00dd-4d1c-a132-f53b854db3c3
+0ea554b6-2791-4c12-b98b-17f451da8050
+ILYASU Musa
+49.00
+D
+8a44060f-d2ac-4532-aa8f-1f3891a13a31
+0ea554b6-2791-4c12-b98b-17f451da8050
+ILYASU Musa
+49.00
+D
+1d335174-7185-48bc-a4ce-ca4e4c471449
+0ea554b6-2791-4c12-b98b-17f451da8050
+ILYASU Musa
+49.00
+D
+d5f79c88-8d9b-4c2f-a233-8abdd1047aa8
+0ea554b6-2791-4c12-b98b-17f451da8050
+ILYASU Musa
+49.00
+D
+6153aa05-d801-42f4-9116-712c43be62b0
+3f92d2df-de74-429b-a348-8718d145d413
+MANIR Aliyu
+48.00
+D
+86db75ba-f311-4022-8d68-ddc4129303c2
+a3ed8fa1-e992-41e6-aa75-f8921485a179
+JOHN Mshelia Iliya
+48.00
+D
+a5a08b9a-2fca-490b-ba21-1fb854496354
+3f92d2df-de74-429b-a348-8718d145d413
+MANIR Aliyu
+48.00
+D
+5347e5f5-ce0d-45ce-84d8-2762cf20ffb3
+27d110fa-b0ad-498d-9600-ac60767a36b7
+MOHAMMAD Kabir
+48.00
+D
+8398ae08-da04-425a-bd78-f885f291fcf0
+90b2be2d-13b0-4740-a628-c86fbbb12575
+ABDULKADIR Ahmad
+48.00
+D
+5101dd13-b047-493f-8a77-982cd52b20c9
+a3ed8fa1-e992-41e6-aa75-f8921485a179
+JOHN Mshelia Iliya
+48.00
+D
+c05522c0-5a22-4bc2-9c55-e2132feddde4
+27d110fa-b0ad-498d-9600-ac60767a36b7
+MOHAMMAD Kabir
+48.00
+D
+f3c01ed8-5cec-4066-b861-4e7ee3ed7f4f
+90b2be2d-13b0-4740-a628-c86fbbb12575
+ABDULKADIR Ahmad
+48.00
+D
+865d8c46-f44e-4559-9276-10a39ee2adf2
+3f92d2df-de74-429b-a348-8718d145d413
+MANIR Aliyu
+48.00
+D
+d5b6b7b0-beab-4fc4-bd3a-413d94f5e02d
+a3ed8fa1-e992-41e6-aa75-f8921485a179
+JOHN Mshelia Iliya
+48.00
+D
+0465f7b8-c3ad-4242-a487-cf7814ac5449
+27d110fa-b0ad-498d-9600-ac60767a36b7
+MOHAMMAD Kabir
+48.00
+D
+40e95bab-6209-4f7a-a30e-2e4810916b7b
+90b2be2d-13b0-4740-a628-c86fbbb12575
+ABDULKADIR Ahmad
+48.00
+D
+d75aa20c-6c28-49f0-a53d-a9fee2a64b18
+3f92d2df-de74-429b-a348-8718d145d413
+MANIR Aliyu
+48.00
+D
+8c13cfc7-9392-463f-876c-65123773a757
+27d110fa-b0ad-498d-9600-ac60767a36b7
+MOHAMMAD Kabir
+48.00
+D
+93c0e939-266f-4933-a99b-309efe8fc84c
+90b2be2d-13b0-4740-a628-c86fbbb12575
+ABDULKADIR Ahmad
+48.00
+D
+533d68e7-39fd-42e5-be76-52dbeaf38850
+3f92d2df-de74-429b-a348-8718d145d413
+MANIR Aliyu
+48.00
+D
+7965283c-ed4a-4761-ab60-8b9c4fd83a99
+a3ed8fa1-e992-41e6-aa75-f8921485a179
+JOHN Mshelia Iliya
+48.00
+D
+99496556-b4d0-4dec-bbb7-9ed970871fc6
+3f92d2df-de74-429b-a348-8718d145d413
+MANIR Aliyu
+48.00
+D
+e93df6df-458c-48e6-990a-48bb0719614c
+a3ed8fa1-e992-41e6-aa75-f8921485a179
+JOHN Mshelia Iliya
+48.00
+D
+28e016d8-203c-4ea1-927b-fdd80b084f4a
+27d110fa-b0ad-498d-9600-ac60767a36b7
+MOHAMMAD Kabir
+48.00
+D
+6a0f52d4-3a3a-491a-8b09-47edcf971cc3
+90b2be2d-13b0-4740-a628-c86fbbb12575
+ABDULKADIR Ahmad
+48.00
+D
+0335d811-4d4a-404b-85af-461067baa4a8
+a3ed8fa1-e992-41e6-aa75-f8921485a179
+JOHN Mshelia Iliya
+48.00
+D
+8ed1124e-5622-4834-ac58-5a223f4cce94
+27d110fa-b0ad-498d-9600-ac60767a36b7
+MOHAMMAD Kabir
+48.00
+D
+cfb0e06f-a71b-4a03-aeab-76955e8b1c5c
+90b2be2d-13b0-4740-a628-c86fbbb12575
+ABDULKADIR Ahmad
+48.00
+D
+5f2a771b-280c-4c1a-a647-55a8f013971b
+75c41037-08b1-4df8-8ff7-1b0b30512845
+KABIR Aliyu SANI
+47.00
+D
+af704468-a3b5-41a2-a691-bbc9ecf3c075
+75c41037-08b1-4df8-8ff7-1b0b30512845
+KABIR Aliyu SANI
+47.00
+D
+9a30feca-b39c-4a74-bbcc-b9a1195c1bc1
+75c41037-08b1-4df8-8ff7-1b0b30512845
+KABIR Aliyu SANI
+47.00
+D
+f6dd68cc-6141-4931-980b-b4b985098b24
+75c41037-08b1-4df8-8ff7-1b0b30512845
+KABIR Aliyu SANI
+47.00
+D
+10596a8e-10fa-4cfa-8305-b2373bc8740c
+75c41037-08b1-4df8-8ff7-1b0b30512845
+KABIR Aliyu SANI
+47.00
+D
+9f19ccc4-7671-4cfc-99dc-1bccf41ea0fb
+75c41037-08b1-4df8-8ff7-1b0b30512845
+KABIR Aliyu SANI
+47.00
+D
+2d622c8c-8063-44dc-84e9-f6002cc87665
+b7a95a37-e530-4f05-a24a-ee8026fa35a1
+ABDULLAHI Hassan
+46.00
+D
+c502d2a9-3bc8-414a-837c-003e28ebaca8
+b7a95a37-e530-4f05-a24a-ee8026fa35a1
+ABDULLAHI Hassan
+46.00
+D
+11668231-1f49-4033-a6dc-e70dcef4d45e
+b7a95a37-e530-4f05-a24a-ee8026fa35a1
+ABDULLAHI Hassan
+46.00
+D
+71b6fb4a-f9ca-4cac-ae6a-cab20450dbda
+b7a95a37-e530-4f05-a24a-ee8026fa35a1
+ABDULLAHI Hassan
+46.00
+D
+155aecd1-b578-47be-8df5-77cad9c4bd13
+b7a95a37-e530-4f05-a24a-ee8026fa35a1
+ABDULLAHI Hassan
+46.00
+D
+a5cb15cb-c86a-4c90-9a03-d15cc78f0681
+b7a95a37-e530-4f05-a24a-ee8026fa35a1
+ABDULLAHI Hassan
+46.00
+D
+1a963b54-b2a3-499e-9fd6-04ad757ef453
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+45.00
+D
+b83e99b7-efa4-401e-80af-75853b0197f1
+8a7a1730-db31-4afc-853b-a9cfa26a369f
+MURTALA Adamu
+45.00
+D
+1c39ff7a-429e-4a2d-b279-98dc8f811f5e
+8a7a1730-db31-4afc-853b-a9cfa26a369f
+MURTALA Adamu
+45.00
+D
+89880996-629a-4e42-8f22-a46ae88527e4
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+45.00
+D
+98dd831c-33e4-4652-bf95-9216a3ab4b7d
+8a7a1730-db31-4afc-853b-a9cfa26a369f
+MURTALA Adamu
+45.00
+D
+76985a36-f96b-4aaf-b4cb-6b01d035b3f2
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+45.00
+D
+43ce8dff-065c-4cb0-a75a-2e96f0566b86
+8a7a1730-db31-4afc-853b-a9cfa26a369f
+MURTALA Adamu
+45.00
+D
+c3bb57bd-e47e-4572-adbb-593a0a2092d8
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+45.00
+D
+a836a1ec-5473-411e-9840-6ff0425262ce
+8a7a1730-db31-4afc-853b-a9cfa26a369f
+MURTALA Adamu
+45.00
+D
+82f9d489-553f-45cf-b692-bc73b84f3e95
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+45.00
+D
+7f65c801-cae5-43ea-8a7d-ef05d3b74fd1
+8a7a1730-db31-4afc-853b-a9cfa26a369f
+MURTALA Adamu
+45.00
+D
+fdb73f09-2da4-40ae-adfb-cf9775601794
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+45.00
+D
+d6e73b73-06d2-461d-adf6-b9446acf5951
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+44.00
+E
+c4baf5cf-faa6-4cb1-b90c-f43fd3409940
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+44.00
+E
+62205615-0eac-496f-9729-c0340a7d8675
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+44.00
+E
+869c23f5-423e-4095-8d47-56f6b2b5b59c
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+44.00
+E
+dcb875a8-f877-42c0-87c2-6476590448ec
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+44.00
+E
+eb212152-7365-4be9-9752-6c92d47da4c9
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+44.00
+E
+9e9b763c-5385-4353-aa9c-e3e79541ff22
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+44.00
+E
+94c1e27c-706f-4046-be03-eb10060f6ef4
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+44.00
+E
+e2eb36c4-1d35-41cd-a57a-6b78a00a8b11
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+44.00
+E
+f53e124d-1f46-467d-b1e9-0c3ffc3e3455
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+44.00
+E
+[registration_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[student_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[full_name](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[total_score 1](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[grade](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+55df0d3a-7cbd-4ebd-b10a-9fb99a7652f5
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+44.00
+E
+25535e8d-7ee6-4d69-add7-2e2d5e88e385
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+44.00
+E
+518bdd25-4d80-4c21-9356-651a9a9493aa
+abc33536-cbb8-4423-83e2-d24146fc1b4a
+ABDULWAHAB Adam
+43.00
+E
+67980d68-faa5-4943-8459-b4181f27678d
+94976314-e856-4ec1-a203-5e403920f442
+ABDULKADIR Sama�ila
+43.00
+E
+d657ab8d-5d12-424d-804a-cd0a691475bc
+abc33536-cbb8-4423-83e2-d24146fc1b4a
+ABDULWAHAB Adam
+43.00
+E
+b9d8c7cf-5f39-4ecd-94aa-f0d34202acec
+94976314-e856-4ec1-a203-5e403920f442
+ABDULKADIR Sama�ila
+43.00
+E
+1c183ec4-281f-41c5-a64c-5f79c1a6f2d2
+94976314-e856-4ec1-a203-5e403920f442
+ABDULKADIR Sama�ila
+43.00
+E
+813508c1-8f13-44ac-bb68-7cddcca0ac71
+abc33536-cbb8-4423-83e2-d24146fc1b4a
+ABDULWAHAB Adam
+43.00
+E
+8ddad2e0-f801-455a-b4c7-aa0804e14a16
+94976314-e856-4ec1-a203-5e403920f442
+ABDULKADIR Sama�ila
+43.00
+E
+d98071b4-348e-4350-bb28-2916a99151aa
+abc33536-cbb8-4423-83e2-d24146fc1b4a
+ABDULWAHAB Adam
+43.00
+E
+1ffa8381-131c-49d9-8ab9-031411190d09
+abc33536-cbb8-4423-83e2-d24146fc1b4a
+ABDULWAHAB Adam
+43.00
+E
+3580acdf-488a-4641-8ff3-086f2d9bc83e
+94976314-e856-4ec1-a203-5e403920f442
+ABDULKADIR Sama�ila
+43.00
+E
+b7446e12-2394-40a6-8bc7-2c3c85112327
+abc33536-cbb8-4423-83e2-d24146fc1b4a
+ABDULWAHAB Adam
+43.00
+E
+96818218-d974-4b9c-abb3-c2631ba93983
+94976314-e856-4ec1-a203-5e403920f442
+ABDULKADIR Sama�ila
+43.00
+E
+8d35c893-c7ad-4620-9ddc-6d8796e8e99b
+8f9cedf9-2edc-4d9c-a2f8-3dfe6357182d
+KAMALADDEEN Salisu
+42.00
+E
+32093a85-6402-4ad4-a77d-4bc1a549cce8
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+42.00
+E
+84028cc7-4618-4ea1-9c88-2427344e9229
+5cbbd8ed-5b9d-440b-983d-e4e4cd9719b1
+BISHIR Yarima
+42.00
+E
+435330c8-c040-4a4d-b785-bd6c278a5bb0
+8f9cedf9-2edc-4d9c-a2f8-3dfe6357182d
+KAMALADDEEN Salisu
+42.00
+E
+0d4e415e-664b-4396-9195-f7829de39bec
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+42.00
+E
+53657236-fd7c-4cce-89ee-d740b82dbade
+5cbbd8ed-5b9d-440b-983d-e4e4cd9719b1
+BISHIR Yarima
+42.00
+E
+aef3584c-1b5e-4b23-be25-9014f7574096
+8f9cedf9-2edc-4d9c-a2f8-3dfe6357182d
+KAMALADDEEN Salisu
+42.00
+E
+83d907c5-325c-4a2b-97cc-c76349de0aa7
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+42.00
+E
+887651fe-730e-4d63-abb4-7360b5b831f7
+5cbbd8ed-5b9d-440b-983d-e4e4cd9719b1
+BISHIR Yarima
+42.00
+E
+06728c66-76bd-4eec-8963-d8fc8d1694f3
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+42.00
+E
+064bdb0d-ebb5-4c24-8d4d-0f5449a7c621
+5cbbd8ed-5b9d-440b-983d-e4e4cd9719b1
+BISHIR Yarima
+42.00
+E
+55a9b7f2-d023-439c-8d3d-fcdd55922f14
+8f9cedf9-2edc-4d9c-a2f8-3dfe6357182d
+KAMALADDEEN Salisu
+42.00
+E
+202508c4-77d0-4a7e-a866-155c82a06505
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+42.00
+E
+5d54d0dd-56a9-44ca-91dd-067330273c36
+5cbbd8ed-5b9d-440b-983d-e4e4cd9719b1
+BISHIR Yarima
+42.00
+E
+d6cc6324-2ce1-42d1-89ae-36b92a0dc735
+8f9cedf9-2edc-4d9c-a2f8-3dfe6357182d
+KAMALADDEEN Salisu
+42.00
+E
+0b38d877-31c4-4f0c-bc0b-59aa5f8e4517
+8f9cedf9-2edc-4d9c-a2f8-3dfe6357182d
+KAMALADDEEN Salisu
+42.00
+E
+07b7d53d-97a8-4064-a959-5dbb6d4ebd9f
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+42.00
+E
+20082aba-165a-4897-af0f-1e77228571b2
+5cbbd8ed-5b9d-440b-983d-e4e4cd9719b1
+BISHIR Yarima
+42.00
+E
+f78a57bb-3cc5-4a1b-b586-60d03478cff6
+e9cc8b86-4760-4c50-a01f-0c7031ca1446
+SUWAIBA Adamu
+41.00
+E
+6c3173f7-d561-4f3f-9f6c-cdd9392132b3
+e9cc8b86-4760-4c50-a01f-0c7031ca1446
+SUWAIBA Adamu
+41.00
+E
+113bd634-11b3-4f57-aaa4-3a4223274f01
+e9cc8b86-4760-4c50-a01f-0c7031ca1446
+SUWAIBA Adamu
+41.00
+E
+c468b4ef-0b2b-4802-a68c-1342d3b7178b
+e9cc8b86-4760-4c50-a01f-0c7031ca1446
+SUWAIBA Adamu
+41.00
+E
+1695901d-bd23-4701-90ec-fd735bb20446
+e9cc8b86-4760-4c50-a01f-0c7031ca1446
+SUWAIBA Adamu
+41.00
+E
+3d416fb5-25ab-4899-8bd4-f46fe78dadff
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+39.00
+F
+d6e73b73-06d2-461d-adf6-b9446acf5951
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+39.00
+F
+b32687c9-2b50-49c1-84f6-916e717f5c28
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+39.00
+F
+b20fe526-6adc-45e2-b9ae-19f072ebcf25
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+39.00
+F
+e31165da-5c34-4208-beb8-99f08467e843
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+39.00
+F
+cfc7aa54-4cd2-46ab-93ff-b4a3d75de760
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+39.00
+F
+62205615-0eac-496f-9729-c0340a7d8675
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+39.00
+F
+526ff7bd-01a9-4e9b-ae6f-477b1c3d18e3
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+39.00
+F
+38801ddf-e200-43b5-b10b-52fdfcac8efd
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+39.00
+F
+dcb875a8-f877-42c0-87c2-6476590448ec
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+39.00
+F
+cafea1f9-d84e-43ea-b56a-6ed4bbb7d5c3
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+39.00
+F
+ef34d321-a18d-46a3-a5c2-a6b29aadac1a
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+39.00
+F
+f59c779f-de92-45ad-b281-a1114a94aa3d
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+39.00
+F
+dd0c3975-e685-48ce-a6a3-77b77700eb13
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+39.00
+F
+17dc837b-62d3-43ac-bea2-1b0b495ffeb0
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+39.00
+F
+9e9b763c-5385-4353-aa9c-e3e79541ff22
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+39.00
+F
+909000ef-fbbd-40a3-b0ac-d61358211526
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+39.00
+F
+b437f1ad-cee5-44c3-93b4-82b0afb22c85
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+39.00
+F
+e2eb36c4-1d35-41cd-a57a-6b78a00a8b11
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+39.00
+F
+cba67c02-d5e9-4ebe-955e-790635c855e3
+07615365-891c-43a1-af48-8a7816953eea
+ZAINAB Yakubu
+39.00
+F
+25535e8d-7ee6-4d69-add7-2e2d5e88e385
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+39.00
+F
+faf8d764-2f56-4951-91fb-858210de750d
+e924b99b-5feb-4e0b-b685-aac03444bce3
+HUSSAINI Hussaini S.
+39.00
+F
+52497822-7019-436a-b6fa-a1f391adb7f2
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+38.00
+F
+f3adda74-41b5-49f1-b2d4-d50ee8f555dc
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+38.00
+F
+76985a36-f96b-4aaf-b4cb-6b01d035b3f2
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+38.00
+F
+c3bb57bd-e47e-4572-adbb-593a0a2092d8
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+38.00
+F
+66b1458e-8de8-4b20-9766-61eb711a2024
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+38.00
+F
+fffd97a0-bcd3-4830-bc50-08d0ff8b0247
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+38.00
+F
+82f9d489-553f-45cf-b692-bc73b84f3e95
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+38.00
+F
+fdb73f09-2da4-40ae-adfb-cf9775601794
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+38.00
+F
+1619534c-3191-444a-9df7-9bd6ea8df2a1
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+38.00
+F
+a3c830c4-aa70-4da4-a978-66bdd9f58249
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+38.00
+F
+1a963b54-b2a3-499e-9fd6-04ad757ef453
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+38.00
+F
+89880996-629a-4e42-8f22-a46ae88527e4
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+38.00
+F
+e83ee2d1-d736-495f-9a13-138e34872388
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+37.00
+F
+86cb88b8-3626-4766-9e78-5b7a50648120
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+37.00
+F
+0bae4e37-1f90-4419-a523-432463dcc97d
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+37.00
+F
+cab40f30-286a-4a47-a5d4-76f86e4daea2
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+37.00
+F
+300f6915-1064-4519-b51b-9c224764fabd
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+37.00
+F
+db988311-b027-43c9-bf1e-49381f8a5608
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+37.00
+F
+19e94fc8-694b-4831-9d03-a908f1b28ea0
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+37.00
+F
+d7077243-f222-40c4-ae6e-018d1576ed95
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+37.00
+F
+82cb64ab-b256-4ade-b948-67ca9a85e2eb
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+37.00
+F
+90cd7b30-d555-4552-9b31-fff97040f4db
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+37.00
+F
+2115fba3-8337-4b98-b383-81d4a7b4560c
+ccc00184-a65b-4ba2-ba9b-c109b9954bf2
+ABDULLAHI Kabir
+37.00
+F
+097356fa-34ee-4a5c-ab8f-45fabc80eb6e
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+36.00
+F
+f5609f80-aaf4-4746-9125-aa32b3b90438
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+36.00
+F
+00e2ea63-e69a-4d77-82d9-d466ff2c1d28
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+36.00
+F
+3954346e-0284-4d95-8b92-855e133fafc3
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+36.00
+F
+070fce3f-7214-40ab-b5f7-d0a9257d0aa7
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+36.00
+F
+7f4daa68-76fe-49c9-9e8e-96d9bfcc8a77
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+36.00
+F
+f53e124d-1f46-467d-b1e9-0c3ffc3e3455
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+35.00
+F
+55df0d3a-7cbd-4ebd-b10a-9fb99a7652f5
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+35.00
+F
+c4baf5cf-faa6-4cb1-b90c-f43fd3409940
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+35.00
+F
+869c23f5-423e-4095-8d47-56f6b2b5b59c
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+35.00
+F
+eb212152-7365-4be9-9752-6c92d47da4c9
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+35.00
+F
+94c1e27c-706f-4046-be03-eb10060f6ef4
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+35.00
+F
+eba3ee87-f778-455f-bcd9-d18630d51905
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+33.00
+F
+0f043913-83f0-4e35-8fa9-d6fa1f027ba1
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+33.00
+F
+9d30b922-f5d8-4dc2-a53a-af8650080d20
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+33.00
+F
+796037ca-7783-4783-bf8e-bc1b1892a212
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+33.00
+F
+a8bb3068-8f69-4d2c-b30f-60ed336865de
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+33.00
+F
+8da8dd5a-f620-45ab-b1b8-a61e0cfdad25
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+33.00
+F
+[registration_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[student_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[full_name](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[total_score 1](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[grade](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+293a6d0c-3822-4aef-b1bd-4a3cc4d931db
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+31.00
+F
+6d12c255-b338-472d-a52c-82ee84a73821
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+31.00
+F
+50d8b8b8-266a-4393-96cc-5beb8c879166
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+31.00
+F
+9b5ca263-e155-4b3e-82d4-cad92455f578
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+31.00
+F
+13d6f079-1cc1-4f73-b94f-9c9cae88a05e
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+31.00
+F
+53c99159-552a-4661-8d15-baf60c13cdd0
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+31.00
+F
+4ff12aad-27ce-4379-9097-6d06f011ee1a
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+27.00
+F
+ef66fec0-aec5-4b4f-91e8-57ccddeb9a84
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+27.00
+F
+539da86b-6409-4239-bb74-c903ed65019b
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+27.00
+F
+01576943-547c-4a32-a960-634c633f5c94
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+27.00
+F
+d686cfc7-3ed8-4a25-a328-97d866d44095
+7ba57af3-9fac-447f-a019-72263776620e
+AMINU Lawal
+27.00
+F
+31035bc1-c88b-45b5-9faf-57c105ab2bc8
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+23.00
+F
+ef05ccc7-f9be-4dda-b1d3-2b806c056df6
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+23.00
+F
+05759cba-484c-44a0-90c0-c0332b815a4b
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+23.00
+F
+4418d94a-8c7f-47b1-8ade-f094661c9396
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+23.00
+F
+1fa2ead4-29b4-4d13-975c-a01d31622a7c
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+23.00
+F
+dfb4eb66-b1d6-409c-8587-c99cfb883e20
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+23.00
+F
+387d730b-62a8-488a-8a88-8efa68778204
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+22.00
+F
+a5822505-5acd-4636-a25c-d1c4e4b58e3b
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+22.00
+F
+43f7a716-4075-471f-8a23-3b4533948d7b
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+22.00
+F
+b57e84ef-681e-464c-834c-667b3f62a627
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+22.00
+F
+8080642c-cccb-4c4b-9c15-55bc593f765c
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+22.00
+F
+ee89c4ff-f8ac-4e46-96e2-b5bd1d3598b1
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+22.00
+F
+1f864574-501f-4663-97cb-9c386c5a7697
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+21.00
+F
+f1363cba-8919-4aae-a98e-b8fca18ca843
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+21.00
+F
+0141da40-73b0-4df2-86b1-616f49bc030d
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+21.00
+F
+20929685-3d61-4fd8-b3b3-9bead1f40529
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+21.00
+F
+06d5acbe-3a2d-4529-a0c8-00703308adb1
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+21.00
+F
+70b88cf5-cbd5-469d-bc46-8c51b3c816d8
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+21.00
+F
+75d0d2c1-fc75-4274-b60a-891685628697
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+20.00
+F
+30edbe44-a437-443a-9c09-5b912d8bf9e3
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+20.00
+F
+970f2694-7334-40d3-8492-61edf58f343c
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+20.00
+F
+5df574a3-c8d5-4613-ad30-067cafc628a2
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+20.00
+F
+e0c8f4f2-7b8b-41d7-ada2-65c5d7e90b53
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+20.00
+F
+1644bba3-b73d-48ae-84c4-94930d36001b
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+20.00
+F
+938bcf50-4102-43fa-88ca-0b2ac4987c0c
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+16.00
+F
+e4e6034e-9f76-4bee-a31f-dd53c711ad7a
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+16.00
+F
+bc6d366f-8522-4b7a-b5a2-38122882100a
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+16.00
+F
+f03f9b0e-6e78-4432-869e-790d9793bc4c
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+16.00
+F
+140ed1f5-3463-46e9-9de0-922478e8bc19
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+16.00
+F
+ccf44c19-4d8b-49bb-a797-e1eda5b30807
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+16.00
+F
+123b42d7-4bc2-464b-8fef-c505ddcc93ce
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+15.00
+F
+ee0ce6a2-e47e-4cd6-ab1e-e29d374ec973
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+15.00
+F
+0f797380-95b1-49fc-9c32-66d2792c2a6a
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+15.00
+F
+301bd0fd-fceb-490e-89bd-a5cd00d12974
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+15.00
+F
+112688ed-da6b-480a-88c3-903aaf150731
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+15.00
+F
+73e27652-40f8-450f-9a0e-df0558635cc6
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+15.00
+F
+6c647de9-0a19-43fb-90f7-d6a8af1788c7
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+14.00
+F
+a5b58bfa-a143-4ae3-aabb-256428f71a24
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+14.00
+F
+7beab8aa-0648-45d1-8901-238f8ae0c352
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+14.00
+F
+a93bfbc6-05a0-4eba-b57b-246b02f841e1
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+14.00
+F
+33db515f-0870-467c-9fa7-368de8791e32
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+14.00
+F
+881ae1d0-a682-4154-8b66-adf90fbb3542
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+14.00
+F
+83d907c5-325c-4a2b-97cc-c76349de0aa7
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+10.00
+F
+06728c66-76bd-4eec-8963-d8fc8d1694f3
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+10.00
+F
+202508c4-77d0-4a7e-a866-155c82a06505
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+10.00
+F
+07b7d53d-97a8-4064-a959-5dbb6d4ebd9f
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+10.00
+F
+32093a85-6402-4ad4-a77d-4bc1a549cce8
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+10.00
+F
+0d4e415e-664b-4396-9195-f7829de39bec
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+10.00
+F
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-24T00:10:42+01:00.
+
+The user's current state is as follows:
+Other open documents:
+- c:\DEV\Reatjs\maslaha\frontend\db\result_management_schema.sql (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\backend\db\migrations\020_broadsheet_integrity.sql (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\components\admin\results\BroadsheetTab.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\ApplicationReviewPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\StudentManagementPage.tsx (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>

@@ -1,0 +1,446 @@
+<USER_REQUEST>
+Showing rows 0 - 69 (70 total, Query took 0.1046 seconds.) [total_score: 95.00... - 10.00...]
+[SELECT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/select.html) cr.id AS contact1_reg_id, s.id AS student_id, u.full_name, sem.name AS semester_name, ra.total_score, ra.grade FROM course_registrations cr JOIN semesters sem ON sem.id = cr.semester_id JOIN students s ON s.id = cr.student_id JOIN users u ON u.id = s.user_id JOIN result_attempts ra ON ra.student_id = s.id JOIN result_batches rb ON rb.id = ra.batch_id JOIN courses c ON c.id = rb.course_id WHERE s.programme_id = '8732138a-a35d-4551-947a-b01300810512' [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) c.code = 'ENG111' [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) ra.total_score [IS](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html%23operator_is) [NOT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_not) NULL [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) (sem.name [LIKE](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html%23operator_like) '%Contact 1%' [OR](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_or) sem.name [LIKE](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html%23operator_like) '%First Semester%' [OR](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_or) cr.level = 'Contact 1') [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) [NOT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_not) EXISTS ( [SELECT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/select.html) 1 FROM course_registration_items cri JOIN courses c2 ON c2.id = cri.course_id WHERE cri.registration_id = cr.id [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) c2.code = 'ENG111' ) GROUP BY cr.id, s.id, u.full_name, sem.name, ra.total_score, ra.grade ORDER BY ra.total_score DESC;
+Profiling [ [Edit inline](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php?route=/table/sql&db=mcceorgn_main&table=cr#) ] [ [Edit](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Explain SQL](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Create PHP code](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Refresh](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ]
+Show all
+|
+Number of rows: All 25 50 100 250 500
+Filter rows:
+[contact1_reg_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[student_id](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[full_name](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[semester_name](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[total_score 1](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+[grade](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php)
+4f312611-940b-41f3-8145-c68b77502e61
+c200c2e5-e979-439c-9072-6fde5e8798a5
+IBRAHIM Mu�azu
+Contact 1
+95.00
+A
+081e46a3-90a3-4f10-b2d4-d409b92a4838
+42c679f5-ac96-498f-ad26-9b9aee37340a
+MURTALA abubakar Mohammed
+Contact 1
+94.00
+A
+6b3fa5bb-4e29-4a3c-be7f-db10bdd3b57e
+1b805b8a-7451-4c18-a269-da1694f21014
+SULAIMAN Salisu
+Contact 1
+92.00
+A
+9b5ca263-e155-4b3e-82d4-cad92455f578
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+Contact 1
+81.00
+A
+881ae1d0-a682-4154-8b66-adf90fbb3542
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+Contact 1
+78.00
+A
+cda3d957-5548-4301-99db-1ee80548dbfb
+9a6e95d5-ac2c-42ad-8911-dc49af6b44a9
+JAMILU Sa�idu Abdullahi
+Contact 1
+77.00
+A
+0bcc2050-3cbd-4021-8c6e-91148810e8df
+5f28cea0-6b60-4a8c-9720-0a7f81e15f28
+MARIYA Jamilu
+Contact 1
+76.00
+A
+af511383-4d60-42a1-911a-21107a123b7b
+2f8e8d52-5b18-49ba-8dd3-3ff41dd7ec0b
+MUBARAK Yahaya
+Contact 1
+75.00
+A
+8944de03-997c-4551-9462-b24858773206
+62c22e4a-a0a9-4209-8296-0601033556a5
+KHADIJA Aliyu
+Contact 1
+74.00
+A
+070fce3f-7214-40ab-b5f7-d0a9257d0aa7
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+Contact 1
+72.00
+A
+2b70a217-56dd-40a7-98e7-6bfb8250763e
+0d311ee4-bb68-4821-a84c-f59d0ce6915b
+ADAMU Aminu
+Contact 1
+71.00
+A
+c13e1036-0816-4fa6-bb7b-26cd1bd0c680
+0909910a-0514-4595-bc64-4a9f8ae4b595
+KABIR Umar
+Contact 1
+70.00
+A
+f5a48f12-ed36-4ec5-9f28-512792be433e
+0965a67e-6b38-4f5a-bff5-f240ece5ed21
+SALISU Sada Hassan
+Contact 1
+69.00
+B
+51113c38-ddd3-4872-a13f-429446f984b9
+1b14efb7-f1c0-445f-b3ff-6c168821ab89
+YUSUF Ahmad
+Contact 1
+67.00
+B
+255c0769-c2b1-4989-90d9-5e4ea958acd9
+a6940012-afcf-4d67-a4bb-c4234f150a76
+ABDULLAHI Garba
+Contact 1
+66.00
+B
+ef34d321-a18d-46a3-a5c2-a6b29aadac1a
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+Contact 1
+66.00
+B
+8080642c-cccb-4c4b-9c15-55bc593f765c
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+Contact 1
+65.00
+B
+069c4e4b-fcf4-4673-ad27-85ddc881cbf0
+d7d9dea6-c07e-4148-81c2-49fef7588fb5
+ALIYU Lawal
+Contact 1
+63.00
+B
+87029567-1800-45c7-bc09-90ffb282e585
+466d54d2-14e9-4383-9cd7-9c56a2783ab6
+ALIYU Sulaiman
+Contact 1
+62.00
+B
+970f2694-7334-40d3-8492-61edf58f343c
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+Contact 1
+61.00
+B
+2267b6d9-3564-4421-96dd-26e2c270da15
+4db62fab-8b75-4250-8209-3598a4ae1eb2
+UMAR Usman
+Contact 1
+61.00
+B
+f1363cba-8919-4aae-a98e-b8fca18ca843
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+Contact 1
+61.00
+B
+6aab69d4-d584-498f-b5cb-585d7d4e4254
+598599ae-18ef-4000-ba7f-19231bbb9d2c
+MUSBAHU Abdullahi
+Contact 1
+60.00
+B
+a2c0af0c-d31f-45ff-a6c9-90629b4b3d59
+9c2b010c-c9b3-48bd-8b9f-fb160846ddd5
+AHMAD Rab�iu
+Contact 1
+59.00
+C
+f71c5f92-6e47-4f2b-81fc-414837ff48d9
+e52898ce-c47c-4008-9bc5-952eb601c52a
+AISHA ABUBAKAR
+Contact 1
+58.00
+C
+22bdcaa8-46a9-4059-b40f-0e1a426ec479
+2404f0b9-5554-4ca2-8529-674ad94489ad
+ABDULLAHI Mu�azu Bala
+Contact 1
+56.00
+C
+31035bc1-c88b-45b5-9faf-57c105ab2bc8
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+Contact 1
+54.00
+C
+e4e6034e-9f76-4bee-a31f-dd53c711ad7a
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+Contact 1
+54.00
+C
+34ae3543-1c84-41e8-a8a5-528a31b7f6fa
+80c37caf-cfec-466b-a24f-4b558302adce
+IBRAHIM BILKISU
+Contact 1
+53.00
+C
+78ed0b57-1432-4844-b3e1-6a3d01948c16
+e8a6b046-42d9-40b2-a729-26428f810e9a
+ALIYU Babangida
+Contact 1
+52.00
+C
+112688ed-da6b-480a-88c3-903aaf150731
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+Contact 1
+52.00
+C
+0bae4e37-1f90-4419-a523-432463dcc97d
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+Contact 1
+51.00
+C
+53722cd5-0c73-4b39-8e3d-176cb55532f1
+caa78b23-7631-481b-b1f7-a7a186578e1c
+ISMA�IL Isah
+Contact 1
+51.00
+C
+52497822-7019-436a-b6fa-a1f391adb7f2
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+Contact 1
+50.00
+C
+211ad1b0-e5cd-4d7a-a9ec-4634bc2e24d3
+27c4a417-ef93-41e3-a654-87665613026c
+ABDUSSALAM Musa
+Contact 1
+50.00
+C
+9d30b922-f5d8-4dc2-a53a-af8650080d20
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+Contact 1
+50.00
+C
+ec6264df-c81f-4f30-849c-37ad53889e0a
+0ea554b6-2791-4c12-b98b-17f451da8050
+ILYASU Musa
+Contact 1
+49.00
+D
+533d68e7-39fd-42e5-be76-52dbeaf38850
+3f92d2df-de74-429b-a348-8718d145d413
+MANIR Aliyu
+Contact 1
+48.00
+D
+0465f7b8-c3ad-4242-a487-cf7814ac5449
+27d110fa-b0ad-498d-9600-ac60767a36b7
+MOHAMMAD Kabir
+Contact 1
+48.00
+D
+0335d811-4d4a-404b-85af-461067baa4a8
+a3ed8fa1-e992-41e6-aa75-f8921485a179
+JOHN Mshelia Iliya
+Contact 1
+48.00
+D
+8398ae08-da04-425a-bd78-f885f291fcf0
+90b2be2d-13b0-4740-a628-c86fbbb12575
+ABDULKADIR Ahmad
+Contact 1
+48.00
+D
+f6dd68cc-6141-4931-980b-b4b985098b24
+75c41037-08b1-4df8-8ff7-1b0b30512845
+KABIR Aliyu SANI
+Contact 1
+47.00
+D
+c502d2a9-3bc8-414a-837c-003e28ebaca8
+b7a95a37-e530-4f05-a24a-ee8026fa35a1
+ABDULLAHI Hassan
+Contact 1
+46.00
+D
+98dd831c-33e4-4652-bf95-9216a3ab4b7d
+8a7a1730-db31-4afc-853b-a9cfa26a369f
+MURTALA Adamu
+Contact 1
+45.00
+D
+c3bb57bd-e47e-4572-adbb-593a0a2092d8
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+Contact 1
+45.00
+D
+eb212152-7365-4be9-9752-6c92d47da4c9
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+Contact 1
+44.00
+E
+25535e8d-7ee6-4d69-add7-2e2d5e88e385
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+Contact 1
+44.00
+E
+1c183ec4-281f-41c5-a64c-5f79c1a6f2d2
+94976314-e856-4ec1-a203-5e403920f442
+ABDULKADIR Sama�ila
+Contact 1
+43.00
+E
+d657ab8d-5d12-424d-804a-cd0a691475bc
+abc33536-cbb8-4423-83e2-d24146fc1b4a
+ABDULWAHAB Adam
+Contact 1
+43.00
+E
+84028cc7-4618-4ea1-9c88-2427344e9229
+5cbbd8ed-5b9d-440b-983d-e4e4cd9719b1
+BISHIR Yarima
+Contact 1
+42.00
+E
+32093a85-6402-4ad4-a77d-4bc1a549cce8
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+Contact 1
+42.00
+E
+aef3584c-1b5e-4b23-be25-9014f7574096
+8f9cedf9-2edc-4d9c-a2f8-3dfe6357182d
+KAMALADDEEN Salisu
+Contact 1
+42.00
+E
+c468b4ef-0b2b-4802-a68c-1342d3b7178b
+e9cc8b86-4760-4c50-a01f-0c7031ca1446
+SUWAIBA Adamu
+Contact 1
+41.00
+E
+ef34d321-a18d-46a3-a5c2-a6b29aadac1a
+5a86b789-87f1-4cd2-9241-6372b0ebc49f
+HABIBU Tukur
+Contact 1
+39.00
+F
+25535e8d-7ee6-4d69-add7-2e2d5e88e385
+f5ad4bbf-d81d-4d9e-9389-dd912363740b
+ZUBAIRU Aliyu
+Contact 1
+39.00
+F
+c3bb57bd-e47e-4572-adbb-593a0a2092d8
+fe8a4c75-107a-48b4-a89f-1f896fdbaa62
+AMINU Tukur
+Contact 1
+38.00
+F
+52497822-7019-436a-b6fa-a1f391adb7f2
+dab9e920-2fc9-4a14-9076-9232ac503db8
+AISHA Mohammad
+Contact 1
+38.00
+F
+0bae4e37-1f90-4419-a523-432463dcc97d
+83b65cfd-c49c-403c-aa43-4a79beb5dcfc
+ABUBAKAR Mika�ilu
+Contact 1
+37.00
+F
+070fce3f-7214-40ab-b5f7-d0a9257d0aa7
+b3354ab9-c3cb-4ee4-b601-8364b3c50e56
+ABDULLAHI Muhammad
+Contact 1
+36.00
+F
+eb212152-7365-4be9-9752-6c92d47da4c9
+baad952f-7679-4f87-bc9f-71928e96d0c2
+BASHIR Mannir
+Contact 1
+35.00
+F
+9d30b922-f5d8-4dc2-a53a-af8650080d20
+215bf8ac-3755-4fb1-b3a4-f9a64c4a8e62
+ADAMU Saidu
+Contact 1
+33.00
+F
+9b5ca263-e155-4b3e-82d4-cad92455f578
+86157de3-a662-42ee-ab11-7c05ce95f420
+Saudatu Rufa�i
+Contact 1
+31.00
+F
+31035bc1-c88b-45b5-9faf-57c105ab2bc8
+e53328ef-cdf3-487c-beeb-6594c49cc529
+AMINU Abdullahi
+Contact 1
+23.00
+F
+8080642c-cccb-4c4b-9c15-55bc593f765c
+aa299c09-6e14-49e9-b233-d43a0607424e
+LURWANU Garba
+Contact 1
+22.00
+F
+f1363cba-8919-4aae-a98e-b8fca18ca843
+57933a9b-479b-40f4-bb5e-0d84559c2f7c
+UMAR Nadabo MAGAJI
+Contact 1
+21.00
+F
+970f2694-7334-40d3-8492-61edf58f343c
+7f1d6924-37a9-4153-ba23-aadd61408903
+SULEIMAN Habibu Abdullahi
+Contact 1
+20.00
+F
+e4e6034e-9f76-4bee-a31f-dd53c711ad7a
+2591b9fd-f67d-4a52-8c10-216ce35c1d63
+KURE Asibi Safiya
+Contact 1
+16.00
+F
+112688ed-da6b-480a-88c3-903aaf150731
+afb8cf41-cbfb-4b72-a84b-d9dcf8af7667
+YAKUBU Usman
+Contact 1
+15.00
+F
+881ae1d0-a682-4154-8b66-adf90fbb3542
+67f88f44-64a1-4b7d-a92f-5bee97db7eaa
+MAHARAZU Junaidu
+Contact 1
+14.00
+F
+32093a85-6402-4ad4-a77d-4bc1a549cce8
+8d899aa9-afa9-43bb-8eef-55ee5b51fb50
+PHILIPS Khendimohs Istifanus
+Contact 1
+10.00
+F
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-24T00:12:56+01:00.
+
+The user's current state is as follows:
+Other open documents:
+- c:\DEV\Reatjs\maslaha\frontend\db\result_management_schema.sql (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\backend\db\migrations\020_broadsheet_integrity.sql (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\components\admin\results\BroadsheetTab.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\ApplicationReviewPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\StudentManagementPage.tsx (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>

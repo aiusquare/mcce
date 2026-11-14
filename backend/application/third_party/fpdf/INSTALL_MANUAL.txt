@@ -1,0 +1,22 @@
+Manual FPDF install target
+==========================
+
+Place official Setasign FPDF files in this folder:
+
+- application/third_party/fpdf/fpdf.php
+- application/third_party/fpdf/font/helvetica.php
+- application/third_party/fpdf/font/helveticab.php
+- application/third_party/fpdf/font/courier.php
+- application/third_party/fpdf/font/times.php
+
+Optional (recommended):
+- include all font/*.php files from FPDF package.
+
+Source:
+https://github.com/Setasign/FPDF
+
+After copying, test endpoint:
+/api/student/course-registration/template?email=<student-email>
+
+Expected:
+Browser downloads "course_registration_form.pdf" with populated data.

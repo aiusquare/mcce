@@ -1,0 +1,508 @@
+Created At: 2026-10-04T01:14:35+01:00
+Completed At: 2026-10-04T01:14:35+01:00
+File Path: `file:///c:/DEV/Reatjs/maslaha/backend/application/models/Results_model.php`
+Total Lines: 516
+Total Bytes: 20991
+Showing lines 1 to 500
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <?php
+2: defined('BASEPATH') or exit('No direct script access allowed');
+3: 
+4: class Results_model extends CI_Model
+5: {
+6:     public function __construct()
+7:     {
+8:         parent::__construct();
+9:         $this->load->database();
+10:     }
+11: 
+12:     private function generate_uuid()
+13:     {
+14:         $data = random_bytes(16);
+15:         $data[6] = chr((ord($data[6]) & 0x0f) | 0x40);
+16:         $data[8] = chr((ord($data[8]) & 0x3f) | 0x80);
+17:         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+18:     }
+19: 
+20:     // =========================================================================
+21:     // GRADING & CALCULATIONS
+22:     // =========================================================================
+23: 
+24:     public function get_active_grading_scheme()
+25:     {
+26:         $this->db->where('is_active', 1);
+27:         $scheme = $this->db->get('grading_schemes')->row_array();
+28:         if (!$scheme) return null;
+29: 
+30:         $this->db->where('scheme_id', $scheme['id']);
+31:         $this->db->order_by('min_score', 'DESC');
+32:         $ranges = $this->db->get('grading_ranges')->result_array();
+33:         
+34:         $scheme['ranges'] = $ranges;
+35:         return $scheme;
+36:     }
+37: 
+38:     public function determine_grade($total_score, $grading_ranges)
+39:     {
+40:         if ($total_score === null || $total_score === '') return null;
+41:         
+42:         $score = (float) $total_score;
+43:         foreach ($grading_ranges as $range) {
+44:             if ($score >= (float) $range['min_score'] && $score <= (float) $range['max_score']) {
+45:                 return array(
+46:                     'grade' => $range['letter_grade'],
+47:                     'grade_point' => $range['grade_point']
+48:                 );
+49:             }
+50:         }
+51:         return array('grade' => 'F', 'grade_point' => 0.0); // Fallback
+52:     }
+53: 
+54:     public function get_assessment_structure()
+55:     {
+56:         $this->db->where('setting_key', 'assessment_structure');
+57:         $setting = $this->db->get('academic_settings')->row_array();
+58:         
+59:         if ($setting && $setting['setting_value']) {
+60:             return json_decode($setting['setting_value'], true);
+61:         }
+62:         
+63:         return array(
+64:             'max_ca' => 30,
+65:             'max_exam' => 70,
+66:             'max_total' => 100
+67:         );
+68:     }
+69: 
+70:     // =========================================================================
+71:     // RESULT BATCHES
+72:     // =========================================================================
+73: 
+74:     public function get_batches($filters = array(), $limit = null, $offset = null)
+75:     {
+76:         $this->db->select('b.*, 
+77:                            s.name as session_name, 
+78:                            sem.name as semester_name, 
+79:                            c.code as course_code, 
+80:                            c.title as course_title,
+81:                            d.name as department_name,
+82:                            p.name as programme_name');
+83:         $this->db->from('result_batches b');
+84:         $this->db->join('academic_sessions s', 's.id = b.session_id', 'left');
+85:         $this->db->join('semesters sem', 'sem.id = b.semester_id', 'left');
+86:         $this->db->join('courses c', 'c.id = b.course_id', 'left');
+87:         $this->db->join('departments d', 'd.id = b.department_id', 'left');
+88:         $this->db->join('programmes p', 'p.id = b.programme_id', 'left');
+89: 
+90:         if (!empty($filters['session_id'])) {
+91:             $this->db->where('b.session_id', $filters['session_id']);
+92:         }
+93:         if (!empty($filters['semester_id'])) {
+94:             $this->db->where('b.semester_id', $filters['semester_id']);
+95:         }
+96:         if (!empty($filters['programme_id'])) {
+97:             $this->db->where('b.programme_id', $filters['programme_id']);
+98:         }
+99:         if (!empty($filters['level'])) {
+100:             $this->db->where('b.level', $filters['level']);
+101:         }
+102:         if (!empty($filters['status'])) {
+103:             $this->db->where('b.status', $filters['status']);
+104:         }
+105: 
+106:         $this->db->order_by('b.created_at', 'DESC');
+107:         
+108:         if ($limit !== null) {
+109:             $this->db->limit($limit, $offset);
+110:         }
+111: 
+112:         return $this->db->get()->result_array();
+113:     }
+114: 
+115:     public function get_batch_by_id($batch_id)
+116:     {
+117:         $this->db->where('id', $batch_id);
+118:         return $this->db->get('result_batches')->row_array();
+119:     }
+120: 
+121:     public function create_batch($data)
+122:     {
+123:         $batch_id = $this->generate_uuid();
+124:         $data['id'] = $batch_id;
+125:         $data['created_at'] = date('Y-m-d H:i:s');
+126:         $data['status'] = 'draft';
+127:         
+128:         $this->db->trans_start();
+129:         $this->db->insert('result_batches', $data);
+130:         
+131:         if (isset($data['session_id']) && isset($data['semester_id']) && isset($data['course_id'])) {
+132:             $target_sem_id = $data['semester_id'];
+133:             $target_level = $data['level'] ?? null;
+134:             
+135:             $is_contact = false;
+136:             $sem_row = $this->db->get_where('semesters', array('id' => $target_sem_id))->row_array();
+137:             if ($sem_row) {
+138:                 if (stripos($sem_row['name'], 'Contact') !== false) {
+139:                     $target_level = $sem_row['name'];
+140:                     $is_contact = true;
+141:                 }
+142:             }
+143: 
+144:             $session_name = '';
+145:             if ($this->db->table_exists('academic_sessions')) {
+146:                 $sess_row = $this->db->get_where('academic_sessions', array('id' => $data['session_id']), 1)->row_array();
+147:                 $session_name = $sess_row ? $sess_row['name'] : '';
+148:             }
+149: 
+150:             $this->db->distinct();
+151:             $this->db->select('r.student_id');
+152:             $this->db->from('course_registration_items i');
+153:             $this->db->join('course_registrations r', 'r.id = i.registration_id');
+154:             $this->db->join('students s', 's.id = r.student_id');
+155:             $this->db->where('i.course_id', $data['course_id']);
+156: 
+157:             $this->db->group_start();
+158:             $this->db->where('r.session_id', $data['session_id']);
+159:             if ($session_name) {
+160:                 $this->db->or_where('s.session_name', $session_name);
+161:             }
+162:             $this->db->group_end();
+163: 
+164:             if (!$is_contact) {
+165:                 $this->db->where('r.semester_id', $target_sem_id);
+166:             }
+167:             $this->db->where('r.status', 'approved');
+168:             if ($target_level) {
+169:                 $this->db->where('r.level', $target_level);
+170:             }
+171:             $approved_students = $this->db->get()->result_array();
+172:             
+173:             if (!empty($approved_students)) {
+174:                 $attempts_data = array();
+175:                 foreach ($approved_students as $st) {
+176:                     $attempts_data[] = array(
+177:                         'id' => $this->generate_uuid(),
+178:                         'batch_id' => $batch_id,
+179:                         'student_id' => $st['student_id'],
+180:                         'ca_score' => null,
+181:                         'exam_score' => null,
+182:                         'total_score' => null,
+183:                         'grade' => null,
+184:                         'grade_point' => null,
+185:                         'quality_point' => null,
+186:                         'created_at' => date('Y-m-d H:i:s')
+187:                     );
+188:                 }
+189:                 $this->db->insert_batch('result_attempts', $attempts_data);
+190:             }
+191:         }
+192:         
+193:         $this->db->trans_complete();
+194:         return $batch_id;
+195:     }
+196: 
+197:     public function delete_batch($batch_id) { $this->db->trans_start(); $this->db->where('batch_id', $batch_id); $this->db->delete('result_attempts'); $this->db->where('id', $batch_id); $this->db->delete('result_batches'); $this->db->trans_complete(); return $this->db->trans_status(); }
+198: 
+199:     public function update_batch_status($batch_id, $status, $user_id)
+200:     {
+201:         $data = array(
+202:             'status' => $status,
+203:             'updated_at' => date('Y-m-d H:i:s'),
+204:             'updated_by' => $user_id
+205:         );
+206: 
+207:         if ($status === 'submitted') $data['submitted_at'] = date('Y-m-d H:i:s');
+208:         if ($status === 'approved') $data['approved_at'] = date('Y-m-d H:i:s');
+209:         if ($status === 'published') $data['published_at'] = date('Y-m-d H:i:s');
+210: 
+211:         $this->db->where('id', $batch_id);
+212:         return $this->db->update('result_batches', $data);
+213:     }
+214: 
+215:     // =========================================================================
+216:     // RESULT ATTEMPTS (SCORES)
+217:     // =========================================================================
+218: 
+219:     public function get_attempts_by_batch($batch_id)
+220:     {
+221:         $this->db->select('a.*, u.full_name, ad.admission_number, st.admission_id');
+222:         // Matric numbers entered via the admin form live in admission_number; fall back to it.
+223:         $this->db->select("COALESCE(NULLIF(ad.matric_number, ''), ad.admission_number) AS matric_number", false);
+224:         $this->db->from('result_attempts a');
+225:         $this->db->join('students st', 'st.id = a.student_id', 'left');
+226:         $this->db->join('users u', 'u.id = st.user_id', 'left');
+227:         $this->db->join('admissions ad', 'ad.id = st.admission_id', 'left');
+228:         $this->db->where('a.batch_id', $batch_id);
+229:         $this->db->order_by('u.full_name', 'ASC');
+230:         return $this->db->get()->result_array();
+231:     }
+232: 
+233:     public function save_attempts($batch_id, $attempts, $user_id)
+234:     {
+235:         $this->db->trans_start();
+236: 
+237:         // Get course to know credit units for quality point calculation
+238:         $batch = $this->get_batch_by_id($batch_id);
+239:         $this->db->where('id', $batch['course_id']);
+240:         $course = $this->db->get('courses')->row_array();
+241:         $credit_units = (int) ($course['credit_units'] ?? 0);
+242: 
+243:         // Get grading scheme
+244:         $scheme = $this->get_active_grading_scheme();
+245:         $ranges = $scheme ? $scheme['ranges'] : [];
+246: 
+247:         foreach ($attempts as $attempt) {
+248:             $total = (float)($attempt['ca_score'] ?? 0) + (float)($attempt['exam_score'] ?? 0);
+249:             $grade_info = $this->determine_grade($total, $ranges);
+250:             
+251:             $data = array(
+252:                 'ca_score' => $attempt['ca_score'],
+253:                 'exam_score' => $attempt['exam_score'],
+254:                 'total_score' => $total,
+255:                 'grade' => $grade_info['grade'],
+256:                 'grade_point' => $grade_info['grade_point'],
+257:                 'quality_point' => $grade_info['grade_point'] * $credit_units,
+258:                 'updated_at' => date('Y-m-d H:i:s'),
+259:                 'updated_by' => $user_id
+260:             );
+261: 
+262:             // Check if attempt exists for this student in this batch
+263:             $this->db->where('batch_id', $batch_id);
+264:             $this->db->where('student_id', $attempt['student_id']);
+265:             $existing = $this->db->get('result_attempts')->row_array();
+266: 
+267:             if ($existing) {
+268:                 // Do not update if locked
+269:                 if (!$existing['is_locked']) {
+270:                     $this->db->where('id', $existing['id']);
+271:                     $this->db->update('result_attempts', $data);
+272:                 }
+273:             } else {
+274:                 $data['id'] = $this->generate_uuid();
+275:                 $data['batch_id'] = $batch_id;
+276:                 $data['student_id'] = $attempt['student_id'];
+277:                 $data['created_at'] = date('Y-m-d H:i:s');
+278:                 $data['created_by'] = $user_id;
+279:                 $this->db->insert('result_attempts', $data);
+280:             }
+281:         }
+282: 
+283:         $this->db->trans_complete();
+284:         return $this->db->trans_status();
+285:     }
+286: 
+287:     // =========================================================================
+288:     // ACADEMIC PERFORMANCE (GPA/CGPA)
+289:     // =========================================================================
+290: 
+291:     /**
+292:      * Calculates GPA for a specific semester/session.
+293:      */
+294:     public function calculate_gpa($student_id, $session_id, $semester_id)
+295:     {
+296:         $this->db->select('a.*, c.credit_units');
+297:         $this->db->from('result_attempts a');
+298:         $this->db->join('result_batches b', 'b.id = a.batch_id');
+299:         $this->db->join('courses c', 'c.id = b.course_id');
+300:         $this->db->where('a.student_id', $student_id);
+301:         $this->db->where('b.session_id', $session_id);
+302:         $this->db->where('b.semester_id', $semester_id);
+303:         $this->db->where('b.status', 'published'); // Only consider published results for students
+304:         $this->db->where('a.status', 'active');
+305:         
+306:         $attempts = $this->db->get()->result_array();
+307:         
+308:         $total_cu = 0;
+309:         $total_qp = 0;
+310: 
+311:         foreach ($attempts as $att) {
+312:             $cu = (int)$att['credit_units'];
+313:             $total_cu += $cu;
+314:             $total_qp += (float)$att['quality_point'];
+315:         }
+316: 
+317:         if ($total_cu == 0) return 0.00;
+318:         return round($total_qp / $total_cu, 2);
+319:     }
+320: 
+321:     /**
+322:      * Calculates CGPA considering all published results.
+323:      * Simple implementation: considers all attempts. Advanced repeat rules can be added here.
+324:      */
+325:     public function calculate_cgpa($student_id)
+326:     {
+327:         $this->db->select('a.*, c.id as course_id, c.credit_units');
+328:         $this->db->from('result_attempts a');
+329:         $this->db->join('result_batches b', 'b.id = a.batch_id');
+330:         $this->db->join('courses c', 'c.id = b.course_id');
+331:         $this->db->where('a.student_id', $student_id);
+332:         $this->db->where('b.status', 'published');
+333:         $this->db->where('a.status', 'active');
+334:         $this->db->order_by('a.created_at', 'ASC');
+335:         
+336:         $attempts = $this->db->get()->result_array();
+337: 
+338:         // Handle repeat courses: only count the LATEST attempt for CGPA calculation
+339:         $best_attempts = array();
+340:         foreach ($attempts as $att) {
+341:             $best_attempts[$att['course_id']] = $att; // Overwrites older attempts
+342:         }
+343: 
+344:         $total_cu = 0;
+345:         $total_qp = 0;
+346: 
+347:         foreach ($best_attempts as $att) {
+348:             $cu = (int)$att['credit_units'];
+349:             $total_cu += $cu;
+350:             $total_qp += (float)$att['quality_point'];
+351:         }
+352: 
+353:         if ($total_cu == 0) return 0.00;
+354:         return round($total_qp / $total_cu, 2);
+355:     }
+356: 
+357:             public function generate_broadsheet($session_id, $semester_id, $programme_id, $level = null)
+358:     {
+359:         // 1. Get all students in this programme (and level if specified) who have published results in this session/semester
+360:         $this->db->select('DISTINCT(st.id) as student_id, u.full_name, ad.matric_number, ad.admission_number, st.admission_id');
+361:         $this->db->from('result_attempts a');
+362:         $this->db->join('result_batches b', 'b.id = a.batch_id');
+363:         $this->db->join('students st', 'st.id = a.student_id');
+364:         $this->db->join('users u', 'u.id = st.user_id', 'left');
+365:         $this->db->join('admissions ad', 'ad.id = st.admission_id', 'left');
+366:         $this->db->where('b.session_id', $session_id);
+367:         $this->db->where('b.semester_id', $semester_id);
+368:         $this->db->where('st.programme_id', $programme_id);
+369:         if ($level) {
+370:             $this->db->where('b.level', $level);
+371:         }
+372:         $this->db->where('b.status', 'published');
+373:         $students = $this->db->get()->result_array();
+374: 
+375:         if (empty($students)) {
+376:             return array('students' => [], 'courses' => []);
+377:         }
+378: 
+379:         $student_ids = array_column($students, 'student_id');
+380: 
+381:         // 2. Get all courses that these students attempted in this session/semester
+382:         $this->db->select('c.id, c.code, c.title, c.credit_units');
+383:         $this->db->from('result_attempts a');
+384:         $this->db->join('result_batches b', 'b.id = a.batch_id');
+385:         $this->db->join('courses c', 'c.id = b.course_id');
+386:         $this->db->where_in('a.student_id', $student_ids);
+387:         $this->db->where('b.session_id', $session_id);
+388:         $this->db->where('b.semester_id', $semester_id);
+389:         $this->db->where('b.status', 'published');
+390:         $this->db->group_by('c.id');
+391:         $this->db->order_by('c.code', 'ASC');
+392:         $courses = $this->db->get()->result_array();
+393: 
+394:         // 3. Get the actual attempts
+395:         $this->db->select('a.student_id, b.course_id, a.total_score, a.grade, a.grade_point, a.credit_units, a.quality_point');
+396:         $this->db->from('result_attempts a');
+397:         $this->db->join('result_batches b', 'b.id = a.batch_id');
+398:         $this->db->where('b.session_id', $session_id);
+399:         $this->db->where('b.semester_id', $semester_id);
+400:         if ($level) {
+401:             $this->db->where('b.level', $level);
+402:         }
+403:         $this->db->where('b.status', 'published');
+404:         $attempts = $this->db->get()->result_array();
+405: 
+406:         // Organize attempts by student_id and course_id
+407:         $attempts_map = [];
+408:         foreach ($attempts as $att) {
+409:             $attempts_map[$att['student_id']][$att['course_id']] = $att;
+410:         }
+411: 
+412:         // Calculate GPA for each student
+413:         foreach ($students as &$st) {
+414:             $st['results'] = $attempts_map[$st['student_id']] ?? [];
+415:             
+416:             // Current Semester GPA
+417:             $st['gpa'] = $this->calculate_gpa($st['results']);
+418:             
+419:             // Cumulative CGPA
+420:             // To get accurate CGPA, we need ALL published attempts up to this session
+421:             // For simplicity in this demo, we'll calculate CGPA across all their history
+422:             $this->db->select('a.*');
+423:             $this->db->from('result_attempts a');
+424:             $this->db->join('result_batches b', 'b.id = a.batch_id');
+425:             $this->db->where('a.student_id', $st['student_id']);
+426:             $this->db->where('b.status', 'published');
+427:             $all_history = $this->db->get()->result_array();
+428:             
+429:             $st['cgpa'] = $this->calculate_cgpa($all_history);
+430:         }
+431: 
+432:         return array(
+433:             'courses' => $courses,
+434:             'students' => $students
+435:         );
+436:     }
+437: 
+438:     public function get_student_history($student_id)
+439:     {
+440:         $this->db->select('a.*, c.code as course_code, c.title as course_title, b.session_id, sess.name as session_name, sem.name as semester_name, b.level');
+441:         $this->db->from('result_attempts a');
+442:         $this->db->join('result_batches b', 'b.id = a.batch_id');
+443:         $this->db->join('courses c', 'c.id = b.course_id');
+444:         $this->db->join('academic_sessions sess', 'sess.id = b.session_id', 'left');
+445:         $this->db->join('semesters sem', 'sem.id = b.semester_id', 'left');
+446:         $this->db->where('a.student_id', $student_id);
+447:         $this->db->where('b.status', 'published');
+448:         $this->db->order_by('sess.name', 'ASC');
+449:         $history = $this->db->get()->result_array();
+450: 
+451:         if (empty($history)) return null;
+452: 
+453:         $cgpa = $this->calculate_cgpa($history);
+454:         
+455:         // Group by session and semester
+456:         $grouped = [];
+457:         foreach ($history as $h) {
+458:             $key = $h['session_name'] . ' - ' . $h['semester_name'];
+459:             if (!isset($grouped[$key])) {
+460:                 $grouped[$key] = array(
+461:                     'session' => $h['session_name'],
+462:                     'semester' => $h['semester_name'],
+463:                     'level' => $h['level'],
+464:                     'results' => []
+465:                 );
+466:             }
+467:             $grouped[$key]['results'][] = $h;
+468:         }
+469: 
+470:         foreach ($grouped as &$group) {
+471:             $group['gpa'] = $this->calculate_gpa($group['results']);
+472:         }
+473: 
+474:         return array(
+475:             'cgpa' => $cgpa,
+476:             'sessions' => array_values($grouped)
+477:         );
+478:     }
+479: 
+480:     public function get_cgpa_list($programme_id = null)
+481:     {
+482:         $this->db->select('st.id as student_id, st.matric_number, st.first_name, st.last_name, st.middle_name, p.name as programme_name');
+483:         $this->db->from('students st');
+484:         $this->db->join('programmes p', 'p.id = st.programme_id', 'left');
+485:         if ($programme_id) {
+486:             $this->db->where('st.programme_id', $programme_id);
+487:         }
+488:         $students = $this->db->get()->result_array();
+489: 
+490:         foreach ($students as &$st) {
+491:             $this->db->select('a.*');
+492:             $this->db->from('result_attempts a');
+493:             $this->db->join('result_batches b', 'b.id = a.batch_id');
+494:             $this->db->where('a.student_id', $st['student_id']);
+495:             $this->db->where('b.status', 'published');
+496:             $history = $this->db->get()->result_array();
+497:             
+498:             $st['cgpa'] = $this->calculate_cgpa($history);
+499:             $st['total_credits'] = array_sum(array_column($history, 'credit_units'));
+500:         }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

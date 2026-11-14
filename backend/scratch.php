@@ -1,0 +1,1 @@
+<?php require 'application/config/database.php'; \ = new PDO('mysql:host='.\['default']['hostname'].';dbname='.\['default']['database'].';charset=utf8', \['default']['username'], \['default']['password']); \ = \->query('DESCRIBE courses'); print_r(\->fetchAll(PDO::FETCH_ASSOC));

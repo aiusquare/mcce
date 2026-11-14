@@ -1,0 +1,41 @@
+Those results don't tell us anything yet. The 0.0006-second empty result and the all-zero counts mean `@prog` and `@sess` were never set. In phpMyAdmin each query tab can run in a new session, so the `SET` statements need to run in the same execution as the queries. With `@sess = NULL`, every comparison returns nothing.
+
+Q3 did show something useful: **the `courses` table has duplicate rows for the same code.**
+
+| Code | Rows in `courses` |
+|---|---|
+| BIO111 | 2 |
+| ENG111 | 3 |
+| ENG131 | 3 |
+
+Each row has a different `id`. This matters because registrations can sit on one `course_id` while result batches use another. That would explain scores that look "unregistered", and it ties back to the duplication you suspected earlier. The reconciliation and broadsheet code try to merge duplicates by code. That merge is a workaround, not a fix.
+
+Please run the block below as a single execution. It needs no variables.
+
+```sql
+-- A. All duplicate course codes: one row per course id, with usage across ALL sessions
+SELECT c.code, c.id AS course_id, c.title, c.credit_units, c.programme_id, c.created_at,
+  (SELECT COUNT(*) FROM course_registration_items cri WHERE cri.course_id = c.id) AS reg_items,
+  (SELECT COUNT(*) FROM result_batches rb WHERE rb.course_id = c.id) AS batches,
+  (SELECT COUNT(*) FROM result_attempts ra JOIN result_batches rb ON rb.id = ra.batch_id
+     WHERE rb.course_id = c.id AND ra.total_score IS NOT NULL) AS scored_attempts
+FROM courses c
+WHERE c.code IN (SELECT code FROM courses GROUP BY code HAVING COUNT(*) > 1)
+ORDER BY c.code, c.created_at;
+
+-- B. Session ids (so we know what to filter on)
+SELECT id, name FROM academic_sessions;
+
+-- C. Programme id
+SELECT id, name FROM programmes WHERE name LIKE '%Educational Administration%';
+```
+
+**A** is the key query. It will show which duplicate `course_id` holds the registrations and which holds the scores. If they differ for ENG111, ENG131 and BIO111, that is the root cause of the "unregistered score" report, and the fix is to merge the duplicate course rows.
+
+If you'd rather paste Q1–Q3 again, put these three lines at the very top of the same execution, using the ids returned by B and C:
+```sql
+SET @sess = '<id from B for 2021/2022>';
+SET @prog = '<id from C>';
+```
+
+The next step depends on what **A** shows. I'll then write a safe merge script for the duplicate courses (re-point registrations, batches and attempts, then deactivate the extras). It will include a dry-run count first and a guard to stop duplicates being created again.

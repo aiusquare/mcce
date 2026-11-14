@@ -1,0 +1,34 @@
+Created At: 2026-10-24T00:23:10+01:00
+Completed At: 2026-10-24T00:23:10+01:00
+Showing lines 60-90 of 96
+60: | 				NOTE: Disabling this will also effectively disable both
+61: | 				$this->db->last_query() and profiling of DB queries.
+62: | 				When you run a query, with this setting set to TRUE (default),
+63: | 				CodeIgniter will store the SQL statement for debugging purposes.
+64: | 				However, this may cause high memory usage, especially if you run
+65: | 				a lot of SQL queries ... disable this to avoid that problem.
+66: |
+67: | The $active_group variable lets you choose which connection group to
+68: | make active.  By default there is only one group (the 'default' group).
+69: |
+70: | The $query_builder variables lets you determine whether or not to load
+71: | the query builder class.
+72: */
+73: $active_group = 'default';
+74: $query_builder = TRUE;
+75: 
+76: $db['default'] = array(
+77: 	'dsn'	=> '',
+78: 	'hostname' => 'localhost',
+79: 	'username' => 'aacasorg_main',
+80: 	'password' => 'Zb@+3C7]0Z;7RPcQ',
+81: 	'database' => 'aacasorg_main',
+82: 	'dbdriver' => 'mysqli',
+83: 	'dbprefix' => '',
+84: 	'pconnect' => FALSE,
+85: 	'db_debug' => (ENVIRONMENT !== 'production'),
+86: 	'cache_on' => FALSE,
+87: 	'cachedir' => '',
+88: 	'char_set' => 'utf8',
+89: 	'dbcollat' => 'utf8_general_ci',
+90: 	'swap_pre' => '',

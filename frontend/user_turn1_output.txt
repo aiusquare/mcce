@@ -1,0 +1,126 @@
+<USER_REQUEST>
+Showing rows 0 - 24 (67 total, Query took 0.7962 seconds.)
+[SELECT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/select.html) c.code AS registered_course_code, c.title, c.credit_units, [COUNT](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html%23function_count)(*) AS student_count FROM course_registration_items cri JOIN course_registrations cr ON cr.id = cri.registration_id JOIN students s ON s.id = cr.student_id JOIN courses c ON c.id = cri.course_id WHERE s.programme_id = '8732138a-a35d-4551-947a-b01300810512' [AND](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_and) (c.code [LIKE](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html%23operator_like) 'ENG%' [OR](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_or) c.code [LIKE](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html%23operator_like) 'BIO%' [OR](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_or) c.code [LIKE](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html%23operator_like) 'EAP%' [OR](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_or) c.code [LIKE](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html%23operator_like) 'EDU%' [OR](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html%23operator_or) c.code [LIKE](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/url.php?url=https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html%23operator_like) 'GST%') GROUP BY c.code, c.title, c.credit_units ORDER BY c.code;
+Profiling [ [Edit inline](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php?route=/table/sql&db=mcceorgn_main&table=courses#) ] [ [Edit](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Explain SQL](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Create PHP code](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ] [ [Refresh](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php) ]
+1 2 3
+|
+Show all
+|
+Number of rows: 25 50 100 250 500
+Filter rows:
+[registered_course_code](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php?route=/sql&db=mcceorgn_main&table=c&sql_query=SELECT+c.code+AS+registered_course_code%2C+c.title%2C+c.credit_units%2C+COUNT%28%2A%29+AS+student_count%0D%0AFROM+course_registration_items+cri%0D%0AJOIN+course_registrations+cr+ON+cr.id+%3D+cri.registration_id%0D%0AJOIN+students+s+ON+s.id+%3D+cr.student_id%0D%0AJOIN+courses+c+ON+c.id+%3D+cri.course_id%0D%0AWHERE+s.programme_id+%3D+%278732138a-a35d-4551-947a-b01300810512%27%0D%0A++AND+%28c.code+LIKE+%27ENG%25%27+OR+c.code+LIKE+%27BIO%25%27+OR+c.code+LIKE+%27EAP%25%27+OR+c.code+LIKE+%27EDU%25%27+OR+c.code+LIKE+%27GST%25%27%29%0D%0AGROUP+BY+c.code%2C+c.title%2C+c.credit_units+%0AORDER+BY+%60registered_course_code%60+ASC+&sql_signature=01a1c9502f47932f987c4d54caed48c8cafb1b4b550fe46636a872ff3b41e62b&session_max_rows=25&is_browse_distinct=0)
+[title](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php?route=/sql&db=mcceorgn_main&table=c&sql_query=SELECT+c.code+AS+registered_course_code%2C+c.title%2C+c.credit_units%2C+COUNT%28%2A%29+AS+student_count%0D%0AFROM+course_registration_items+cri%0D%0AJOIN+course_registrations+cr+ON+cr.id+%3D+cri.registration_id%0D%0AJOIN+students+s+ON+s.id+%3D+cr.student_id%0D%0AJOIN+courses+c+ON+c.id+%3D+cri.course_id%0D%0AWHERE+s.programme_id+%3D+%278732138a-a35d-4551-947a-b01300810512%27%0D%0A++AND+%28c.code+LIKE+%27ENG%25%27+OR+c.code+LIKE+%27BIO%25%27+OR+c.code+LIKE+%27EAP%25%27+OR+c.code+LIKE+%27EDU%25%27+OR+c.code+LIKE+%27GST%25%27%29%0D%0AGROUP+BY+c.code%2C+c.title%2C+c.credit_units+%0AORDER+BY+%60c%60.%60title%60+ASC+&sql_signature=303ffa97cab585607029783db8baac7af159403932669f3b6686906bde0199ed&session_max_rows=25&is_browse_distinct=0)
+[credit_units](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php?route=/sql&db=mcceorgn_main&table=c&sql_query=SELECT+c.code+AS+registered_course_code%2C+c.title%2C+c.credit_units%2C+COUNT%28%2A%29+AS+student_count%0D%0AFROM+course_registration_items+cri%0D%0AJOIN+course_registrations+cr+ON+cr.id+%3D+cri.registration_id%0D%0AJOIN+students+s+ON+s.id+%3D+cr.student_id%0D%0AJOIN+courses+c+ON+c.id+%3D+cri.course_id%0D%0AWHERE+s.programme_id+%3D+%278732138a-a35d-4551-947a-b01300810512%27%0D%0A++AND+%28c.code+LIKE+%27ENG%25%27+OR+c.code+LIKE+%27BIO%25%27+OR+c.code+LIKE+%27EAP%25%27+OR+c.code+LIKE+%27EDU%25%27+OR+c.code+LIKE+%27GST%25%27%29%0D%0AGROUP+BY+c.code%2C+c.title%2C+c.credit_units+%0AORDER+BY+%60c%60.%60credit_units%60+ASC+&sql_signature=f70e354c1f514fe343bd4968f14f379b7845e5a1332e1764b80005ea6b1e307b&session_max_rows=25&is_browse_distinct=0)
+[student_count](https://server1011.afeeshost.com:2083/cpsess4740963406/3rdparty/phpMyAdmin/index.php?route=/sql&db=mcceorgn_main&table=c&sql_query=SELECT+c.code+AS+registered_course_code%2C+c.title%2C+c.credit_units%2C+COUNT%28%2A%29+AS+student_count%0D%0AFROM+course_registration_items+cri%0D%0AJOIN+course_registrations+cr+ON+cr.id+%3D+cri.registration_id%0D%0AJOIN+students+s+ON+s.id+%3D+cr.student_id%0D%0AJOIN+courses+c+ON+c.id+%3D+cri.course_id%0D%0AWHERE+s.programme_id+%3D+%278732138a-a35d-4551-947a-b01300810512%27%0D%0A++AND+%28c.code+LIKE+%27ENG%25%27+OR+c.code+LIKE+%27BIO%25%27+OR+c.code+LIKE+%27EAP%25%27+OR+c.code+LIKE+%27EDU%25%27+OR+c.code+LIKE+%27GST%25%27%29%0D%0AGROUP+BY+c.code%2C+c.title%2C+c.credit_units+%0AORDER+BY+%60student_count%60+ASC+&sql_signature=6d2c6a3f3fccd94277f155bb511cc583483ee2631ec3849437324e7945e33c84&session_max_rows=25&is_browse_distinct=0)
+BIO111
+General Biology
+3
+32
+BIO112
+General Biology II
+3
+178
+BIO211
+Genetics I
+2
+178
+BIO242
+General Physiology
+2
+196
+BIO311
+Genetics II
+2
+178
+BIO321
+Biostatistics
+2
+197
+EAP111
+Introduction to Educational Administration and Pla...
+2
+203
+EAP112
+Legal Basis for Education in Nigeria
+2
+213
+EAP121
+System of Education in Nigeria
+2
+47
+EAP122
+Concepts and principles of educational planning
+2
+212
+EAP131
+Educational Leadership
+2
+63
+EAP132
+Personnel Management
+2
+179
+EAP141
+Systems Theory and Analysis
+2
+211
+EAP211
+Concepts of Inspection and supervision
+2
+214
+EAP212
+Secondary School Administration
+2
+188
+EAP221
+Primary School Administration
+2
+187
+EAP222
+Practices of inspection and supervision in Nigeria...
+2
+189
+EAP231
+System Theory
+2
+211
+EAP312
+Practicum in Educational Administration and Planni...
+4
+238
+EAP321
+Agencies and Management of Education
+2
+228
+EAP331
+Economics of Education
+2
+211
+EAP341
+Research in Educational Administration and plannin...
+2
+203
+EAP411
+School facilities Planning and Mapping Network
+2
+243
+EAP412
+Administration of students Programmes and services...
+2
+245
+EAP422
+Introduction to Comparative Educational Administra...
+2
+323
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-23T23:41:34+01:00.
+
+The user's current state is as follows:
+Other open documents:
+- c:\DEV\Reatjs\maslaha\frontend\db\result_management_schema.sql (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\backend\db\migrations\020_broadsheet_integrity.sql (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\components\admin\results\BroadsheetTab.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\ApplicationReviewPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\StudentManagementPage.tsx (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>
