@@ -46,14 +46,28 @@ async function request(path: string, options: RequestInit = {}) {
   };
 
   try {
-    const rawAdminSession =
-      localStorage.getItem(ADMIN_SESSION_STORAGE_KEY) ||
-      localStorage.getItem(LEGACY_ADMIN_SESSION_STORAGE_KEY);
-    const adminSession = rawAdminSession
-      ? (JSON.parse(rawAdminSession) as { token?: string })
-      : null;
-    if (adminSession?.token && !headers.Authorization) {
-      headers.Authorization = `Bearer ${adminSession.token}`;
+    if (!headers.Authorization) {
+      const rawAdminSession =
+        localStorage.getItem(ADMIN_SESSION_STORAGE_KEY) ||
+        localStorage.getItem(LEGACY_ADMIN_SESSION_STORAGE_KEY);
+      const adminSession = rawAdminSession
+        ? (JSON.parse(rawAdminSession) as { token?: string })
+        : null;
+
+      const rawStudentProfile =
+        localStorage.getItem("mccas_profile") ||
+        localStorage.getItem("MCCAS_profile");
+      const studentProfile = rawStudentProfile
+        ? (JSON.parse(rawStudentProfile) as { token?: string; access_token?: string })
+        : null;
+
+      const token =
+        adminSession?.token ||
+        studentProfile?.token ||
+        studentProfile?.access_token;
+      if (token) {
+        headers.Authorization = `Bearer ${token}`;
+      }
     }
   } catch (error) {
     // ignore storage failures

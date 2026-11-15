@@ -36,10 +36,17 @@ export function mergeMissingCarryoverAttempts(
     const registrationType = String(
       student.registration_type || "",
     ).toUpperCase();
+    const isVerifiedCarryover = Boolean(
+      (student as any).is_carryover === true ||
+      (student as any).is_carryover === 1 ||
+      (student as any).origin_result_attempt_id ||
+      (student as any).previous_attempt
+    );
     if (
       !studentId ||
       includedStudentIds.has(studentId) ||
-      !["CARRYOVER", "REPEAT"].includes(registrationType)
+      !["CARRYOVER", "REPEAT"].includes(registrationType) ||
+      !isVerifiedCarryover
     ) {
       return;
     }
@@ -55,6 +62,8 @@ export function mergeMissingCarryoverAttempts(
       quality_point: null,
       is_locked: 0,
       is_pending_carryover: true,
+      is_carryover: 1,
+      registration_type: "CARRYOVER",
     });
     includedStudentIds.add(studentId);
   });

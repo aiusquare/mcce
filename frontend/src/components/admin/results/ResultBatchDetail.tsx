@@ -91,7 +91,7 @@ export function ResultBatchDetail({
       const [attemptsRes, classRes, structRes] = (await Promise.all([
         api.get("/api/admin/results/attempts?batch_id=" + encodeURIComponent(batch.id)),
         api.get(
-          `/api/admin/course-registration/class-list?session_id=${encodeURIComponent(batch.session_id || "")}&semester_id=${encodeURIComponent(batch.semester_id || "")}&course_id=${encodeURIComponent(batch.course_id || "")}&level=${encodeURIComponent(batch.level || "")}${batch.programme_id ? `&programme_id=${encodeURIComponent(batch.programme_id)}` : ""}${batch.department_id ? `&department_id=${encodeURIComponent(batch.department_id)}` : ""}`,
+          `/api/admin/course-registration/class-list?session_id=${encodeURIComponent(batch.academic_session_id || batch.session_id || "")}&semester_id=${encodeURIComponent(batch.semester_id || "")}&course_id=${encodeURIComponent(batch.course_id || "")}&level=${encodeURIComponent(batch.level || "")}${batch.programme_id ? `&programme_id=${encodeURIComponent(batch.programme_id)}` : ""}${batch.department_id ? `&department_id=${encodeURIComponent(batch.department_id)}` : ""}`,
         ),
         api.get("/api/admin/results/assessment-structure").catch(() => null),
       ])) as [any, any, any];
@@ -108,11 +108,17 @@ export function ResultBatchDetail({
         : Array.isArray(classRes)
           ? classRes
           : [];
-      // Strict Rule: No student shall be listed if he is not registered under the course
+      // Do not delete or hide historically scored attempts merely because their old registration link is incomplete
+      const hasHistoricalScore = (a: any) =>
+        (a.ca_score !== null && a.ca_score !== undefined && a.ca_score !== "") ||
+        (a.exam_score !== null && a.exam_score !== undefined && a.exam_score !== "") ||
+        (a.total_score !== null && a.total_score !== undefined && a.total_score !== "") ||
+        (a.grade !== null && a.grade !== undefined && a.grade !== "");
+
       const sanitizedAttempts = latestClassList.length > 0
         ? savedAttempts.filter((a: any) => {
             if (!a || typeof a !== "object") return false;
-            return latestClassList.some((c: any) => c && c.student_id === a.student_id);
+            return hasHistoricalScore(a) || latestClassList.some((c: any) => c && c.student_id === a.student_id);
           })
         : savedAttempts;
       setAttempts(
@@ -286,18 +292,13 @@ export function ResultBatchDetail({
       const payload = {
         batch_id: batch.id,
         attempts: selectAttemptsForSave(attempts).map((a) => {
-          const classEntry = classList.find(
-            (entry) => entry && entry.student_id === a.student_id,
-          );
-          const rawRegType = (a as any).registration_type || (a as any).registration_type_snapshot || classEntry?.registration_type || "";
+          // Authoritative verified classification:
+          // Do not infer carryover from unverified class-list records or unverified strings.
           const isCarryover = Boolean(
-            (a as any).is_carryover ||
-            classEntry?.is_carryover ||
-            classEntry?.origin_result_attempt_id ||
-            classEntry?.previous_attempt ||
-            (a as any).previous_attempt ||
-            (a as any).source_result_attempt_id ||
-            ["CARRYOVER", "REPEAT"].includes(String(rawRegType).toUpperCase())
+            (a as any).is_carryover === 1 ||
+            (a as any).is_carryover === true ||
+            (a as any).derived_classification === "carryover" ||
+            ((a as any).is_pending_carryover && (a as any).is_carryover)
           );
           return {
             student_id: a.student_id,
@@ -305,12 +306,9 @@ export function ResultBatchDetail({
             exam_score: a.exam_score,
             is_absent: a.grade === "ABS",
             is_carryover: isCarryover,
-            source_result_attempt_id:
-              (a as any).source_result_attempt_id ||
-              classEntry?.origin_result_attempt_id ||
-              (a as any).previous_attempt?.id ||
-              classEntry?.previous_attempt?.id ||
-              null,
+            source_result_attempt_id: isCarryover
+              ? ((a as any).source_result_attempt_id || (a as any).previous_attempt?.id || null)
+              : null,
           };
         }),
       };
@@ -376,20 +374,17 @@ export function ResultBatchDetail({
       .map((a) => {
         const c = safeClassList.find((entry) => entry && entry.student_id === a.student_id);
         const rawMode = a.entry_mode || c?.entry_mode || c?.mode_of_entry || "";
-        const rawRegType = (a as any).registration_type || (a as any).registration_type_snapshot || c?.registration_type;
-        const hasPrevAttempt = Boolean(
-          (a as any).previous_attempt ||
-          c?.previous_attempt ||
-          (a as any).source_result_attempt_id ||
-          c?.origin_result_attempt_id
-        );
-        const isCarryoverAttempt = Boolean(
-          (a as any).is_carryover ||
-          (a as any).is_pending_carryover ||
-          c?.is_carryover ||
-          hasPrevAttempt ||
-          ["CARRYOVER", "REPEAT"].includes(String(rawRegType || "").toUpperCase())
-        );
+
+        // Backend's verified per-attempt classification is authoritative:
+        // Do not infer carryover from unverified class-list records or unverified strings.
+        const isBackendVerifiedCo =
+          (a as any).is_carryover === 1 ||
+          (a as any).is_carryover === true ||
+          (a as any).derived_classification === "carryover";
+        const isPendingCo = Boolean((a as any).is_pending_carryover && (a as any).is_carryover);
+        const isCarryoverAttempt = isBackendVerifiedCo || isPendingCo;
+
+        const rawRegType = (a as any).derived_classification || (a as any).registration_type || (a as any).registration_type_snapshot;
         const isExplicitUnregistered =
           (a as any).is_unregistered === true ||
           String(rawRegType || "").toUpperCase() === "UNREGISTERED";
@@ -398,19 +393,26 @@ export function ResultBatchDetail({
           ? "CARRYOVER"
           : isExplicitUnregistered
             ? "UNREGISTERED"
-            : (rawRegType ? String(rawRegType).toUpperCase() : "CORE");
+            : (rawRegType && ["CORE", "ELECTIVE"].includes(String(rawRegType).toUpperCase())
+                ? String(rawRegType).toUpperCase()
+                : ((a as any).curriculum_course_type ? String((a as any).curriculum_course_type).toUpperCase() : "CORE"));
+
+        const hasConflict = Boolean(
+          (a as any).has_snapshot_conflict ||
+          ((a as any).stored_registration_type_snapshot &&
+           (a as any).derived_classification &&
+           String((a as any).stored_registration_type_snapshot).toUpperCase() !== String((a as any).derived_classification).toUpperCase())
+        );
 
         return {
           ...a,
           is_carryover: isCarryoverAttempt,
           registration_type: derivedType,
-          previous_attempt: (a as any).previous_attempt || c?.previous_attempt || null,
-          source_result_attempt_id:
-            (a as any).source_result_attempt_id ||
-            c?.origin_result_attempt_id ||
-            (a as any).previous_attempt?.id ||
-            c?.previous_attempt?.id ||
-            null,
+          has_snapshot_conflict: hasConflict,
+          previous_attempt: isCarryoverAttempt ? ((a as any).previous_attempt || c?.previous_attempt || null) : null,
+          source_result_attempt_id: isCarryoverAttempt
+            ? ((a as any).source_result_attempt_id || c?.origin_result_attempt_id || (a as any).previous_attempt?.id || c?.previous_attempt?.id || null)
+            : null,
           current_level: c?.current_level || (a as any).current_level || "",
           entry_mode: rawMode,
           normalized_entry_mode: normalizeEntryMode(rawMode),
@@ -975,6 +977,15 @@ export function ResultBatchDetail({
                               className="text-xs py-0 h-5 border-amber-300 text-amber-700 bg-amber-50"
                             >
                               Unregistered
+                            </Badge>
+                          )}
+                          {attempt?.has_snapshot_conflict && (
+                            <Badge
+                              variant="outline"
+                              className="text-xs py-0 h-5 border-amber-400 text-amber-800 bg-amber-50"
+                              title="Persisted registration type snapshot conflicts with verified historical attempt classification"
+                            >
+                              Classification Warning
                             </Badge>
                           )}
                           {attempt?.normalized_entry_mode === "Direct Entry" ? (

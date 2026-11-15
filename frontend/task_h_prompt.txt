@@ -1,0 +1,124 @@
+<USER_REQUEST>
+# TASK H: Fix Incorrect Carryover Classification in the First Entry Cohort Result Sheets
+
+## Project
+
+MCCE Academic Management System
+
+Backend repository: https://github.com/aiusquare/mcce-backend
+
+Frontend: React/TypeScript, local project
+
+Backend: CodeIgniter 3, PHP, MySQL
+
+Local test database: mcce_test
+
+Existing academic database: mcceorgn_main
+
+## Confirmed academic rules
+
+The institution's first admission cohort was 2021/2022.
+
+In 2021/2022:
+
+- Fresh students started in Contact 1.
+- Direct Entry students started in Contact 2.
+
+The EAP programme admitted 146 Direct Entry students.
+
+The GST111 result batch for 2021/2022 Contact 2 currently displays 146 DE students, with 117 classified as regular and 29 as carryover.
+
+This classification is suspicious because these were the students' first examinations in their programme.
+
+Carryover corrections should be recorded in later eligible academic periods following an actual previous failed attempt.
+
+## Phase 1: Perform database forensics before changing code
+
+Read the relevant controllers, models and frontend components.
+
+Locate the exact 2021/2022 Contact 2 GST111 EAP result batch.
+
+Use read-only SQL to inspect:
+
+- All 146 students.
+- Their entry modes.
+- Their entry cohorts.
+- Their original result attempts.
+- Stored registration_type_snapshot values.
+- Returned backend is_carryover values.
+- Associated registration headers and items.
+- Original and later academic session IDs.
+- Provenance and correction relationships.
+
+Identify the exact 29 students classified as carryover in the current UI.
+
+For each student, determine whether the label originated from:
+
+A. A wrongly matched later registration.
+
+B. An incorrectly stored registration_type_snapshot.
+
+C. A falsely inferred earlier failed attempt.
+
+D. An incorrect or fabricated source_result_attempt_id.
+
+E. Frontend classification overriding the original attempt type.
+
+F. A combination of these problems.
+
+Report the actual count under each category.
+
+Do not assume all 29 have the same cause.
+
+Do not ch
+<truncated 7527 bytes>
+y.
+
+Verify:
+
+- Total DE students: 146.
+- Correct current contact: Contact 2.
+- Teaching academic session: 2021/2022.
+- Entry cohort: 2021/2022.
+- Regular first attempts: 146.
+- Valid carryover first attempts: 0.
+
+This expected outcome applies only where the records confirm these students are genuine first entrants without recognised exceptional prior attempts.
+
+Then test a later session where these students legitimately repeat failed courses.
+
+Verify the later carryover classifications remain correct.
+
+## Phase 9: Final report
+
+Provide:
+
+1. The exact source of the 29 incorrect classifications.
+2. Counts by root-cause category.
+3. Supporting database evidence.
+4. The specific backend methods responsible.
+5. The frontend conditions responsible.
+6. Files modified.
+7. Before-and-after result-sheet counts.
+8. Real-database integration-test results.
+9. Existing regression-test results.
+10. Confirmation that historical scores and correction records remain unchanged.
+11. Any unresolved academic-record inconsistencies.
+
+Do not claim that the 29 records have been corrected until the actual database evidence confirms it.
+
+Do not deploy or modify production data.
+
+The objective is to ensure that every result attempt is classified according to its actual academic history and examination period, without importing carryover status from later registrations.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-15T01:02:15+01:00.
+
+The user's current state is as follows:
+Other open documents:
+- c:\DEV\laragon\www\mcce_backend\tests\test_student_registration_contract_integration.php (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\ApplicationReviewPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\StudentManagementPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\ResultManagementPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\components\admin\results\ResultsTab.tsx (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>

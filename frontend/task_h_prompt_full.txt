@@ -1,0 +1,332 @@
+<USER_REQUEST>
+# TASK H: Fix Incorrect Carryover Classification in the First Entry Cohort Result Sheets
+
+## Project
+
+MCCE Academic Management System
+
+Backend repository: https://github.com/aiusquare/mcce-backend
+
+Frontend: React/TypeScript, local project
+
+Backend: CodeIgniter 3, PHP, MySQL
+
+Local test database: mcce_test
+
+Existing academic database: mcceorgn_main
+
+## Confirmed academic rules
+
+The institution's first admission cohort was 2021/2022.
+
+In 2021/2022:
+
+- Fresh students started in Contact 1.
+- Direct Entry students started in Contact 2.
+
+The EAP programme admitted 146 Direct Entry students.
+
+The GST111 result batch for 2021/2022 Contact 2 currently displays 146 DE students, with 117 classified as regular and 29 as carryover.
+
+This classification is suspicious because these were the students' first examinations in their programme.
+
+Carryover corrections should be recorded in later eligible academic periods following an actual previous failed attempt.
+
+## Phase 1: Perform database forensics before changing code
+
+Read the relevant controllers, models and frontend components.
+
+Locate the exact 2021/2022 Contact 2 GST111 EAP result batch.
+
+Use read-only SQL to inspect:
+
+- All 146 students.
+- Their entry modes.
+- Their entry cohorts.
+- Their original result attempts.
+- Stored registration_type_snapshot values.
+- Returned backend is_carryover values.
+- Associated registration headers and items.
+- Original and later academic session IDs.
+- Provenance and correction relationships.
+
+Identify the exact 29 students classified as carryover in the current UI.
+
+For each student, determine whether the label originated from:
+
+A. A wrongly matched later registration.
+
+B. An incorrectly stored registration_type_snapshot.
+
+C. A falsely inferred earlier failed attempt.
+
+D. An incorrect or fabricated source_result_attempt_id.
+
+E. Frontend classification overriding the original attempt type.
+
+F. A combination of these problems.
+
+Report the actual count under each category.
+
+Do not assume all 29 have the same cause.
+
+Do not change the academic database during this audit.
+
+## Phase 2: Correct the class-list session leak
+
+Inspect:
+
+application/controllers/Admin_course_registration.php
+
+Method:
+
+get_class_list()
+
+The existing query contains logic equivalent to:
+
+```php
+$this->db->where_in('r.session_id', $target_session_ids);
+$this->db->or_where_in('s.session_name', $target_session_ids);
+```
+
+This can admit registrations from later academic sessions because the student's entry cohort matches the requested historical session.
+
+Remove the entry-cohort condition from teaching-session registration eligibility.
+
+Use the canonical course_registrations.academic_session_id when populated.
+
+Use legacy session_id only when the canonical academic-session field is missing or empty.
+
+Resolve UUID and textual session representations consistently.
+
+Entry-cohort fields must remain available for cohort filtering and display, but must never broaden the teaching-session population query.
+
+Preserve legitimate carryovers registered in the correct later academic period.
+
+## Phase 3: Correct outstanding-course detection
+
+Inspect:
+
+application/models/Outstanding_course_model.php
+
+Pay particular attention to:
+
+- get_outstanding_students_for_course_before()
+- get_outstanding_students_for_courses_before()
+- get_outstanding_courses_before()
+- is_before()
+
+An actual carryover requires a verified prior failed examination.
+
+Validate that the source attempt:
+
+1. Belongs to the same student.
+2. Belongs to the same course.
+3. Occurred strictly before the target examination period.
+4. Belongs to the student's legitimate academic history.
+5. Was not already cleared by a subsequent successful correction.
+6. Is linked through valid registration and provenance evidence.
+
+Do not allow a later registration to validate an unrelated historical result attempt.
+
+Resolve Direct Entry mode from the authoritative student/admission records, including admissions.mode_of_entry where applicable.
+
+For the 2021/2022 DE entrants, Contact 2 was their first programme contact.
+
+A Contact 1 record from that same session must not be interpreted as an ordinary previous failed examination for these students.
+
+Do not create false Contact 1 examination histories for DE students.
+
+Preserve valid transfers or officially recognised exceptions only when supported by explicit academic records and policy.
+
+Do not classify a student as a carryover merely because their course was previously associated with another contact or the registration item contains the word carryover.
+
+## Phase 4: Correct result-attempt classification
+
+Inspect:
+
+application/models/Results_model.php
+
+Methods:
+
+- get_registered_students_for_batch()
+- populate_batch_attempts()
+- get_attempts_by_batch()
+- save_attempts()
+
+For each historical batch, distinguish:
+
+- Curriculum course type.
+- Current-period registration type.
+- Stored examination-attempt type.
+- Verified carryover status.
+
+A result attempt must be classified as carryover only when supported by valid historical evidence for that specific attempt.
+
+Do not allow later changes in registration status to retrospectively reclassify the student's first examination.
+
+Do not overwrite stored examination snapshots in GET requests.
+
+Do not trust a frontend-submitted is_carryover flag without server-side validation.
+
+Ensure that save_attempts rejects an invalid carryover source without changing a valid regular result.
+
+Preserve the existing Fix D provenance protections.
+
+## Phase 5: Correct the React frontend
+
+Inspect the latest local equivalent of:
+
+frontend/src/components/admin/results/ResultBatchDetail.tsx
+
+frontend/src/lib/resultBatchAttempts.ts
+
+The frontend currently combines multiple carryover indicators using OR conditions.
+
+This can allow an incorrectly matched class-list record to override the classification of a valid first examination attempt.
+
+Use the backend's verified per-attempt classification as the authoritative display value.
+
+Do not infer carryover merely because:
+
+- The student has a previous result somewhere.
+- A class-list row was marked carryover.
+- A registration exists in another academic session.
+- The stored snapshot conflicts with a verified current classification.
+
+Treat unresolved classification conflicts as integrity warnings.
+
+Ensure the frontend uses the batch's canonical academic_session_id for class-list requests, with the documented legacy fallback.
+
+Only generate pending carryover rows when the backend verifies eligibility for the requested session and course.
+
+Do not delete or hide historically scored attempts merely because their old registration link is incomplete.
+
+Do not submit a carryover flag derived from unverified frontend data.
+
+## Phase 6: Reconcile existing records safely
+
+After correcting the classification logic, repeat the database audit.
+
+Classify the 29 original suspect records into:
+
+- Display-only misclassification.
+- Incorrect registration relationship.
+- Incorrect persisted attempt classification.
+- Incorrect provenance.
+- Ambiguous academic history.
+
+For display-only cases, fix the query and frontend logic without modifying historical rows.
+
+For confirmed persisted inconsistencies, generate a reviewed reconciliation plan.
+
+Do not automatically update scores, grades, quality points, credits or result-attempt IDs.
+
+Preserve legitimate later carryover corrections.
+
+Do not delete any result attempt or correction record.
+
+Any approved historical classification update must have an audit trail and must respect published/locked-result governance.
+
+No production writes are authorised by this task.
+
+## Phase 7: Real-database regression tests
+
+Create:
+
+tests/test_first_cohort_result_classification_integration.php
+
+Use synthetic student records and the isolated mcce_test database.
+
+Implement these tests:
+
+H1: Fresh student admitted in 2021/2022 starts Contact 1 as a regular student.
+
+H2: DE student admitted in 2021/2022 starts Contact 2 as a regular student.
+
+H3: First DE Contact 2 examination has is_carryover = 0.
+
+H4: The first examination has no artificial previous_attempt or source_result_attempt_id.
+
+H5: A legitimate later-year carryover registration cannot appear in the 2021/2022 class list.
+
+H6: A student's entry cohort cannot widen the teaching-session registration query.
+
+H7: A genuine Contact 2 failure creates an eligible carryover obligation in a later permitted academic period.
+
+H8: A genuine repeat examination in the later session is marked carryover.
+
+H9: A successful repeat clears future outstanding obligations without deleting historical attempts.
+
+H10: Incorrect legacy registration_type_snapshot does not silently override verified original-examination classification.
+
+H11: A false frontend is_carryover flag cannot force the backend to create a carryover correction.
+
+H12: A DE student is not assigned a fictional Contact 1 academic failure.
+
+H13: Mixed UUID and textual session representations are resolved correctly.
+
+H14: Results belonging to one academic session cannot acquire registrations from another session.
+
+H15: Existing CA, examination scores, totals and grades remain unchanged.
+
+H16: GPA, CGPA and historical broadsheets remain consistent.
+
+H17: All previously implemented A, B, C, D, E, F and G tests remain functional where available.
+
+H18: The frontend counts match the verified backend classifications.
+
+Use actual HTTP endpoints and MySQL queries.
+
+## Phase 8: Test the exact 146-student scenario
+
+Reproduce the original cohort using synthetic fixtures or an approved isolated anonymised copy.
+
+Verify:
+
+- Total DE students: 146.
+- Correct current contact: Contact 2.
+- Teaching academic session: 2021/2022.
+- Entry cohort: 2021/2022.
+- Regular first attempts: 146.
+- Valid carryover first attempts: 0.
+
+This expected outcome applies only where the records confirm these students are genuine first entrants without recognised exceptional prior attempts.
+
+Then test a later session where these students legitimately repeat failed courses.
+
+Verify the later carryover classifications remain correct.
+
+## Phase 9: Final report
+
+Provide:
+
+1. The exact source of the 29 incorrect classifications.
+2. Counts by root-cause category.
+3. Supporting database evidence.
+4. The specific backend methods responsible.
+5. The frontend conditions responsible.
+6. Files modified.
+7. Before-and-after result-sheet counts.
+8. Real-database integration-test results.
+9. Existing regression-test results.
+10. Confirmation that historical scores and correction records remain unchanged.
+11. Any unresolved academic-record inconsistencies.
+
+Do not claim that the 29 records have been corrected until the actual database evidence confirms it.
+
+Do not deploy or modify production data.
+
+The objective is to ensure that every result attempt is classified according to its actual academic history and examination period, without importing carryover status from later registrations.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-15T01:02:15+01:00.
+
+The user's current state is as follows:
+Other open documents:
+- c:\DEV\laragon\www\mcce_backend\tests\test_student_registration_contract_integration.php (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\ApplicationReviewPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\StudentManagementPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\pages\admin\ResultManagementPage.tsx (LANGUAGE_UNSPECIFIED)
+- c:\DEV\Reatjs\maslaha\frontend\src\components\admin\results\ResultsTab.tsx (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>
