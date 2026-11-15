@@ -234,7 +234,14 @@ export function ResultSheetIntegrityDialog({
       const res = (await api.get(
         `/api/admin/results/student-history?student_id=${encodeURIComponent(student.id)}`
       )) as any;
-      setHistoryRecords(res?.data?.history || res?.data || []);
+      const records = Array.isArray(res?.data?.results)
+        ? res.data.results
+        : Array.isArray(res?.data?.history)
+        ? res.data.history
+        : Array.isArray(res?.data)
+        ? res.data
+        : [];
+      setHistoryRecords(records);
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Failed to load student academic history");
       setHistoryRecords([]);
@@ -270,6 +277,35 @@ export function ResultSheetIntegrityDialog({
       }
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Reconciliation failed");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleSeverAndReconcile = async (issue: IntegrityIssue) => {
+    setActionLoading(true);
+    try {
+      const res = (await api.post("/api/admin/results/attempts/integrity/reconcile", {
+        batch_id: batchId,
+        attempt_id: issue.attempt_id,
+        expected_stored_classification: issue.stored_classification,
+        requested_correction: issue.verified_classification,
+        sever_invalid_source: true,
+        reason: "Severed invalid future source link and reconciled classification to " + issue.verified_classification,
+      })) as any;
+
+      toast.success(res?.message || `Successfully severed invalid link and reconciled ${issue.matric_number}`);
+      setSelectedIssueIds((prev) => {
+        const next = new Set(prev);
+        next.delete(issue.issue_id);
+        return next;
+      });
+      await loadAudit();
+      if (onReconciliationComplete) {
+        onReconciliationComplete();
+      }
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Sever and reconcile failed");
     } finally {
       setActionLoading(false);
     }
@@ -711,6 +747,18 @@ export function ResultSheetIntegrityDialog({
                                     Correct
                                   </Button>
                                 )}
+                                {!issue.can_auto_correct && !issue.is_protected && (issue.type === "source_period_invalid" || issue.type === "conflicting_source_provenance" || Boolean(issue.source_attempt_id)) && (
+                                  <Button
+                                    size="sm"
+                                    className="h-7 text-[11px] px-2 bg-rose-700 hover:bg-rose-800 text-white font-medium shadow-sm"
+                                    disabled={actionLoading}
+                                    onClick={() => handleSeverAndReconcile(issue)}
+                                    title="Sever invalid forward link and reconcile to CORE"
+                                  >
+                                    <ShieldCheck className="h-3 w-3 mr-1" />
+                                    Sever Link
+                                  </Button>
+                                )}
                               </div>
                             </TableCell>
                           </TableRow>
@@ -779,6 +827,19 @@ export function ResultSheetIntegrityDialog({
                                         Reconcile Classification to {issue.verified_classification.toUpperCase()}
                                       </Button>
                                     )}
+
+                                    {!issue.can_auto_correct && !issue.is_protected && (issue.type === "source_period_invalid" || issue.type === "conflicting_source_provenance" || Boolean(issue.source_attempt_id)) && (
+                                      <Button
+                                        size="sm"
+                                        className="h-7 text-xs bg-rose-700 hover:bg-rose-800 text-white font-medium shadow-sm"
+                                        disabled={actionLoading}
+                                        onClick={() => handleSeverAndReconcile(issue)}
+                                        title="Sever inverted future pointer and reconcile attempt to verified classification"
+                                      >
+                                        <ShieldCheck className="h-3.5 w-3.5 mr-1" />
+                                        Sever Invalid Link & Reconcile to {issue.verified_classification.toUpperCase()}
+                                      </Button>
+                                    )}
                                   </div>
                                 </div>
                               </TableCell>
@@ -813,7 +874,7 @@ export function ResultSheetIntegrityDialog({
                   <Loader2 className="h-6 w-6 animate-spin mx-auto text-primary" />
                   <p className="mt-2 text-xs text-muted-foreground">Loading academic record...</p>
                 </div>
-              ) : !historyRecords || historyRecords.length === 0 ? (
+              ) : !historyRecords || !Array.isArray(historyRecords) || historyRecords.length === 0 ? (
                 <div className="p-6 text-center text-xs text-muted-foreground border rounded">
                   No prior academic records found outside this cohort placement.
                 </div>
