@@ -7,6 +7,8 @@ import {
   CheckCircle2,
   XCircle,
   AlertCircle,
+  AlertTriangle,
+  ShieldAlert,
   Loader2,
   Trash2,
   RotateCcw,
@@ -41,6 +43,7 @@ import {
 } from "@/lib/resultBatchAttempts";
 import { toast } from "sonner";
 import { ImportResultsCsvDialog } from "./ImportResultsCsvDialog";
+import { ResultSheetIntegrityDialog } from "./ResultSheetIntegrityDialog";
 
 function normalizeEntryMode(raw: any): "Direct Entry" | "Fresh" {
   const s = String(raw || "").trim().toLowerCase();
@@ -78,11 +81,36 @@ export function ResultBatchDetail({
     max_total: number;
   }>({ max_ca: 30, max_exam: 70, max_total: 100 });
 
+  // Integrity Audit state
+  const [integrityOpen, setIntegrityOpen] = useState(false);
+  const [integrityAudit, setIntegrityAudit] = useState<any>(null);
+  const [integrityLoading, setIntegrityLoading] = useState(false);
+  const [integrityError, setIntegrityError] = useState<string | null>(null);
+
   useEffect(() => {
     if (batch?.id) {
       loadAttempts();
+      loadIntegrityAudit();
     }
   }, [batch?.id]);
+
+  const loadIntegrityAudit = async () => {
+    if (!batch?.id) return;
+    setIntegrityLoading(true);
+    setIntegrityError(null);
+    try {
+      const res = (await api.get(
+        `/api/admin/results/attempts/integrity?batch_id=${encodeURIComponent(batch.id)}`
+      )) as any;
+      if (res?.data) {
+        setIntegrityAudit(res.data);
+      }
+    } catch (err: any) {
+      setIntegrityError(err.response?.data?.message || "Integrity verification unavailable");
+    } finally {
+      setIntegrityLoading(false);
+    }
+  };
 
   const loadAttempts = async () => {
     if (!batch?.id) return;
@@ -839,6 +867,25 @@ export function ResultBatchDetail({
             <Button
               variant="outline"
               size="sm"
+              onClick={() => setIntegrityOpen(true)}
+              className={`text-xs ${
+                (integrityAudit?.summary?.total_issues || 0) > 0
+                  ? "border-amber-400 text-amber-800 bg-amber-50 hover:bg-amber-100"
+                  : "text-slate-700"
+              }`}
+              title="Run 15-point academic classification & provenance audit"
+            >
+              <AlertTriangle className="mr-1.5 h-3.5 w-3.5 text-amber-600" />
+              Integrity Audit
+              {(integrityAudit?.summary?.total_issues || 0) > 0 && (
+                <Badge variant="destructive" className="ml-1.5 text-[10px] h-4 px-1 py-0">
+                  {integrityAudit.summary.total_issues}
+                </Badge>
+              )}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
               onClick={handleExportResults}
               disabled={filteredAttempts.length === 0}
               title={`Export currently filtered results (${getFilterDescription()})`}
@@ -876,6 +923,59 @@ export function ResultBatchDetail({
             )}
           </div>
         </div>
+
+        {/* Result Sheet Integrity Verification Unavailable Alert */}
+        {integrityError && (
+          <div className="flex items-center justify-between p-3.5 text-xs bg-red-50 text-red-900 border border-red-200 rounded-lg">
+            <div className="flex items-center gap-2.5">
+              <ShieldAlert className="h-4 w-4 shrink-0 text-red-600" />
+              <span>
+                <strong>RESULT SHEET INTEGRITY VERIFICATION UNAVAILABLE:</strong> {integrityError}
+              </span>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={loadIntegrityAudit}
+              className="h-7 text-xs bg-white text-red-700 hover:bg-red-50 border-red-200"
+            >
+              Retry Verification
+            </Button>
+          </div>
+        )}
+
+        {/* Result Sheet Integrity Alert Banner */}
+        {integrityAudit?.summary?.total_issues > 0 && (
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 text-xs bg-amber-500/10 text-amber-950 border border-amber-300 rounded-lg shadow-sm">
+            <div className="flex items-start sm:items-center gap-3">
+              <AlertTriangle className="h-5 w-5 shrink-0 text-amber-600 mt-0.5 sm:mt-0" />
+              <div>
+                <span className="font-bold uppercase tracking-wider text-[11px] text-amber-900 block">
+                  RESULT SHEET INTEGRITY ALERT
+                </span>
+                <span className="font-semibold text-amber-900 text-sm">
+                  {integrityAudit.summary.total_issues} classification {integrityAudit.summary.total_issues === 1 ? "discrepancy" : "discrepancies"} detected.
+                </span>
+                <span className="text-amber-800 block text-xs mt-0.5">
+                  Some examination classifications do not agree with the stored academic history.
+                  {integrityAudit.summary.auto_correctable > 0 && (
+                    <span className="ml-1 font-medium text-emerald-800">
+                      ({integrityAudit.summary.auto_correctable} safely correctable without score changes)
+                    </span>
+                  )}
+                </span>
+              </div>
+            </div>
+            <Button
+              size="sm"
+              onClick={() => setIntegrityOpen(true)}
+              className="h-8 text-xs font-semibold bg-amber-600 hover:bg-amber-700 text-white shadow-sm shrink-0"
+            >
+              <AlertTriangle className="mr-1.5 h-3.5 w-3.5" />
+              Inspect {integrityAudit.summary.total_issues} {integrityAudit.summary.total_issues === 1 ? "Issue" : "Issues"}
+            </Button>
+          </div>
+        )}
 
         {stats.regular === 0 && stats.carryover > 0 && (
           <div className="flex items-center gap-2.5 p-3 text-xs bg-amber-50 text-amber-900 border border-amber-200 rounded-lg">
@@ -1223,6 +1323,17 @@ export function ResultBatchDetail({
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Result Sheet Integrity Audit & Reconciliation Dialog */}
+      <ResultSheetIntegrityDialog
+        open={integrityOpen}
+        onOpenChange={setIntegrityOpen}
+        batchId={batch?.id}
+        onReconciliationComplete={() => {
+          loadAttempts();
+          loadIntegrityAudit();
+        }}
+      />
     </div>
   );
 }
