@@ -33,6 +33,7 @@ import {
   Filter,
   ShieldCheck,
   Info,
+  Trash2,
 } from "lucide-react";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
@@ -311,6 +312,38 @@ export function ResultSheetIntegrityDialog({
     }
   };
 
+  const handleRemoveGhost = async (issue: IntegrityIssue) => {
+    if (!issue.can_auto_correct) {
+      toast.error("This issue requires manual review and cannot be automatically removed.");
+      return;
+    }
+    setActionLoading(true);
+    try {
+      const res = (await api.post("/api/admin/results/attempts/integrity/reconcile", {
+        batch_id: batchId,
+        attempt_id: issue.attempt_id,
+        expected_stored_classification: issue.stored_classification,
+        requested_correction: "remove",
+        reason: issue.reason || "Removed unverified ghost carryover attempt without source failure",
+      })) as any;
+
+      toast.success(res?.message || `Successfully removed ghost carryover for ${issue.matric_number}`);
+      setSelectedIssueIds((prev) => {
+        const next = new Set(prev);
+        next.delete(issue.issue_id);
+        return next;
+      });
+      await loadAudit();
+      if (onReconciliationComplete) {
+        onReconciliationComplete();
+      }
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to remove ghost record");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
   const handleReconcileSelected = async () => {
     const correctableSelected = filteredIssues.filter(
       (i) => selectedIssueIds.has(i.issue_id) && i.can_auto_correct
@@ -416,7 +449,9 @@ export function ResultSheetIntegrityDialog({
       case "incorrect_first_attempt_classification":
         return "First Attempt Stamped Carryover";
       case "unverified_carryover_missing_source":
-        return "Unverified Carryover (No Source)";
+        return "Ghost Carryover (No Source Failure)";
+      case "genuine_carryover_missing_correction_link":
+        return "Missing Correction Entry";
       case "source_student_mismatch":
         return "Source Student ID Mismatch";
       case "source_course_mismatch":
@@ -440,7 +475,7 @@ export function ResultSheetIntegrityDialog({
       case "previously_cleared_carryover":
         return "Previously Cleared Carryover";
       case "unidentified_genuine_carryover":
-        return "Unidentified Genuine Carryover";
+        return "Genuine Carryover (Stamped Regular)";
       default:
         return type.replace(/_/g, " ");
     }
@@ -693,9 +728,15 @@ export function ResultSheetIntegrityDialog({
                               </Badge>
                             </TableCell>
                             <TableCell className="text-center">
-                              <Badge variant="secondary" className="text-[10px] uppercase font-mono font-bold text-emerald-800 bg-emerald-50 border border-emerald-200">
-                                {issue.verified_classification}
-                              </Badge>
+                              {issue.verified_classification === "remove" ? (
+                                <Badge variant="outline" className="text-[10px] uppercase font-mono font-bold text-rose-800 bg-rose-50 border border-rose-300">
+                                  REMOVE
+                                </Badge>
+                              ) : (
+                                <Badge variant="secondary" className="text-[10px] uppercase font-mono font-bold text-emerald-800 bg-emerald-50 border border-emerald-200">
+                                  {issue.verified_classification}
+                                </Badge>
+                              )}
                             </TableCell>
                             <TableCell className="text-center">
                               {issue.can_auto_correct ? (
@@ -736,16 +777,29 @@ export function ResultSheetIntegrityDialog({
                                   History
                                 </Button>
                                 {issue.can_auto_correct && !issue.is_protected && (
-                                  <Button
-                                    size="sm"
-                                    className="h-7 text-[11px] px-2.5 bg-emerald-700 hover:bg-emerald-800 text-white"
-                                    disabled={actionLoading}
-                                    onClick={() => handleReconcileSingle(issue)}
-                                    title="Apply safe audited classification correction"
-                                  >
-                                    <Check className="h-3 w-3 mr-1" />
-                                    Correct
-                                  </Button>
+                                  issue.verified_classification === "remove" ? (
+                                    <Button
+                                      size="sm"
+                                      className="h-7 text-[11px] px-2.5 bg-rose-700 hover:bg-rose-800 text-white font-medium shadow-sm"
+                                      disabled={actionLoading}
+                                      onClick={() => handleRemoveGhost(issue)}
+                                      title="Remove unverified ghost carryover attempt and de-register item"
+                                    >
+                                      <Trash2 className="h-3 w-3 mr-1" />
+                                      Remove Ghost
+                                    </Button>
+                                  ) : (
+                                    <Button
+                                      size="sm"
+                                      className="h-7 text-[11px] px-2.5 bg-emerald-700 hover:bg-emerald-800 text-white"
+                                      disabled={actionLoading}
+                                      onClick={() => handleReconcileSingle(issue)}
+                                      title="Apply safe audited classification correction"
+                                    >
+                                      <Check className="h-3 w-3 mr-1" />
+                                      Correct
+                                    </Button>
+                                  )
                                 )}
                                 {!issue.can_auto_correct && !issue.is_protected && (issue.type === "source_period_invalid" || issue.type === "conflicting_source_provenance" || Boolean(issue.source_attempt_id)) && (
                                   <Button
@@ -817,15 +871,27 @@ export function ResultSheetIntegrityDialog({
                                     </div>
 
                                     {issue.can_auto_correct && !issue.is_protected && (
-                                      <Button
-                                        size="sm"
-                                        className="h-7 text-xs bg-emerald-700 hover:bg-emerald-800 text-white"
-                                        disabled={actionLoading}
-                                        onClick={() => handleReconcileSingle(issue)}
-                                      >
-                                        <Check className="h-3.5 w-3.5 mr-1" />
-                                        Reconcile Classification to {issue.verified_classification.toUpperCase()}
-                                      </Button>
+                                      issue.verified_classification === "remove" ? (
+                                        <Button
+                                          size="sm"
+                                          className="h-7 text-xs bg-rose-700 hover:bg-rose-800 text-white font-medium shadow-sm"
+                                          disabled={actionLoading}
+                                          onClick={() => handleRemoveGhost(issue)}
+                                        >
+                                          <Trash2 className="h-3.5 w-3.5 mr-1" />
+                                          Remove Ghost Carryover Attempt & De-register
+                                        </Button>
+                                      ) : (
+                                        <Button
+                                          size="sm"
+                                          className="h-7 text-xs bg-emerald-700 hover:bg-emerald-800 text-white"
+                                          disabled={actionLoading}
+                                          onClick={() => handleReconcileSingle(issue)}
+                                        >
+                                          <Check className="h-3.5 w-3.5 mr-1" />
+                                          Reconcile Classification to {issue.verified_classification.toUpperCase()}
+                                        </Button>
+                                      )
                                     )}
 
                                     {!issue.can_auto_correct && !issue.is_protected && (issue.type === "source_period_invalid" || issue.type === "conflicting_source_provenance" || Boolean(issue.source_attempt_id)) && (
