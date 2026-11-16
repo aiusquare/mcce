@@ -958,7 +958,7 @@ export function ResultSheetIntegrityDialog({
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {historyRecords.map((hr, idx) => (
+                      {Array.isArray(historyRecords) && historyRecords.map((hr, idx) => (
                         <TableRow key={hr.id || idx} className="text-xs">
                           <TableCell>{hr.session_name || "—"}</TableCell>
                           <TableCell>{hr.semester_name || hr.level || "—"}</TableCell>
