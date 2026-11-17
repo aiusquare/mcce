@@ -108,6 +108,20 @@ export function ReconciliationModal({
   const hasCollisions = (data?.summary?.by_type?.multiple_attempt_collision || 0) > 0;
   const hasOrphans = (data?.summary?.by_type?.orphan_attempt || 0) > 0;
 
+  const metricDiscrepancyTypes = [
+    "current_tcr_discrepancy",
+    "current_tce_discrepancy",
+    "current_tqp_discrepancy",
+    "previous_ccr_discrepancy",
+    "previous_cce_discrepancy",
+    "previous_cgp_discrepancy",
+    "previous_cgpa_discrepancy",
+  ];
+  const metricDiscrepancyCount = data?.issues
+    ? data.issues.filter((i: any) => metricDiscrepancyTypes.includes(i.type)).length
+    : 0;
+  const hasMetricDiscrepancies = metricDiscrepancyCount > 0;
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -315,6 +329,27 @@ export function ReconciliationModal({
               </div>
             )}
 
+            {hasMetricDiscrepancies && (
+              <div className="flex items-center justify-between p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg text-xs">
+                <div className="flex items-center gap-2 text-amber-800 font-medium">
+                  <RefreshCw className="h-4 w-4 text-amber-600 shrink-0" />
+                  <span>
+                    {metricDiscrepancyCount} metric discrepancy warning(s) detected between eligible registrations/results and displayed broadsheet figures.
+                  </span>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-7 text-xs font-semibold text-amber-800 border-amber-400 bg-white hover:bg-amber-50"
+                  disabled={actionLoading}
+                  onClick={() => handleAction("bulk_recalculate_broadsheet_metrics", {})}
+                >
+                  <RefreshCw className="h-3 w-3 mr-1" />
+                  Recalculate & Sync All Metrics
+                </Button>
+              </div>
+            )}
+
             {/* Issues List Table */}
             <div>
               <h4 className="font-semibold text-sm mb-2">Detected Discrepancies</h4>
@@ -486,11 +521,31 @@ export function ReconciliationModal({
                               </div>
                             )}
 
+                            {metricDiscrepancyTypes.includes(issue.type) && (
+                              <div className="flex items-center justify-end gap-1.5">
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="h-6 text-[10px] px-2 font-medium text-amber-800 border-amber-300 hover:bg-amber-50"
+                                  disabled={actionLoading}
+                                  onClick={() =>
+                                    handleAction("recalculate_broadsheet_metrics", {
+                                      student_id: issue.student_id,
+                                    })
+                                  }
+                                >
+                                  <RefreshCw className="h-3 w-3 mr-1" />
+                                  Recalculate
+                                </Button>
+                              </div>
+                            )}
+
                             {issue.type !== "unregistered_score" &&
                               issue.type !== "unscored_registration" &&
                               issue.type !== "multiple_attempt_collision" &&
                               issue.type !== "orphan_attempt" &&
-                              issue.type !== "ghost_carryover" && (
+                              issue.type !== "ghost_carryover" &&
+                              !metricDiscrepancyTypes.includes(issue.type) && (
                               <span className="text-muted-foreground text-[11px]">
                                 {issue.suggested_action || issue.fix_hint || "—"}
                               </span>
